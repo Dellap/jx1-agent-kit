@@ -52,7 +52,33 @@ KHÔNG phải thiếu file theme.** ⛔ Giả thuyết cũ của trợ lý ("the
 - Script test để lại: `/root/test_vdk_goc.sh` (`swap` | `rollback`, tự chặn khi có người online, tự backup + verify md5).
   ⚠️ Bài học: script CHỈ nhận đúng tham số — chạy với tham số lạ từng làm nó tự `swap` (đã thêm chốt chặn).
 
-## 🎯 NGHI PHẠM SỐ 1 (tìm ra 17/09 tối, CHƯA test): khối `_ts > 0` trong `sim.core.lua` tự huỷ mọi tương tác với bot
+## ⛔ ĐÃ THỬ HẾT — KẾT LUẬN 17/09/2026: tính năng "bấm bot đứng bán để xem/mua hàng" KHÔNG có trong bản mod hiện tại
+
+Bảng 4 phép thử đã làm (tất cả đều **KHÔNG sửa được lỗi** — đừng thử lại):
+
+| # | Phép thử | Kết quả |
+|---|---|---|
+| 1 | Copy đủ 6 cửa sổ `摆摊*`/`npc买卖界面` + 9 sprite vào `ui/ctc` (cả tên mojibake lẫn Unicode) | ✗ không mở |
+| 2 | Đổi `vdk.so` sang bản `_goc` (04/07) + restart | ✗ không mở (⇒ không phải bản `.so`) |
+| 3 | Comment khối `if _ts > 0 then … _ts = 0 end` trong `sim.core.lua` (= về đúng hành vi `_goc`) + restart | ✗ không mở (⇒ nhánh giao dịch chưa từng chạy: `PollTradeStay` luôn = 0 cho bot) |
+| 4 | Đối chiếu Lua server vs pack update 2 | trùng md5 (server đã update đủ) |
+
+**Phép thử tách hướng (chủ server làm):** quầy **người chơi thật MỞ ĐƯỢC**, quầy **bot KHÔNG** ⇒ engine client + bản `.so` đều ổn;
+thiếu **cầu nối "click bot → mở giao dịch/bày hàng"**, và cầu nối đó **không nằm trong Lua** (client lẫn server Lua đều không có
+code mở cửa sổ khi click) ⇒ phải nằm trong module `vdk` (client `vdk.dll` + server `vdk.so`).
+
+**Chứng cứ mạnh nhất — chính tài liệu của mod:** `_Thông tin update 2.docx` (28/08/2026, nguồn của bản đang chạy) ghi rõ
+**"Bỏ chức năng xin vật phẩm từ Bot."** ⇒ khả năng cao tác giả **đã bỏ tính năng tương tác lấy/mua đồ từ bot** trong bản này.
+(`vdk.dll` 5.049.856 B, 21/08/2026, md5 `52ab92ef…`; `game.exe` 21/08 cùng mtime ⇒ cặp client cùng đợt update.)
+
+**Việc nên làm tiếp (không phải mò code nữa):**
+1. Hỏi tác giả mod (link Facebook trong `_Thông tin.docx`) xem bản hiện tại còn hỗ trợ bấm bot để xem/mua đồ không, và nếu bỏ thì
+   bật lại thế nào.
+2. Nếu muốn tính năng: thử bộ client/server **trước update 2** (bản `update lan 1` / client cũ trong `SV/Client` — `game.exe` 09/06
+   md5 `e652eeea…`) trên môi trường test riêng.
+3. Chấp nhận: bot chỉ để làm cảnh; muốn mua/bán với bot thì dùng cơ chế khác (nếu tác giả có).
+
+## 🎯 NGHI PHẠM ĐÃ LOẠI (giữ để tham chiếu): khối `_ts > 0` trong `sim.core.lua`
 
 Trong **file đang chạy** `server1/script/global/nobitaxd/vdk/simcity/components/sim.core.lua` (16/08/2026, md5 `4f08c10e0a0f736b515303c49cdd61ec`)
 có một khối **KHÔNG có trong bản gốc** `sim.core.lua_goc` (04/07/2026, md5 khác) — chèn ngay sau dòng `PollTradeStay`:
