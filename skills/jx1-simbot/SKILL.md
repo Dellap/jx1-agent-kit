@@ -46,11 +46,20 @@ KHÔNG phải thiếu file theme.** ⛔ Giả thuyết cũ của trợ lý ("the
 - Bản update mod 28/08 (`SV/update/VLTK HKMP/update lan 2_…rar`) **chỉ kèm Lua cho cả Client và jxser**, **không kèm binary**
   `vdk.*` ⇒ không có sẵn cặp binary thay thế trong máy.
 
-**Hướng xử lý (chưa làm — phải chờ chủ server chốt):**
-1. Nghi vấn chính: **lệch bản client ↔ server** (client `vdk.dll` 21/08 vs server `vdk.so` 27/07 & 04/07) ⇒ cần lấy **đúng cặp
-   `vdk.dll` + `vdk.so` của cùng bản mod** từ nhà phát hành.
-2. Test rẻ nhất, đảo ngược được: backup `vdk.so` → đặt `vdk.so_goc` vào → restart `jx_linux_y` → thử click bot.
-3. ⚠️ Đổi `vdk.so` = **downtime toàn server** (nạp bằng `LD_PRELOAD` lúc start) ⇒ hẹn giờ + backup trước + verify md5.
+**ĐÃ THỬ — KHÔNG PHẢI NGUYÊN NHÂN Ở BẢN `vdk.so` (17/09 21:36–21:44):**
+- Đổi `vdk.so` sang bản `_goc` (04/07, md5 `40420c2c…`) + restart `jx_linux_y` (5 service UP, 0 người online) ⇒
+  **chủ server vào click bot vẫn KHÔNG mở** ⇒ loại trừ bản `.so`. Đã rollback về bản 27/07 (`d364ec69…`).
+- Script test để lại: `/root/test_vdk_goc.sh` (`swap` | `rollback`, tự chặn khi có người online, tự backup + verify md5).
+  ⚠️ Bài học: script CHỈ nhận đúng tham số — chạy với tham số lạ từng làm nó tự `swap` (đã thêm chốt chặn).
+
+**⇒ Còn lại nghi vấn ở phía CLIENT (cặp binary client) — bước kế tiếp:**
+1. `game.exe` có 2 bản khác md5: `SV/Client/game.exe` **09/06/2026** (`e652eeea…`) vs bản đang chạy **21/08/2026** (`d48a6d19…`).
+   Cả 2 bản đều có chuỗi `摆摊`/`摆摊物品`/`买卖` + `OpenShop`/`Stall` (đếm bằng nhau) ⇒ khác biệt không nằm ở tên cửa sổ.
+   Test rẻ: backup `Client/game.exe` → chép bản 09/06 vào → tắt/mở client → click bot (1 file, đảo ngược được).
+2. Test tách CLIENT vs BOT: nhờ người chơi thật dựng quầy (acc thứ 2) → nếu quầy **người thật mở được** mà quầy **bot không**
+   ⇒ lỗi ở nhánh bot (server/giao dịch bot), không phải client engine; nếu cả hai đều không mở ⇒ lỗi client engine.
+3. `vdk.dll` chỉ có 1 phiên bản trên toàn máy (md5 `52ab92ef…`, cả `SV/Client`, `UI/`, `Client/`) ⇒ không có bản khác để A/B.
+4. Muốn có cặp đúng bản: hỏi nhà phát hành mod (bản update 28/08 chỉ kèm Lua, KHÔNG kèm binary).
 
 ## When to Use
 
