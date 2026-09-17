@@ -8,7 +8,12 @@
 set -uo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 DOCS="$ROOT/README.md $ROOT/START-HERE.md $ROOT/NOTICE.md $ROOT/skills"
-LOCAL="$ROOT/scripts/.pii-local"
+# Danh sách từ khoá riêng của chủ repo (KHÔNG commit). Ưu tiên file NGOÀI repo để an toàn khi
+# chia sẻ cả thư mục; vẫn nhận scripts/.pii-local hoặc đường dẫn trong $PII_LOCAL.
+LOCAL=""
+for _c in "${PII_LOCAL:-}" "$HOME/.jx1-repo-pii.txt" "$ROOT/scripts/.pii-local"; do
+  if [ -n "$_c" ] && [ -f "$_c" ]; then LOCAL="$_c"; break; fi
+done
 fail=0
 
 echo "== 1. Secret / khoá / IP thật (TOÀN repo) =="

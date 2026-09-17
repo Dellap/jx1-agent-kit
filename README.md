@@ -70,9 +70,6 @@ Repo **đã bỏ hết thông tin máy/hạ tầng riêng**. Gặp các token d�
 | `<SMB_USER>` | user SMB để vào share client |
 | `<JX1_ROOT>` | thư mục client JX1 trên Windows (vd `D:\Game\jx1`) |
 | `<SERVER_NAME>` | tên server JX1 của bạn (hiện trong bảng chọn server của client) |
-| `<AREA_NAME>` | địa danh/khu vực trong ví dụ (tên xã, huyện của bạn) |
-| `<SHOP_NAME>` / `<OWNER_NAME>` / `<TAX_ID>` | tên tiệm / tên người / mã số thuế (nếu có trong ví dụ) |
-| `<NOTIFY_SLUG>` | slug thiết bị nhận thông báo (nếu bạn dùng) |
 | `ssh jx1` | alias SSH tới máy server — thêm vào `~/.ssh/config` |
 
 ## Ghi chú
