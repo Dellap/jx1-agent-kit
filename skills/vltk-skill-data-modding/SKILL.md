@@ -47,7 +47,7 @@ skills.txt), có đánh dấu độ tin cậy [XÁC NHẬN]/[BỔ SUNG]/[CHƯA R
 
 > **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này `sources/hqvl-docs-text/<file>` (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
 
-- `jxtools__shopbuilder__README.md.txt` — **ShopBuilder** — tạo/sửa shop server (buysell.txt, goods.txt, item/) — JX Linux 8.0 & 6.0
+- `jxtools__shopbuilder__README.md.txt` — **ShopBuilder** ⭐ *đã chưng cất → `references/shop-goods-buysell.md`* — tạo/sửa shop server (buysell.txt, goods.txt, item/) — JX Linux 8.0 & 6.0
 - `jxtools__onlineGMPassTool__README.md.txt` — **OnlineGMPassTool** — mã hoá/giải mã mật khẩu GM (MD5)
 - `jxtools__onlineTCVN3Converter__README.md.txt` — **OnlineTCVN3Converter** — chuyển UTF-8 ↔ TCVN3
 - `wiki-beta__cong_cu_ho_tro_toan_tap.html.txt` — công cụ hỗ trợ toàn tập
@@ -56,6 +56,8 @@ skills.txt), có đánh dấu độ tin cậy [XÁC NHẬN]/[BỔ SUNG]/[CHƯA R
 - `wiki-beta__download__huong_dan_pack_va_unpack_du_lieu_tu_pak.html.txt` — pack/unpack dữ liệu từ .pak
 
 ## Tham chiếu chi tiết
+
+- `references/shop-goods-buysell.md` — **chưng cất từ ShopBuilder (HQVL) + verify trên server 17/09**: cấu trúc `goods.txt` (26 cột) & `buysell.txt` (ma trận 117 cửa hàng), 3 nơi phải ghi đè, quy trình 4 bước, `Sale(ID,kiểu)`, cảnh báo lệch ID
 - references/lua-dictionary.md — cấu trúc & thuộc tính file .lua + hàm nội suy
 - references/skillstxt-dictionary.md — giải nghĩa từng cột skills.txt
 - references/missiletxt-dictionary.md — giải nghĩa từng cột Missile.txt
