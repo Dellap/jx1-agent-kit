@@ -50,6 +50,32 @@ Pack = **3 file, không README**: `vdk.so` + `script/global/nobitaxd/vdk/simcity
 - `config.lua` của pack là **baseline cũ** (300 bot, chat 10, `ENABLE_BANNGUAMIXDEV=0`) ⇒ **KHÔNG ghi đè cả file**, chỉ lấy dòng giá (xem bài học dưới).
 - Ghi chú: giá hiển thị ở client còn có `BOT_STALL_PRICE_MULTIPLIER` trong `Client/script/.../simcity/config.lua` (= 100).
 
+## 🔬 CƠ CHẾ "BÀY BÁN" CỦA BOT — đọc từ module (số liệu thật 17/09/2026)
+
+**Ai dựng nội dung quầy?** KHÔNG phải Lua, KHÔNG có file dữ liệu — chính là **module `vdk.so`**:
+- `settings/global/vdk/simcity/` chỉ có `chat.txt`, `names.txt`, `npcid2faction.txt`, `pets.txt`, `skills.txt`, `maps/` ⇒ **không có file shop/goods/stall/item** nào.
+- `vdk.so` = ELF 32-bit, **stripped**, `.text` 42.676 B, `.rodata` 3.244 B, **`.bss` 9,9 MB** (bảng dữ liệu tĩnh nằm trong module), nạp bằng `LD_PRELOAD` (systemd `vdk.conf` hoặc `boot_all.sh`).
+- `.dynsym` **không export hàm nào** (chỉ 3 hàm ngoài: `__divdi3`, `__udivdi3`, `strlen`) ⇒ nó **tự đăng ký hàm vào Lua** bằng constructor `.init_array`; tên hàm nằm trong `.rodata`: `SetNpcStall`, `SetBotStallTier`, `SendTradeItem`, `PollTradeStay`, `TradeStayClear`, `SetNpcCombat`, `SetNpcBang`, `SetNpcDuelEnd`, `NpcSit`, `NpcRun`, `AddNpcStateInfo`, `GetNpcAreaRaw`…
+- ⇒ Muốn đổi **giá hoặc danh sách món** của quầy bot **phải build lại module**; chỉ có 1 nút vặn từ Lua: `SetBotStallTier(0, 1000 + BOT_STALL_PRICE_MULTIPLIER, 1)`.
+- ⇒ Hệ quả cho lỗi "click bot không hiện đồ": đường dựng/hiện quầy nằm **trong cặp module** (`vdk.so` server ↔ `vdk.dll` client) — mọi thứ sửa được bằng ini/settings/Lua đều **không thể** chạm tới nó.
+
+**Pack `CHANGE PRICE SIMCITY SHOP - Do Bao` = PATCH NHỊ PHÂN, không phải đổi dữ liệu** (đã đo):
+- `vdk.so` pack (`d364ec69…`) vs `vdk.so_goc` (04/07, `40420c2c…`): **khác đúng 23 byte trong `.text`, `.rodata` giống hệt**; bản pack thêm 1 đoạn code ở `0xb700` và đổi `0x2144` thành `jmp 0xb700` (nhánh xử lý mã `1000+N`).
+- Cách kiểm 1 bản module có gì mới (dùng lại được):
+  ```bash
+  readelf -SW vdk.so | grep -E "\.text|\.rodata|\.bss"     # kích thước/lệch
+  objcopy -O binary --only-section=.text  vdk.so /tmp/a; objcopy -O binary --only-section=.text vdk.so_goc /tmp/b
+  cmp -l /tmp/a /tmp/b | head                              # byte nào đổi (offset-1 + 0x1030 = VA)
+  objdump -D -M intel --start-address=0x2130 --stop-address=0x2164 vdk.so
+  ```
+- Client `vdk.dll` (5.049.856 B) = **UPX-packed** (section `UPX0`, `.boot`) ⇒ `strings` ra rác, **đừng mất thời gian tìm từ khoá**; chỉ so được md5 giữa các bản.
+
+**Thành phần dòng Do Bao mà server bạn KHÔNG có (khai quật 17/09)** — pack `DOBAO … Update SIMBOT - VER 3 - MON PHAI KHONG BUON CHAN & CHATBOT` (07/08):
+- `gateway/s3relay/simbot_client_bridge_server.py` (UDP **39036**, log `KSG_SimBotClientBridge.log`) nhận gói `CW1` (sự kiện) / `CW2` (kèm **item descriptor 27 trường số**) từ phía client → ghi `server1/data/simbot_world_event.txt`, `simbot_item_offers.txt`.
+- `gateway/s3relay/libsimbot_whisper_spawn.so` (19 KB), `script/…/components/sim.whisper.spawn.lua` (54 KB), `data/simbot_{world_event,item_offers,exact_trade,whisper_request,whisper_response}.txt`, cài bằng **systemd unit** `simbot-client-bridge.service`
+  ⇒ **WSL của bạn không có systemd ⇒ không bao giờ chạy**; server cũng **không có file nào** trong số này (đã kiểm: `grep whisper/bridge/simbot_item` = 0 kết quả).
+- Đây là **CHATBOT + xin vật phẩm** (bridge tên "SimBot Client **ChatWorld** Bridge", khớp `JX1Mod.ini [ChatWorld]` ở client), **KHÔNG phải đường hiển thị quầy bày bán** ⇒ cài cũng không chữa lỗi click (và bản update 2 đã bỏ "xin vật phẩm từ Bot").
+
 ## ⛔ BÀI HỌC QUY TRÌNH: pack third-party KHÔNG đảm bảo `ORIGINAL-GỐC` = bản đang chạy
 
 Ca thật 17/09: pack `NPC PLAYER HIỆN BANG` có `ORIGINAL-GỐC/` (baseline 04/07) nhưng server đã chạy **bản mới hơn ở 8 file**

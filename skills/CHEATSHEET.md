@@ -101,3 +101,10 @@ ssh jx1 'pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home
 - ⛔ **Pack third-party có thể dựa trên baseline CŨ:** pack `NPC PLAYER HIỆN BANG` ghi đè 8 file server mới hơn (mất 24 dòng config riêng)
   ⇒ phải **so md5 3 chiều TỪNG FILE** trước khi ghi đè và hoàn nguyên nếu lệch (`/root/apply_price_shop_pack.sh revert`).
   Xem `skills/vltk-client-modding/references/mod-install-and-debug.md` §5.
+- 🔬 **Nội dung quầy bot do `vdk.so` dựng, không có file dữ liệu:** `settings/global/vdk/simcity/` chỉ có chat/names/pets/skills/maps;
+  `vdk.so` = ELF 32-bit stripped, `.text` 42.676 B, `.rodata` 3.244 B, `.bss` 9,9 MB, **không export symbol** (tự đăng ký hàm Lua qua constructor)
+  ⇒ đổi giá/món phải **build lại module**; pack `CHANGE PRICE - Do Bao` = **patch 23 byte trong `.text`** (không phải đổi dữ liệu).
+  Client `vdk.dll` = **UPX-packed** ⇒ `strings` vô nghĩa. Chi tiết + lệnh so 2 bản module: `skills/jx1-simbot/SKILL.md` → mục **CƠ CHẾ "BÀY BÁN"**.
+- 📡 Dòng Do Bao còn có **cầu client→server** `simbot_client_bridge_server.py` (UDP 39036, gói `CW1`/`CW2` + item descriptor 27 trường) +
+  `libsimbot_whisper_spawn.so` + `sim.whisper.spawn.lua` + `server1/data/simbot_*.txt`, cài bằng **systemd** (WSL không chạy được) — server hiện tại **không có gì**
+  trong số này. Bản chất = **CHATBOT/xin vật phẩm**, KHÔNG phải đường hiển thị quầy bán.
