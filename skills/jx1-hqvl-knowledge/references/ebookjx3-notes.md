@@ -1,5 +1,15 @@
 # EbookJx 3.0 (jxvietnam) — ghi chú tra cứu
 
+> ⚠️ **ĐÍNH CHÍNH (đối chiếu client/server thật 17/09/2026):**
+> - Bài 12/13 — tên file GUI: client `settings/NpcRes/界面状态与图形对照表.txt` (dòng cùng id skill → spr); server `settings/状态与光效图形对照表.txt`.
+>   Tên `状态图形对照表.txt` của ebook 2010 **không còn tồn tại**.
+> - Bài 8 bước 5 (đồng bộ `Skills.txt` → `represent04.dll`): **KHÔNG áp dụng** — client `<GAME_HOST_IP>` **không có** `represent04.dll` (chỉ `represent2/3.dll`); bảng skill client đọc từ `settings/skills.txt` (727 KB, có cả server và client).
+> - Bài 14: ví dụ thật trên server nhà = `settings/droprate/npcdroprate20.ini` (Count=54, RandRange=300000, MoneyRate=10, MoneyScale=50); `songjing.ini` trong ebook **không có** trên server.
+> - Bài 15: nhãn cột `N/O/P/Q/R/S` là theo **cột Excel bản 2010**; trên `settings/npcs.txt` hiện tại 5 cột đó = `ArmorType(13)/HelmType(14)/WeaponType(15)/HorseType(16)/RideHorse(17)` ⇒ **đọc theo header, đừng đếm**.
+> - Bài 13: client `<GAME_HOST_IP>` — `Spr/NpcRes` **chỉ có `man`, KHÔNG có `woman`** (res nữ phải tự tạo thư mục `woman` trước).
+> - Bài 18: `顶部控制条.ini` thật ở `ui/ui_ctc_v2/` và `ui/ui_vlmp/`; `Spr/Ui4/主界面/血蓝/` **không tồn tại**; thanh máu/mana nhà = `Spr/Ui3/主界面/生命条.spr` + `内力条.spr` ⇒ phải map lại toàn bộ.
+> - Bài 11-12: tên cột thật — `cột J = StateSpecialId (id 10)`, `cột T = MisslesForm (id 20)`, `missles.txt cột 1 = MissleId`.
+
 Nguồn: **"Ebook JX server 3.0"** — CHM do **Jxvietnam** (thành viên Clbgamesvn.com, Yahoo `<EMAIL>`)
 biên soạn, **thời gian 10/2010**. Nội dung = bài trên box JX của clbgamesvn.com (ghi rõ tác giả từng bài: thaihoa91,
 sandaru, kikina, chickennood, DNT, notfile, zonjkut3, invalid-password, tungpro102, Ronaldo, ICarus, Cubin, Giangleloi)

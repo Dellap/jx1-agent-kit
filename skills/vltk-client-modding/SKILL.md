@@ -1,3 +1,15 @@
+
+
+## ⚡ CHỐT NHANH (đối chiếu máy thật 17/09/2026 — đọc trước khi làm gì)
+
+1. **Độ phân giải:** game chạy nội bộ **1600x900** (`Client/resolution.ini`); màn hình chủ máy 1920x1080 ⇒ **mọi toạ độ `.ini` tính theo 1600x900**.
+2. **Share root = `E:\Game\jx1\VoLamTruyenKy`**; client nằm ở **`VoLamTruyenKy/Client`** (không phải share root là `E:\Game\jx1`).
+3. **`Client/ui/` có:** `ctc` (đang chạy, `Theme=CTC`), `ui_ctc_v2`, `ui_vlmp`, `ui3`, `one` ⇒ câu cũ "không có `ui/ui3`" là **SAI** — `ui/ui3/battle/` có `battle_select.ini` + `battle_select_origin.ini`.
+4. **Công cụ:** chỉ còn **`Tools/unpacktool/`** (`unpack.exe`, `Decoder.exe`, `paths.txt`). Các mục `TOOL/ui1600`, `ResolutionHook.0.0.2`, `SPRViewer/`, `UI+3/`, `VLTK_Launcher.rar` **không còn** — thư mục bóc pak đã dồn về `E:\Game\jx1\_unpack\`.
+5. **md5 bản đang chạy (17/09):** `ui/ctc/battle/battle_select.ini` = `60b64d14ce51c24aca4ef0db6d6beb2d` (con số `7d00fae1…` trong tài liệu là **bản cũ đã bị thay**); `script/protocol.lua` = `c6f4b2628a58b1730311c03dad072b82`; `script/tasktrace/ui.lua` = `bf3e3cd59aa732bfa4fedf664b519bc1`. Bản lưu tốt: `Update\_SAVE_tasktrace_working_20260917_1930\` (+`md5.txt`, `restore_working.sh`).
+6. **Hoa/thường `Spr` vs `spr`:** trên đĩa tồn tại **CẢ HAI** (`Client/Spr` và `Client/spr`) ⇒ **luôn `ls` kiểm trước khi `cp`/`mv`**, ghi sai chữ là copy nhầm thư mục.
+7. **Tên tiếng Trung:** trên đĩa/trong ini ở mức **byte GBK** (tài liệu hiển thị dạng mojibake đúng như `ls` in ra: `Ö÷½çÃæ`); Unicode trong ngoặc chỉ để chú thích.
+8. **`battle_select.ini`:** danh sách control engine VẼ ĐƯỢC gồm cả **`btnShop`** (bản ghi cũ thiếu) — xem mục `## Mod "Theo dõi nhiệm vụ"`.
 ---
 name: vltk-client-modding
 description: Use when modding VLTK/JX1 game client UI (.ini, .spr, pak).

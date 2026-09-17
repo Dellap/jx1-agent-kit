@@ -1,5 +1,10 @@
 # Script API & path — chi tiết (nguồn: wiki-beta HQVL)
 
+> ⚠️ **ĐÍNH CHÍNH (17/09/2026):** `StartMissionTimer(84, 155, 18*60)` — **18 frame = 1 GIÂY** ⇒ `18*60` frame = 1 phút.
+> Nhóm Tống Kim: `BAOMING_TIME = ThoiGianBaoDanhTK` (3 phút), `FIGHTING_TIME = ThoiGianChienDauTK` (30 phút), `SONGJIN_SIGNUP_FEES = 20000`;
+> `BOSS_TIME_MAIN`/`VANISHGAME_TIME_MAIN` **đã bị xoá khỏi `battlehead.lua`**. `settings/item/magicscript.txt` (không phải `settings/magicscript.txt`).
+> `tasklist.ini [List] Count = 133` nhưng chỉ có 45 section `[Task_0..44]` ⇒ **Count không phải số task**.
+
 ## A. Khai báo map + NPC cho tính năng mới (ví dụ thật: Tần Lăng Bí Bảo)
 
 1. **maplist.ini** — `/home/jxser/server1/settings/relaysetting/maplist.ini`: thêm block map mới, sửa ID map

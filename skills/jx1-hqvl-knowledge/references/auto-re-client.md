@@ -1,5 +1,8 @@
 # Auto, Reverse Engineering & inject DLL (nguồn: HQVL — Trung Duong / Tiến Phan / Kiều Tôn Sơn)
 
+> ⚠️ **CẢNH BÁO PHẠM VI (17/09/2026):** toàn bộ số liệu RE trong file này (`0x140C0`, địa chỉ static/offset, `game_y.exe`, source JXWin 64-bit, miniskill/scale)
+> là của **client JX6/JX80 (2010)** — **CHƯA verify** trên client hiện tại (`<GAME_HOST_IP>`: `game.exe` + `HoiQuanVoLam.exe`). Chỉ dùng làm hướng tham khảo, đừng trích dẫn như số liệu đã kiểm chứng.
+
 ## 1. Nguyên lý auto
 
 Auto đơn giản = gọi **hàm thực thi script của thanh chat** trong `game.exe`. Địa chỉ hàm này (JX6.0):

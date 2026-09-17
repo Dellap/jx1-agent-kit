@@ -10,7 +10,21 @@ metadata:
     related_skills: [vltk-server-ops, vltk-client-modding, vltk-skill-data-modding, jx1-simbot]
 ---
 
-# Kho tri thức JX1/VLTK — Hội Quán Võ Lâm (github.com/jxoffline)
+# 
+
+## ⚠️ ĐÍNH CHÍNH đường dẫn/số liệu (đối chiếu server thật 17/09/2026)
+
+- `maplist.ini` → **`/home/jxser/server1/settings/maplist.ini`** (KHÔNG có `relaysetting` trong `server1/settings`); client cũng có `settings/maplist.ini`.
+- `worldset.txt` → **`/home/jxser/gateway/s3relay/settings/worldset.txt`** (thư mục gateway tên là `settings`, khác `server1/settings`).
+- Shop: **`settings/{goods,buysell}.txt`** và **`settings/item/magicscript.txt`** (không phải `settings/magicscript.txt`).
+- `settings/npcS.txt` → **`settings/npcs.txt`** (Linux phân biệt hoa/thường; `npcS.txt` là cách viết của bản Windows 2010).
+- `SetDeathScript` ví dụ đúng: `SetDeathScript("\\script\\battles\\marshal\\playerdeath.lua")` — **không có thư mục `script/game/`**.
+- Hàm common: file thật là **`script/lib/common.lua`**; **`iff` KHÔNG tồn tại** (đừng dùng) — có `unpack`, `tonum`, `strfill_left/right/center`.
+- **Đơn vị:** `18 frame = 1 GIÂY` (không phải 1 phút) ⇒ `18*60` frame = 1 phút.
+- Tống Kim (battlehead.lua): các hằng đã **Việt hoá thành biến config** — `BAOMING_TIME` = `ThoiGianBaoDanhTK` (hiện 3 phút), `FIGHTING_TIME` = `ThoiGianChienDauTK` (hiện 30 phút), `SONGJIN_SIGNUP_FEES` = 20000; **`BOSS_TIME_MAIN` / `VANISHGAME_TIME_MAIN` đã bị xoá khỏi file**.
+- `tasklist.ini`: `[List] Count` trên server = **133** trong khi chỉ có 45 section `[Task_0..44]` ⇒ **Count KHÔNG phải số task**, đừng mặc định "tăng Count lên 1".
+- Encoding Lua server: `iso-8859-1/TCVN3`, **line-ending KHÔNG đồng nhất** (`common.lua` CRLF, `autoexec.lua` LF) ⇒ đừng ép toàn bộ sang CRLF.
+- `Sale(ID, kiểu)`: bảng mã kiểu `0..4` lấy từ tài liệu HQVL, **chưa verify trên server nhà**.Kho tri thức JX1/VLTK — Hội Quán Võ Lâm (github.com/jxoffline)
 
 ## When to Use
 
