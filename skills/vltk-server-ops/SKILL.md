@@ -1,5 +1,5 @@
 ---
-name: vltk-server-ops
+name: <SSH_ALIAS>-server-ops
 description: Use when operating the VLTK/JX1 <SERVER_NAME> server.
 ---
 
@@ -7,7 +7,7 @@ description: Use when operating the VLTK/JX1 <SERVER_NAME> server.
 
 Server stack of the user's JX1/VLTK "<SERVER_NAME>" test server. The game runs
 inside **WSL2 (CentOS7 distro <WSL_DISTRO>, hostname <PC_NAME>-Kho)** on Windows PC
-<GAME_HOST_IP>; SSH in via `ssh jx1` (root@<GAME_HOST_IP>:2222, key). Game data
+<GAME_HOST_IP>; SSH in via `ssh <SSH_ALIAS2>` (root@<GAME_HOST_IP>:2222, key). Game data
 under `/home/jxser` (gateway/ + server1/). Webpanel (quản lý server, screenshot
 "VLTK SERVER - THỬ NGHIỆM") = python2 `server.py` on WSL :80, http://<wsl-ip>.
 
@@ -16,12 +16,12 @@ under `/home/jxser` (gateway/ + server1/). Webpanel (quản lý server, screensh
 Khi cần xác minh ghi chú/skill về server còn đúng hay đã cũ (số dòng, đường dẫn, tên hàm, giá trị config):
 đọc file đó trước. Nó có quy trình tar read-only + 2 bẫy đã trả giá: **đừng tin số dòng đếm từ mirror**
 (phải `wc -l` trên server — chệch 1 do newline cuối suýt làm báo sai một số liệu ĐÚNG), và **đừng nhồi vòng lặp
-bash có biến vào `ssh jx1 'bash -lc "..."'`** (quote lồng nhau vỡ `unexpected EOF`). Kèm bảng mốc số liệu
+bash có biến vào `ssh <SSH_ALIAS2> 'bash -lc "..."'`** (quote lồng nhau vỡ `unexpected EOF`). Kèm bảng mốc số liệu
 đã xác minh 17/09/2026 + tên hàm/settings của SimBot trong `game-development/jx1-simbot` (skill đó user-owned).
 **Mục 5 của file đó** = audit 60 tài liệu HQVL ↔ server nhà: bảng 4 tên file tài liệu HQVL ghi SAI
 (`Missile.txt`→`missles.txt`, `comon.lua`→`common.lua`, `maplist.ini`, `worldset.txt`) + header THẬT
 `missles.txt` (57 cột) & `skills.txt` (114 cột, 20 cặp LvlSetting) — tra mục 5 trước khi sửa dữ liệu skill,
-vì các từ điển trong skill `vltk-skill-data-modding` (user-owned) còn ghi tên cũ.
+vì các từ điển trong skill `<SSH_ALIAS>-skill-data-modding` (user-owned) còn ghi tên cũ.
 
 ## Service stack & ports (start order matters)
 1. mysqld → 3306
@@ -33,7 +33,7 @@ vì các từ điển trong skill `vltk-skill-data-modding` (user-owned) còn gh
 Restarting only bishop (pkill) makes jx_linux_y exit too ("connection[Bishop] lost
 → GameServer exit"). After any partial restart, verify all 5 with
 `for p in mysqld goddess_y bishop_y s3relay_y jx_linux_y; do pgrep -x $p >/dev/null && echo "$p UP" || echo "$p DOWN"; done`
-scripts: /opt/vltk_portable/{boot_all.sh,stop_all.sh,fix_config.sh,apply_patch.sh} (boot_all used by webpanel).
+scripts: <PORTABLE_DIR>/{boot_all.sh,stop_all.sh,fix_config.sh,apply_patch.sh} (boot_all used by webpanel).
 
 ## Đổi binary engine (`vdk.so`) / restart gameserver — quy tắc an toàn (bài học 17/09/2026)
 
@@ -41,14 +41,14 @@ Gameserver nạp `vdk.so` bằng **`LD_PRELOAD` lúc start** ⇒ đổi binary p
 ```bash
 pkill -x jx_linux_y; sleep 3
 cd /home/jxser/server1 && setsid env LD_PRELOAD=./vdk.so ./jx_linux_y \
-  >/opt/vltk_portable/logs/gameserver.log 2>&1 </dev/null &
+  ><PORTABLE_DIR>/logs/gameserver.log 2>&1 </dev/null &
 ```
 (boot_all.sh chỉ start cái đang DOWN, nên restart riêng jx_linux_y là đủ; KHÔNG đụng bishop/s3relay.)
 
-⛔ **BẪY `panel_restart.sh`**: `/opt/vltk_portable/panel_restart.sh` **CHỈ restart WEB PANEL (:80)**, KHÔNG đụng service game ⇒
+⛔ **BẪY `panel_restart.sh`**: `<PORTABLE_DIR>/panel_restart.sh` **CHỈ restart WEB PANEL (:80)**, KHÔNG đụng service game ⇒
 sửa Lua rồi chạy nó sẽ tưởng "đã restart" mà game vẫn chạy code cũ (đã mất thời gian 17/09). Nạp lại Lua server:
 ```bash
-pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home/jxser      # idempotent, start cái thiếu
+pkill -x jx_linux_y; sleep 2; bash <PORTABLE_DIR>/boot_all.sh /home/jxser      # idempotent, start cái thiếu
 ps -o lstart -p $(pgrep -x jx_linux_y)                                            # verify ĐÃ restart đúng giờ
 ```
 - `print(...)` trong Lua server → `server1/Logs/KSG_ScriptOutputLog_<ngày>.txt` (KHÔNG phải `logs/gameserver.log`); log mtime đứng yên = chưa ghi gì.
@@ -57,7 +57,7 @@ ps -o lstart -p $(pgrep -x jx_linux_y)                                          
 
 - **GATE bắt buộc trước khi restart**: `ss -tn state established | grep -c ':5622'` — >0 = đang có người chơi ⇒ DỪNG, hẹn giờ vắng.
 - Sau restart verify: 5 service UP + port `5622/5001/5003/5004/5005/6666/3306` listen +
-  `tail /opt/vltk_portable/logs/gameserver.log` (đang "Map was Loaded…", không lỗi).
+  `tail <PORTABLE_DIR>/logs/gameserver.log` (đang "Map was Loaded…", không lỗi).
 - Backup binary trước khi đổi (`cp -p vdk.so vdk.so.bak_$(date +%Y%m%d_%H%M%S)`) + in `md5sum` trước/sau.
 - Script tham chiếu còn trên server: `/root/test_vdk_goc.sh` (`swap` | `rollback`) — đổi `vdk.so` ↔ `vdk.so_goc`, gate người chơi, backup + md5, in trạng thái 5 service.
 
@@ -66,7 +66,7 @@ ps -o lstart -p $(pgrep -x jx_linux_y)                                          
 `bash -n` chỉ kiểm cú pháp, KHÔNG bắt được lỗi này. Muốn dry-run: viết hẳn nhánh `--check`, hoặc `cat` script đọc trước khi chạy.
 
 ## LAN play from another machine (laptop)
-Client (E:\Game\jx1\VoLamTruyenKy\Client on the PC; same layout on laptop) connects
+Client (<GAME_ROOT>\Client on the PC; same layout on laptop) connects
 to bishop **5622**. Because WSL2 NATs, remote clients need Windows portproxy on <GAME_HOST_IP>
 (same trick as SSH 2222→22). **wsl-fix-game.bat** (C:\ProgramData\) does it — reads
 WSL IP from C:\Users\<WIN_USER>\wsl_ip.txt (rewritten each WSL boot by /root/wsl-boot.sh),
@@ -127,7 +127,7 @@ Use targeted per-line edits (`sed -i "Ns/…/"`) and re-`grep -n` every affected
 afterward. Intended final state: fix_config bishop line →<GAME_HOST_IP>; goddess,
 s3relay lines →127.0.0.1.
 
-## Diagnosis logs (all under /opt/vltk_portable/logs/ unless noted)
+## Diagnosis logs (all under <PORTABLE_DIR>/logs/ unless noted)
 - KSG_G_System_*.log (gateway/Logs) — bishop client flow (GetRoleInfo/EnterGame/Move Node)
 - heaven_2_500_*.log (gateway/Logs) — raw client connects; Allocate→CloseReason:2 = client dropped
 - KSG_LoginOutLog_*.log (server1/Logs) — account enter/leave + timeouts

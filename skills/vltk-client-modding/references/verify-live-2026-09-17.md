@@ -3,7 +3,7 @@
 > ⚠️ Mọi đường dẫn tuyệt đối trong file này là **ví dụ của một máy cụ thể** (`<GAME_ROOT>`, `<WORK_DIR>`, `<DRIVE>:` …). Máy khác hãy tự xác định *game root* = thư mục cha của `Client/`.
 
 
-Rà soát chỉ-đọc (nc / `ssh jx1` / ls / grep / md5 / od — không sửa gì) nhằm chốt lại số liệu sau khi
+Rà soát chỉ-đọc (nc / `ssh <SSH_ALIAS2>` / ls / grep / md5 / od — không sửa gì) nhằm chốt lại số liệu sau khi
 SKILL.md gộp từ skill cũ `jx1-client-ui-modding`. **Ô nào đánh ⛔ là câu trong SKILL.md đang SAI/đã cũ — sửa khi có dịp.**
 
 ## Layout share THẬT (`$GAME_ROOT/`)
@@ -69,8 +69,8 @@ bản mod vào `ui/ctc/battle/` (và `ui/ui3/battle/`). Luật đúng cần phá
 ## Kiểm tra lại khi cần (lệnh chỉ-đọc, an toàn)
 
 ```bash
-ssh jx1 'ls $GAME_ROOT/Client/ui/'                  # theme list
-ssh jx1 'md5sum /mnt/e/.../Client/ui/ctc/battle/battle_select.ini'     # md5 bản đang chạy
-ssh jx1 'od -A d -t x1 -N 16 <file>.spr'                               # header sprite (xxd KHÔNG có trên CentOS 7)
-ssh jx1 'grep -a -A24 KE_SCRIPT_PROTOCOL /home/jxser/server1/script/protocol.lua'
+ssh <SSH_ALIAS2> 'ls $GAME_ROOT/Client/ui/'                  # theme list
+ssh <SSH_ALIAS2> 'md5sum /mnt/e/.../Client/ui/ctc/battle/battle_select.ini'     # md5 bản đang chạy
+ssh <SSH_ALIAS2> 'od -A d -t x1 -N 16 <file>.spr'                               # header sprite (xxd KHÔNG có trên CentOS 7)
+ssh <SSH_ALIAS2> 'grep -a -A24 KE_SCRIPT_PROTOCOL /home/jxser/server1/script/protocol.lua'
 ```

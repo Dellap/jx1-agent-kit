@@ -7,10 +7,10 @@ Trang 1 chỗ để **không phải SSH dò lại**. Số liệu bám server ser
 | Thứ | Giá trị |
 |---|---|
 | Server chính | PC Windows 11 `<GAME_HOST_IP>`, game trong **WSL2 CentOS 7** (distro `<WSL_DISTRO>`, hostname `<WSL_HOSTNAME>`) |
-| SSH | `ssh jx1` (= `root@<GAME_HOST_IP>:2222`, key; portproxy 2222→WSL:22 tự refresh) |
+| SSH | `ssh <SSH_ALIAS2>` (= `root@<GAME_HOST_IP>:2222`, key; portproxy 2222→WSL:22 tự refresh) |
 | ⚠️ Sau reboot PC | chạy `C:\ProgramData\wsl-fix-game.bat` bằng quyền admin (portproxy 2222/5622/5632 + firewall) |
 | Server JX1 thứ 2 | `<GAME_HOST2_IP>` (Ubuntu 24.04, `/home/jxser/gateway+server1`, 7 systemd svc, webpanel :8080) — **khác hoàn toàn** máy chính, không dùng chung file |
-| Webpanel quản lý | python2 `server.py` trên WSL port 80 (nút Start/Stop gọi `/opt/vltk_portable/boot_all.sh`) |
+| Webpanel quản lý | python2 `server.py` trên WSL port 80 (nút Start/Stop gọi `<PORTABLE_DIR>/boot_all.sh`) |
 | Client game | `<JX1_ROOT>\Client` (trên PC) — share SMB cùng tên |
 | Client patch/resolution | `resolution.ini` + `filtertext.dll` (hook), `dgVoodoo` (`ddraw.dll`) cho Win11 |
 
@@ -42,8 +42,8 @@ for p in mysqld goddess_y bishop_y s3relay_y jx_linux_y; do pgrep -x $p >/dev/nu
 | Shop | `server1/settings/{goods,buysell,magicscript}.txt` (+ copy sang `gateway/s3relay/relaysetting/syncfiles/settings` và client `settings`) |
 | Lua script | `server1/script/{lib,global,missions,battles}/…` |
 | SimBot/SimCity | `server1/script/global/nobitaxd/vdk/simcity/` + `server1/settings/global/vdk/simcity/` |
-| Log hay soi | `gateway/Logs/KSG_G_System_*.log`, `gateway/Logs/heaven_2_500_*.log`, `server1/Logs/KSG_LoginOutLog_*.log`, `/opt/vltk_portable/logs/{bishop,s3relay,goddess,gameserver}.log` |
-| Cli patch portable | `/opt/vltk_portable/{boot_all.sh,stop_all.sh,fix_config.sh,apply_patch.sh}` |
+| Log hay soi | `gateway/Logs/KSG_G_System_*.log`, `gateway/Logs/heaven_2_500_*.log`, `server1/Logs/KSG_LoginOutLog_*.log`, `<PORTABLE_DIR>/logs/{bishop,s3relay,goddess,gameserver}.log` |
+| Cli patch portable | `<PORTABLE_DIR>/{boot_all.sh,stop_all.sh,fix_config.sh,apply_patch.sh}` |
 
 ## Client UI — facts (không phải dò lại)
 
@@ -73,11 +73,11 @@ for p in mysqld goddess_y bishop_y s3relay_y jx_linux_y; do pgrep -x $p >/dev/nu
 ## Lệnh hay dùng
 
 ```bash
-ssh jx1 'pgrep -x jx_linux_y'                        # game có chạy không
-ssh jx1 'tail -50 /home/jxser/server1/Logs/KSG_LoginOutLog_*.log'   # player vào/ra, timeout
-ssh jx1 'grep -c "Login failed" /home/jxser/gateway/Logs/*.log'     # lỗi login
-ssh jx1 'cd /home/jxser && tar czf /tmp/x.tgz <path>' && scp jx1:/tmp/x.tgz .   # kéo code về grep local
-ssh jx1 'pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home/jxser'  # NẠP LẠI LUA server
+ssh <SSH_ALIAS2> 'pgrep -x jx_linux_y'                        # game có chạy không
+ssh <SSH_ALIAS2> 'tail -50 /home/jxser/server1/Logs/KSG_LoginOutLog_*.log'   # player vào/ra, timeout
+ssh <SSH_ALIAS2> 'grep -c "Login failed" /home/jxser/gateway/Logs/*.log'     # lỗi login
+ssh <SSH_ALIAS2> 'cd /home/jxser && tar czf /tmp/x.tgz <path>' && scp jx1:/tmp/x.tgz .   # kéo code về grep local
+ssh <SSH_ALIAS2> 'pkill -x jx_linux_y; sleep 2; bash <PORTABLE_DIR>/boot_all.sh /home/jxser'  # NẠP LẠI LUA server
 #  ⚠️ panel_restart.sh CHỈ restart web panel :80 — không đụng service game. Lua print -> server1/Logs/KSG_ScriptOutputLog_<ngày>.txt
 ```
 
@@ -101,7 +101,7 @@ ssh jx1 'pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home
   (`vdk.so` md5 **trùng bản đang chạy** + `head.lua` khớp + `config.lua` đặt MULT=15). Nếu biến này **thiếu** ⇒ không đăng ký tier.
 - ⛔ **Pack third-party có thể dựa trên baseline CŨ:** pack `NPC PLAYER HIỆN BANG` ghi đè 8 file server mới hơn (mất 24 dòng config riêng)
   ⇒ phải **so md5 3 chiều TỪNG FILE** trước khi ghi đè và hoàn nguyên nếu lệch (`/root/apply_price_shop_pack.sh revert`).
-  Xem `skills/vltk-client-modding/references/mod-install-and-debug.md` §5.
+  Xem `skills/<SSH_ALIAS>-client-modding/references/mod-install-and-debug.md` §5.
 - 🔬 **Nội dung quầy bot do `vdk.so` dựng, không có file dữ liệu:** `settings/global/vdk/simcity/` chỉ có chat/names/pets/skills/maps;
   `vdk.so` = ELF 32-bit stripped, `.text` 42.676 B, `.rodata` 3.244 B, `.bss` 9,9 MB, **không export symbol** (tự đăng ký hàm Lua qua constructor)
   ⇒ đổi giá/món phải **build lại module**; pack `CHANGE PRICE - Do Bao` = **patch 23 byte trong `.text`** (không phải đổi dữ liệu).

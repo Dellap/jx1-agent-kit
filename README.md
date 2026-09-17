@@ -26,10 +26,10 @@ Trước khi sửa: nêu file sẽ đổi + backup + cách verify. Không dùng 
 START-HERE.md                 # đọc đầu tiên: định tuyến + luật tiết kiệm token + checklist
 skills/
   CHEATSHEET.md               # facts: máy, port, path, log, đơn vị (frame=1/18s), lệnh hay dùng
-  vltk-server-ops/            # vận hành server <GAME_HOST_IP> (WSL2): 5 service, FixIp, chẩn đoán log
+  <SSH_ALIAS>-server-ops/            # vận hành server <GAME_HOST_IP> (WSL2): 5 service, FixIp, chẩn đoán log
   jx1-simbot/                 # SimBot/SimCity: kiến trúc, engine API, settings, nhật ký bug
-  vltk-skill-data-modding/    # sửa skill 3 lớp: skills.txt ↔ .lua ↔ Missile.txt (+ 3 từ điển cột)
-  vltk-client-modding/        # mod UI client (.ini/.spr/pak, GBK, pak override)
+  <SSH_ALIAS>-skill-data-modding/    # sửa skill 3 lớp: skills.txt ↔ .lua ↔ Missile.txt (+ 3 từ điển cột)
+  <SSH_ALIAS>-client-modding/        # mod UI client (.ini/.spr/pak, GBK, pak override)
   jx1-hqvl-knowledge/         # kho tri thức cộng đồng HQVL (66 tài liệu) + index
   runbooks/                   # runbook việc cụ thể: ui-3x6-slots.md (6 ô đồ nhanh + launcher CTC)
   */references/               # kiến thức chuyên sâu: mod-install-and-debug.md, jx1-battleselect-taskextrace.md,
@@ -69,7 +69,7 @@ Repo **đã bỏ hết thông tin máy/hạ tầng riêng**. Gặp các token d�
 | `<SMB_USER>` | user SMB để vào share client |
 | `<JX1_ROOT>` | thư mục client JX1 trên Windows (vd `D:\Game\jx1`) |
 | `<SERVER_NAME>` | tên server JX1 của bạn (hiện trong bảng chọn server của client) |
-| `ssh jx1` | alias SSH tới máy server — thêm vào `~/.ssh/config` |
+| `ssh <SSH_ALIAS2>` | alias SSH tới máy server — thêm vào `~/.ssh/config` |
 
 ## Ghi chú
 

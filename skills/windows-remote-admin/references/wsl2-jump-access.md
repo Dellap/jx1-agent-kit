@@ -1,6 +1,6 @@
 # WSL2 distro access from macOS via a Windows SSH host
 
-Recipe proven 07/09/2026: Mac Mini → Windows <GAME_HOST_IP> (OpenSSH user `<SMB_USER>`, ELEVATED over SSH) → WSL2 CentOS7 distro `<WSL_DISTRO>` (owned by Windows user `<WIN_USER>`), game server at `/home/jxser/server1`.
+Recipe proven 07/09/2026: máy Mac điều khiển → Windows <GAME_HOST_IP> (OpenSSH user `<SMB_USER>`, ELEVATED over SSH) → WSL2 CentOS7 distro `<WSL_DISTRO>` (owned by Windows user `<WIN_USER>`), game server at `/home/jxser/server1`.
 
 ## Why direct access fails
 - WSL2 IP (172.26.x.x) is NAT-internal to the Windows host — unreachable from LAN/other machines, and it **changes on every WSL restart** (`wsl --shutdown` or Windows reboot).
@@ -19,7 +19,7 @@ net session >nul && echo ELEVATED || echo NOT-ELEVATED
 ```
 **Elevation differs per SSH path** (verified 08/09/2026):
 - Direct Windows OpenSSH as `<SMB_USER>` (sshpass) = **ELEVATED** → netsh/schtasks/firewall all work over SSH.
-- `ssh jx1` (root@<GAME_HOST_IP>:2222 → WSL-side sshd, runs as Windows user `<WIN_USER>`) = **NOT-ELEVATED** (medium IL; Administrators group shows "deny only"). `netsh add`, `schtasks /create /rl highest`, `attrib -r`, overwriting admin-owned files in `C:\ProgramData` — all `Access denied`.
+- `ssh <SSH_ALIAS2>` (root@<GAME_HOST_IP>:2222 → WSL-side sshd, runs as Windows user `<WIN_USER>`) = **NOT-ELEVATED** (medium IL; Administrators group shows "deny only"). `netsh add`, `schtasks /create /rl highest`, `attrib -r`, overwriting admin-owned files in `C:\ProgramData` — all `Access denied`.
 
 ### Non-elevated: interactive UAC prompt (user is at the machine)
 From the WSL SSH session, fire a one-shot elevated bat through UAC — it pops on the user's screen, they click Yes:
@@ -69,7 +69,7 @@ nc -zv -w 5 <GAME_HOST_IP> 5622    # expect: succeeded
    `wsl-fix.bat`: if `wsl_ip.txt` exists → read IP → `netsh interface portproxy delete v4tov4 ... 2>nul` + re-`add` + firewall delete/add.
 4. macOS `~/.ssh/config` alias → `ssh <alias>` forever:
    ```
-   Host vltk
+   Host <SSH_ALIAS>
        HostName <GAME_HOST_IP>
        Port 2222
        User root

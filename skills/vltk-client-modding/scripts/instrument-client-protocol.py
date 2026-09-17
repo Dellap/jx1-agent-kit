@@ -4,7 +4,7 @@
 Cách dùng:
     python3 instrument-client-protocol.py <protocol.lua vào> [<ra>]
     luajit -bl <ra> /dev/null          # kiểm CÚ PHÁP trước khi đẩy
-    # đẩy lên client: ssh jx1 'cat > .../Client/script/protocol.lua' < <ra>
+    # đẩy lên client: ssh <SSH_ALIAS2> 'cat > .../Client/script/protocol.lua' < <ra>
     # bạn mở lại client + đăng nhập, rồi đọc Client/logs/protocol_log.txt
 
 Log ghi ra Client\\logs\\protocol_log.txt (append):

@@ -9,7 +9,7 @@ Dùng khi cần xác minh ghi chú/tài liệu về server VLTK/JX1 còn đúng 
 
 ```bash
 # 1 lệnh duy nhất lấy mirror read-only rồi scp về local để phân tích
-ssh jx1 'bash -lc "cd /home/jxser && tar czf /tmp/mir.tgz \
+ssh <SSH_ALIAS2> 'bash -lc "cd /home/jxser && tar czf /tmp/mir.tgz \
   server1/script/global/nobitaxd/vdk/simcity server1/settings/global/vdk \
   server1/script/battles/marshal/simtk.lua server1/script/missions/sevencity/"'
 mkdir -p ~/jx1-verify && cd ~/jx1-verify && scp jx1:/tmp/mir.tgz . \
@@ -39,10 +39,10 @@ server còn backup theo timestamp ngoài `_goc` (`ls */**/*.bak* *.bak*`;
 - **⛔ Đừng tin số dòng đếm từ mirror.** Python `len(text.split('\n'))` trên bản tar cho
   `simsevencity.lua = 3588`, nhưng `wc -l` **trên server** = 3587 (chệch 1 do newline cuối).
   Suýt báo sai một số liệu ĐÚNG của tài liệu. → **luôn `wc -l` trên server**
-  (`ssh jx1 'bash -lc "wc -l < \$F"'`) trước khi kết luận "tài liệu sai".
-- **⛔ Đừng nhồi vòng lặp bash có biến vào trong `ssh jx1 'bash -lc "..."'`.**
+  (`ssh <SSH_ALIAS2> 'bash -lc "wc -l < \$F"'`) trước khi kết luận "tài liệu sai".
+- **⛔ Đừng nhồi vòng lặp bash có biến vào trong `ssh <SSH_ALIAS2> 'bash -lc "..."'`.**
   Quote lồng nhau vỡ: `bash: -c: line 0: unexpected EOF while looking for matching \`"'`.
-  Cách đúng: 1 lệnh ssh đơn giản (tar / wc / ls), hoặc `ssh jx1 'bash -s' < script.sh`,
+  Cách đúng: 1 lệnh ssh đơn giản (tar / wc / ls), hoặc `ssh <SSH_ALIAS2> 'bash -s' < script.sh`,
   còn phân tích để Python làm ở local.
 - **Mã hoá**: `.lua` + settings của server này là **TCVN3 / iso-8859-1** → đọc `latin-1` là ra
   code ASCII dùng được ngay; chữ có dấu hiện mojibake, dùng `iconv -f GBK -t UTF-8` khi cần
@@ -91,7 +91,7 @@ Lần kiểm này 5/9 đường dẫn đúng, 4 sai:
 `script/global/autoexec.lua`, `settings/magicdesc.ini`, `s3relay/relaysetting/task/tasklist.ini`,
 `script/skill/<phái>.lua`.
 
-Header THẬT (giải các ô "chưa rõ" của từ điển trong skill `vltk-skill-data-modding` — skill đó user-owned,
+Header THẬT (giải các ô "chưa rõ" của từ điển trong skill `<SSH_ALIAS>-skill-data-modding` — skill đó user-owned,
 không patch được; ghi tạm ở đây):
 
 - `settings/missles.txt`: **57 cột**, TAB. Thứ tự: MissleId, MissleName, MoveKind, FollowKind, ColFollowTarget,

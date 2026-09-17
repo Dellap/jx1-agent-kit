@@ -11,7 +11,7 @@
 7. **Tên tiếng Trung:** trên đĩa/trong ini ở mức **byte GBK** (tài liệu hiển thị dạng mojibake đúng như `ls` in ra: `Ö÷½çÃæ`); Unicode trong ngoặc chỉ để chú thích.
 8. **`battle_select.ini`:** danh sách control engine VẼ ĐƯỢC gồm cả **`btnShop`** (bản ghi cũ thiếu) — xem mục `## Mod "Theo dõi nhiệm vụ"`.
 ---
-name: vltk-client-modding
+name: <SSH_ALIAS>-client-modding
 description: Use when modding VLTK/JX1 game client UI (.ini, .spr, pak).
 ---
 
@@ -26,7 +26,7 @@ Modding the JX1 (Võ Lâm Truyền Kỳ / Kiếm Thế) Windows client UI. Serve
 - **WSL2 NAT:** IP 172.26.x.x là IP ảo bên trong WSL2, đổi mỗi lần reboot, máy khác không tới được. Client chạy CÙNG máy <GAME_HOST_IP> → trỏ `127.0.0.1` (Windows localhost relay tự chuyển vào WSL2). Client máy khác → phải portproxy trên host Windows (`netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=<p> connectaddress=<wsl-ip> connectport=<p>` + firewall) rồi trỏ IP LAN host.
 - **UI folder = bộ skin HQVL kèm binary riêng:** `game.exe`, `one.dll`, `ddraw.dll`, `VLTK_ui.dll`, `HoiQuanVoLam.exe` (launcher .NET có ô ServerHost/ServerPort + server check timer), `assets/`, `spr/Ui3/`, `ui/` themes. **Copy nguyên bộ vào Client làm thay game.exe + DLL → hỏng kết nối server nhà** (bản mod này sinh ra cho server HQVL riêng). Giữ skin = dùng `HoiQuanVoLam.exe` trỏ server; chạy lại kiểu stock = phục hồi game.exe gốc (copy từ bản Client sạch) + bỏ one.dll/ddraw.dll. Chỉ skin thuần (spr/Ui3, ui/, assets, resolution.jsonc, fps_events.ini) thì vô hại. Launcher.exe 2 bản giống hệt — nó gọi game.exe cùng thư mục nên khác biệt nằm ở game.exe.
 - **WinSCP vào WSL2:** cài openssh-server trong WSL2 (`yum install -y openssh-server`; CentOS 7 EOL → sed mirrorlist→vault.centos.org trước; systemd lỗi thì chạy thẳng `/usr/sbin/sshd`; tắt firewalld). Kết nối bằng **IP WSL2 (`hostname -I`), KHÔNG dùng 127.0.0.1:22** — Windows <GAME_HOST_IP> đã có OpenSSH riêng (user <SMB_USER>) chiếm port 22 nên localhost relay không chuyển được. Cách không cần SSH: Explorer `\\\\wsl.localhost\\<distro>\\`.
-- **Server file ops = `ssh jx1`** (alias Mac = `root@<GAME_HOST_IP>:2222`, SSH key; portproxy 2222→WSL:22 tự refresh — cơ chế auto-heal xem skill `windows-remote-admin` references/wsl2-jump-access.md). Server = `/home/jxser/server1` (`jx_linux_y` gameserver, `script/`, MySQL :3306, web python2 :80). Không cần IP WSL, không hỏi user.
+- **Server file ops = `ssh <SSH_ALIAS2>`** (alias Mac = `root@<GAME_HOST_IP>:2222`, SSH key; portproxy 2222→WSL:22 tự refresh — cơ chế auto-heal xem skill `windows-remote-admin` references/wsl2-jump-access.md). Server = `/home/jxser/server1` (`jx_linux_y` gameserver, `script/`, MySQL :3306, web python2 :80). Không cần IP WSL, không hỏi user.
 - **Đè file script khi server ĐANG CHẠY:** script nạp RAM lúc start → đè file an toàn nhưng **phải restart server (jx_linux_y) mới có hiệu lực**. Backup `.bak-YYYYMMDD` trước, verify md5 sau.
 - **Diff file .lua mojibake (JX1VN = GBK lẫn, decode thuần fail mọi codec):** đừng diff thô (nhiễu encoding/CRLF → tưởng mọi dòng khác). Decode `latin-1` (1 byte = 1 ký tự, không mất dữ liệu) + strip CR + `difflib.SequenceMatcher` → thấy đúng block thêm/sửa. Hai file fail decode cùng vị trí = cùng encoding → lệch số dòng = có nội dung thêm thật.
 
@@ -410,7 +410,7 @@ Engine **chỉ render các control nó đã biết**: section khai trong `Button
 
 **Cách đúng để thêm/đổi visual:** chỉ sửa section ĐÃ tồn tại (đổi `Left/Top/Width/Height/Image`) HOẶC thay file .spr bằng file khác cùng tên.
 
-**⚠️ ĐANG TEST (8/2026) — thêm control MỚI qua `Button<N>`:** skill `vltk-client-modding` rule #2 khẳng định "sections declared in [Main] via Button0..N WITH full button pattern DO render" (lấy từ reference mod UI+3) — mâu thuẫn với kinh nghiệm "Button6=BgLife không render" ở trên. Thí nghiệm đang chạy: thêm **2 orb góc dưới màn hình** (orb đỏ máu trái, orb xanh mana phải) bằng:
+**⚠️ ĐANG TEST (8/2026) — thêm control MỚI qua `Button<N>`:** skill `<SSH_ALIAS>-client-modding` rule #2 khẳng định "sections declared in [Main] via Button0..N WITH full button pattern DO render" (lấy từ reference mod UI+3) — mâu thuẫn với kinh nghiệm "Button6=BgLife không render" ở trên. Thí nghiệm đang chạy: thêm **2 orb góc dưới màn hình** (orb đỏ máu trái, orb xanh mana phải) bằng:
 - `Button6=OrbLife` + `Button7=OrbMana` trong `[Main]`
 - Section `[OrbLife]` đầy đủ: `Left/Top/Width/Height=128/128/Part=1/ClassType=Player_Life` + sub `[OrbLife_Image]` (`Image=\Spr\Ui3\主界面\orb_mau.spr`, `PartType=2`)
 - Sprite mới copy vào `spr/Ui3/主界面/` với **tên ASCII** (`orb_mau.spr`, `orb_xanh.spr`) — né GBK hoàn toàn

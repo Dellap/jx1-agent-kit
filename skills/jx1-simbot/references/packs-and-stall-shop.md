@@ -4,7 +4,7 @@
 
 ## Update `NPC PLAYER HIỆN BANG` (17/09/2026) — ĐÃ ÁP, KHÔNG fix lỗi quầy bot
 
-Pack: `E:\Game\jx1\VoLamTruyenKy\Update\NPC PLAYER HIỆN BANG\` = **server Lua drop-in** (Lua-only, KHÔNG binary).
+Pack: `<GAME_ROOT>\Update\NPC PLAYER HIỆN BANG\` = **server Lua drop-in** (Lua-only, KHÔNG binary).
 - `ORIGINAL-GỐC/` = 19 file — **md5 trùng 19/19 với server đang chạy** ⇒ pack làm riêng cho đúng build này.
 - `TEST FIX LỖI/` = 19 file sửa + **file mới `libs/guard.lua`** (174 dòng, md5 `226d6b1b…`).
 - Nội dung fix: định danh NPC theo **`GetNpcId`** (không tin `NpcIndex` — index bị engine dùng lại sau khi NPC chết ⇒ timer cũ tác động nhầm NPC/player mới). Hàm chính: `SimCityBindNpcRef` (bind lúc spawn, `sim.entity.lua` dòng 80), `SimCityIsOwnedNpc` (**fail-closed**: thiếu `GetNpcId`/lệch id ⇒ 0), `SimCityIsRealPlayerNpc` (`NpcIdx2PIdx > 0` ⇒ loại), `SimCityDelOwnedNpc`, `SimCitySameNpcInstance`, `SimCityIsNaturalNpcCandidate`. Gate mới cho Combat/Bang/DuelEnd/xoá NPC.
@@ -156,10 +156,10 @@ Chủ server online + bấm bot nhiều lần ⇒ **không lần nào `_ts` khá
 ⛔ KHÔNG kết luận bằng ghi chú docx của pack update ("Bỏ chức năng xin vật phẩm từ Bot") — user đã bác: **xin vật phẩm ≠ bày bán**.
 - Script áp: `/root/apply_npc_guard.sh check|apply|revert`; backup `/home/jxser/_backup_npcguard_20260917_220335`.
 
-**⛔ BẪY RESTART SERVER (tốn thời gian 17/09):** `/opt/vltk_portable/panel_restart.sh` **CHỈ restart WEB PANEL (:80)**, KHÔNG đụng service game.
+**⛔ BẪY RESTART SERVER (tốn thời gian 17/09):** `<PORTABLE_DIR>/panel_restart.sh` **CHỈ restart WEB PANEL (:80)**, KHÔNG đụng service game.
 Muốn nạp lại script Lua server:
 ```bash
-pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home/jxser   # start lại cái thiếu (idempotent)
+pkill -x jx_linux_y; sleep 2; bash <PORTABLE_DIR>/boot_all.sh /home/jxser   # start lại cái thiếu (idempotent)
 ```
 (`boot_all.sh` chạy game server bằng `setsid env LD_PRELOAD=./vdk.so ./jx_linux_y` trong `server1/`.)
 Kiểm tra đã restart thật: `ps -o lstart -p $(pgrep -x jx_linux_y)` — phải khớp giờ vừa restart.

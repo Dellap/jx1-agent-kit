@@ -64,7 +64,7 @@ Ví dụ đã phát hiện (diff 24 dòng): bản hiện tại thêm block **cle
 ## 4. Làm mới mirror (khi code trên server đã thay đổi)
 
 ```bash
-ssh jx1 'bash -lc "cd /home/jxser && tar czf /tmp/simbot.tgz \
+ssh <SSH_ALIAS2> 'bash -lc "cd /home/jxser && tar czf /tmp/simbot.tgz \
   server1/script/global/nobitaxd/vdk/simcity server1/settings/global/vdk \
   gateway/s3relay/script/simcity.lua server1/script/battles/marshal/simtk.lua \
   server1/script/missions/sevencity/simsevencity*.lua"'

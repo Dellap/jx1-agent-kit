@@ -20,8 +20,8 @@ Bản text đã bóc HTML (26 file, tên file = path gốc với `/`→`__`): **
 
 > ⚠️ **Cảnh báo dùng lại**: toàn bộ phần **cài đặt** viết cho Windows XP thời 2010 — SQL Server 2000, card mạng ảo +
 > IP `192.168.x.2`, font China PRC từ thư mục `I386`, 6 file `*.exe` chạy tay. **Không áp dụng cho server nhà**
-> (JX1 trên WSL2 CentOS7, `ssh jx1` = root@<GAME_HOST_IP>:2222, 7 systemd service, MySQL :3306) — xem skill
-> `vltk-server-ops`. Phần **dev dữ liệu client/server** (npcS.txt, skills.txt, missles.txt, NpcRes, SPR, GUI) thì
+> (JX1 trên WSL2 CentOS7, `ssh <SSH_ALIAS2>` = root@<GAME_HOST_IP>:2222, 7 systemd service, MySQL :3306) — xem skill
+> `<SSH_ALIAS>-server-ops`. Phần **dev dữ liệu client/server** (npcS.txt, skills.txt, missles.txt, NpcRes, SPR, GUI) thì
 > **vẫn còn giá trị tra cứu**.
 >
 > Ghi chú về tiếng Trung trong tài liệu này: chỉ giữ ở **tên file/dữ liệu gốc** (bắt buộc để tra cứu, ví dụ
@@ -569,7 +569,7 @@ nền là `个人状态.spr`. Dụng ý: **bài 18**, copy vào `\Ui\Ui3`. Nội
 [Exp]   10,39 156x10 ClassType=Player_Exp     [Exp_Image]  0,2 156x8 PartType=0 Image=经验.spr
 ```
 → **Bổ sung / khác biệt đáng chú ý so với bản `ui/ctc` đang dùng ở server nhà**
-(skill `vltk-client-modding`): file này là **theme `Ui4`**, tên section giống nhưng **`Mana` cũng `PartType=0`**
+(skill `<SSH_ALIAS>-client-modding`): file này là **theme `Ui4`**, tên section giống nhưng **`Mana` cũng `PartType=0`**
 (bản CTC dùng `PartType=1` cho mana — "đầy giữ phải"); `[Main]` có `Moveable=1 Trans=1`; `[Exp]` là control
 `ClassType=Player_Exp`; `_Text` của Name/Level ghim màu `55,231,63` còn Life/Mana/Exp màu trắng.
 → Nếu định dùng: **KHÔNG copy thẳng vào client theme CTC** — phải map lại `\Spr\Ui4\…` sang `\Spr\Ui3\…` + đổi
@@ -582,11 +582,11 @@ nền là `个人状态.spr`. Dụng ý: **bài 18**, copy vào `\Ui\Ui3`. Nội
 ### ❌ Đã lỗi thời — đừng dùng lại
 | Nội dung ebook | Lý do |
 |---|---|
-| **Card mạng ảo + IP `192.168.x.2`** (bài 4, 8, 21) | Server nhà = WSL2 NAT trên PC <GAME_HOST_IP> (client cùng máy → `127.0.0.1`; máy khác → Windows `portproxy`). Xem `vltk-server-ops` + `vltk-client-modding`. Loopback IP WAN cũng bỏ. |
+| **Card mạng ảo + IP `192.168.x.2`** (bài 4, 8, 21) | Server nhà = WSL2 NAT trên PC <GAME_HOST_IP> (client cùng máy → `127.0.0.1`; máy khác → Windows `portproxy`). Xem `<SSH_ALIAS>-server-ops` + `<SSH_ALIAS>-client-modding`. Loopback IP WAN cũng bỏ. |
 | **SQL Server 2000 + import data kiểu 2000** (bài 5, 6) | Server nhà dùng **MySQL :3306**. Bài import gần như chỉ có ảnh, không nói tên DB/file backup → vô dụng. |
 | **Font China PRC từ thư mục `I386`** (bài 7) | Thủ tục Windows XP; server nhà chạy Linux, client Windows hiện đại không cần. |
-| **Chạy tay 6 `*.exe` / `vlStartup.exe` / `StartupPro`** (bài 9) | Server nhà: `mysqld → goddess_y → bishop_y → s3relay_y → jx_linux_y` (7 systemd service, `/opt/vltk_portable/{boot_all,stop_all}.sh`). **Nhưng thứ tự khởi động trong ebook khớp logic** (paysys→relay sv→goddess→bishop→s3relay→game) và **tên/port Bishop khớp**: AccSvr 5002, RoleSvr 55425, client login **5622**, game-svr **5632**; `ServerCfg` Gateway 5632 / Database 55425 / Transfer 5003 / Chat 5004 / Tong 5005 → đúng bộ port 5003/5004/5005 + 5622/5632 đang dùng. |
-| **Config IP trong `Bishop.cfg / database.ini / relay_config.ini / ServerCfg.ini` bằng tay** (bài 8) | Vẫn hữu ích làm **bản đồ port** (ở trên), nhưng server nhà đã có `fix_config.sh` — **sửa file không đủ, phải patch script** (xem `vltk-server-ops`). Bản 2010 không có `[FixIp]`. |
+| **Chạy tay 6 `*.exe` / `vlStartup.exe` / `StartupPro`** (bài 9) | Server nhà: `mysqld → goddess_y → bishop_y → s3relay_y → jx_linux_y` (7 systemd service, `<PORTABLE_DIR>/{boot_all,stop_all}.sh`). **Nhưng thứ tự khởi động trong ebook khớp logic** (paysys→relay sv→goddess→bishop→s3relay→game) và **tên/port Bishop khớp**: AccSvr 5002, RoleSvr 55425, client login **5622**, game-svr **5632**; `ServerCfg` Gateway 5632 / Database 55425 / Transfer 5003 / Chat 5004 / Tong 5005 → đúng bộ port 5003/5004/5005 + 5622/5632 đang dùng. |
+| **Config IP trong `Bishop.cfg / database.ini / relay_config.ini / ServerCfg.ini` bằng tay** (bài 8) | Vẫn hữu ích làm **bản đồ port** (ở trên), nhưng server nhà đã có `fix_config.sh` — **sửa file không đủ, phải patch script** (xem `<SSH_ALIAS>-server-ops`). Bản 2010 không có `[FixIp]`. |
 | **Mở port modem / Virtual server / `canyouseeme.org`** (bài 21) | Mạng hiện tại dùng portproxy + firewall trên host Windows. |
 | **Web reg acc + `php.ini` PHP 5.2** (bài 22) | Webpanel hiện tại là python2 `server.py`; bài này không có schema DB, và php.ini 5.2 (`register_long_arrays`, `safe_mode`, `allow_call_time_pass_reference`) đã bị PHP 8 xoá. |
 | **Mọi link download** (bài 3, 17–26) | 2010 (zing.vn, MediaFire, MegaShare) — chết. Ebook 1.0/2.0 không kèm trong file này. |
@@ -599,10 +599,10 @@ nền là `个人状态.spr`. Dụng ý: **bài 18**, copy vào `\Ui\Ui3`. Nội
   ("chỉnh tỉ lệ rơi tiền+đồ qua cột `Treasure`") → dùng bài 14 khi cần chỉnh rơi đồ.
 - **`npcS.txt` cột `O..S` (`ArmorType/HelmType/WeaponType/HorseType/RideHorse`)** → làm NPC/nhân vật hoá trang (bài 15).
 - **`skills.txt` cột `T` = id missile** và **`missles.txt` dòng `MissleId` tương ứng chứa đường dẫn spr** (bài 11) —
-  cùng cơ chế với `MslsGenerate/MisslesForm` trong `vltk-skill-data-modding`; bài 11 là hướng dẫn "đổi hình skill"
+  cùng cơ chế với `MslsGenerate/MisslesForm` trong `<SSH_ALIAS>-skill-data-modding`; bài 11 là hướng dẫn "đổi hình skill"
   nhanh nhất. Cảnh báo **id > 197 phải tạo missile mới** (ebook bó tay).
 - **`skills.txt` cột `J` = id skill + `状态图形对照表.txt` dòng cùng id → spr** để ghép vòng sáng (bài 12) —
-  khớp với file `状态图形对照表.txt` mà `vltk-skill-data-modding` liệt kê (trạng thái aura/buff + spr).
+  khớp với file `状态图形对照表.txt` mà `<SSH_ALIAS>-skill-data-modding` liệt kê (trạng thái aura/buff + spr).
 - **4 dòng missles phong thần** (bài 17) — dữ liệu nguyên văn, dùng được nếu cần thêm missile.
 - **NpcRes client**: `\Spr\NpcRes\man|woman` + file `男主角躯体.txt / 女主角躯体.txt (+信息)`, `普通npc资源.txt`,
   `人物类型.txt`, `Armorres.txt`, Ldunpack theo list đường dẫn (bài 13) — kiến thức res **không có** trong các skill
@@ -629,7 +629,7 @@ nền là `个人状态.spr`. Dụng ý: **bài 18**, copy vào `\Ui\Ui3`. Nội
 - Bài **21**: list port copy theo từng bản server khác nhau; không nói port bắt buộc.
 - Bài **22**: không có bất kỳ thông tin DB/PHP file nào dùng được.
 - Toàn ebook: **không có** khái niệm MySQL/MariaDB, systemd, Linux server, `<GAME_HOST_IP>`, WSL2, `fix_config.sh`, `[FixIp]`,
-  hay client theme `CTC` ⇒ mọi mục liên quan phải lấy từ skill `vltk-server-ops` / `vltk-client-modding`.
+  hay client theme `CTC` ⇒ mọi mục liên quan phải lấy từ skill `<SSH_ALIAS>-server-ops` / `<SSH_ALIAS>-client-modding`.
 
 ---
 
