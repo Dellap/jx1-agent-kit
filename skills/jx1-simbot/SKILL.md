@@ -21,19 +21,36 @@ metadata:
 `ten.encode('gbk').decode('latin-1')` (file ASCII như `battle_select.ini` thì không ảnh hưởng).
 ⛔ Kết luận cũ của tôi ("engine tra tên Unicode chuẩn") là **SAI** — copy tên Unicode chuẩn vào client = engine không thấy.
 
-## Shop "đứng bán" của bot không mở (17/09/2026)
+## Shop "đứng bán" của bot không mở ⇒ nguyên nhân ở MODULE ENGINE `vdk` (chốt 17/09/2026)
 
-Triệu chứng: click vào bot đang đứng bán ⇒ **không hiện gì**. Lỗi **phía CLIENT**: theme đang chạy `ui/ctc` **thiếu** cửa sổ đứng bán
-mà engine cần: `摆摊物品.ini` (bảng hàng), `摆摊标价.ini`, `摆摊广告条.ini`, `摆摊设置广告.ini`, `npc买卖界面.ini`, `npc描述界面.ini`
-— không có loose, không có trong pak. Theme `ui/ui_ctc_v2` (133 ini) và `ui/ui_vlmp` thì có đủ ⇒ copy từ đó.
+Triệu chứng: click vào bot đang đứng bán ⇒ **không hiện gì** (không cửa sổ, không báo lỗi).
 
-**Cách sửa (script `scripts/fix_shop_stall_theme.py`):**
-1. Copy 6 ini trên vào `ui/ctc/` **bằng TÊN MOJIBAKE** (xem mục quy luật tên ở trên) — vd `°ÚÌ¯ÎïÆ·.ini`, `°ÚÌ¯±ê¼Û.ini`,
-   `°ÚÌ¯¹ã¸æÌõ.ini`, `°ÚÌ¯ÉèÖÃ¹ã¸æ.ini`, `npcÂòÂô½çÃæ.ini`, `npcÃèÊö½çÃæ.ini`. (Giữ luôn bản tên Unicode nếu muốn, vô hại.)
-2. Sprite đã có sẵn đúng tên mojibake trong `spr/Ui3/°ÚÌ¯/` (9 file) và `spr/Ui3/ÂòÂô/` — **không cần copy**, chỉ cần ini.
-   Đối chiếu: `\spr\Ui3\摆摊\摊主面板.spr` trong ini ⇒ engine đọc `spr/Ui3/°ÚÌ¯/Ì¯Ö÷Ãæ°å.spr` (107KB) ✓.
-3. Bằng chứng quy luật: `UserData/uiconfig.ini` của client có `Scheme=CTC`, `[StallSection] StallAdv=` (engine **có** hỗ trợ đứng bán),
-   và `ui/ctc/` loose chỉ có 10 ini — trong đó `玩家信息主界面.ini`, `工具控制条.ini` đều tên mojibake.
+**Chủ server (người test trực tiếp) kết luận: lỗi do module engine `vdk` — `vdk.dll` (client) / `vdk.so` (server);
+KHÔNG phải thiếu file theme.** ⛔ Giả thuyết cũ của trợ lý ("theme `ui/ctc` thiếu cửa sổ `摆摊*`") là **sai/không đủ** —
+đã copy đủ 6 ini + 9 sprite (cả tên mojibake lẫn Unicode) vào `ui/ctc` mà vẫn không mở ⇒ loại trừ đường thiếu file.
+
+**Bằng chứng khảo sát 17/09 (đọc lại khi cần):**
+
+| Thứ | Giá trị |
+|---|---|
+| `Client/vdk.dll` | 5.049.856 B, 21/08/2026 23:53, md5 `52ab92ef32da9519a45be890790f32f8` |
+| 3 bản `vdk.dll` (Client, `UI/`, `SV/Client`) | **md5 giống nhau** ⇒ chỉ có 1 phiên bản client |
+| `game.exe` | 2.684.872 B, **cùng mtime 21/08 23:53** với `vdk.dll`; trong `game.exe` có chuỗi `vdk.dll` ⇒ **client nạp vdk.dll** (kèm `VLTK_ui.dll`) |
+| `JX1Mod.ini [AutoUILayout]` | `StartupDelayMs=6000` — chờ `VLTK_ui` + `vdk.dll` nạp xong rồi mới áp layout |
+| `server1/vdk.so` | 54.229 B, 27/07, md5 `d364ec69232b5571af5c9fb10e8fd86a` |
+| `server1/vdk.so_goc` | 54.084 B, 04/07, md5 `40420c2c3950ed50744d57bbe782e288` (khác bản đang chạy) |
+| API trong **cả 2** bản .so | `SetNpcStall`, `PollTradeStay`, `SetBotStallTier`, `TradeStayClear`, `SendTradeItem`, `PollParty`, `PollDuel`, `SetBotPoints` |
+
+- Đường đi "click xem hàng" nằm trong **engine**, không phải Lua: phía client `script/global/nobitaxd/vdk/simcity/**`
+  chỉ đặt `stall=1` + gọi `SetNpcStall`/`NpcSit` (+ `SendTradeItem`/`PollTradeStay`), **không có** code mở cửa sổ khi click.
+- Bản update mod 28/08 (`SV/update/VLTK HKMP/update lan 2_…rar`) **chỉ kèm Lua cho cả Client và jxser**, **không kèm binary**
+  `vdk.*` ⇒ không có sẵn cặp binary thay thế trong máy.
+
+**Hướng xử lý (chưa làm — phải chờ chủ server chốt):**
+1. Nghi vấn chính: **lệch bản client ↔ server** (client `vdk.dll` 21/08 vs server `vdk.so` 27/07 & 04/07) ⇒ cần lấy **đúng cặp
+   `vdk.dll` + `vdk.so` của cùng bản mod** từ nhà phát hành.
+2. Test rẻ nhất, đảo ngược được: backup `vdk.so` → đặt `vdk.so_goc` vào → restart `jx_linux_y` → thử click bot.
+3. ⚠️ Đổi `vdk.so` = **downtime toàn server** (nạp bằng `LD_PRELOAD` lúc start) ⇒ hẹn giờ + backup trước + verify md5.
 
 ## When to Use
 

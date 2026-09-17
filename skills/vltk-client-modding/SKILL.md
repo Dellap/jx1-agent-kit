@@ -171,21 +171,20 @@ Sau khi xong **gỡ log, trả về bản sạch** (giữ backup `*.bak_<ts>`).
    ⇒ `protocol_def_gs.lua` KHÔNG phải bảng số, đừng so số ở đó (17/09 trợ lý từng so nhầm rồi "sửa" bảng client → phá mod).
 5. Gỡ log sau khi xong: trả `protocol.lua` về bản chỉ gồm enum + Def TASKTRACE.
 
+> ⚠️ **Lỗi "click bot đứng bán không xem được hàng" KHÔNG phải do thiếu ini theme** — nguyên nhân nằm ở module engine
+> `vdk.dll` (client) / `vdk.so` (server): xem skill `jx1-simbot`, mục "Shop đứng bán … module ENGINE vdk". Đừng đuổi theo hướng copy cửa sổ theme nữa.
+
 ## ⚠️ Quy luật TÊN FILE trong client JX1 — tên "mojibake" mới khớp (kiểm chứng 17/09/2026)
 
-- **Bằng chứng (đã quét toàn bộ `spr/` client):** MỌI file/thư mục tiếng Trung do client phát hành đều mang tên **mojibake**
-  = bytes GBK bị hiểu thành Latin-1: `°ÚÌ¯` (không phải `摆摊`), `ÂòÂô` (`买卖`), `½»Ò×` (`交易`), `´¢ÎïÏä` (`储物箱`),
-  `Ö÷½çÃæ` (`主界面`), `¼¼ÄÜ` (`技能`)… **không tồn tại** thư mục tên Unicode chuẩn nào. `ui/ctc/*.ini` cũng vậy
-  (`Íæ¼ÒÐÅÏ¢Ö÷½çÃæ.ini` = 玩家信息主界面.ini, `¹¤¾ß¿ØÖÆÌõ.ini` = 工具控制条.ini).
-- **⇒ Copy file/thư mục tên tiếng Trung vào client thì đặt tên mojibake**: `name.encode('gbk').decode('latin-1')`
-  (script mẫu: `jx1-simbot/scripts/fix_shop_stall_theme.py`).
+- **Bằng chứng (quét toàn bộ `spr/` client):** MỌI file/thư mục tiếng Trung do client phát hành đều mang tên **mojibake**
+  = bytes GBK bị hiểu thành Latin-1: `°ÚÌ¯` (không phải `摆摊`), `ÂòÂô` (`买卖`), `½»Ò×` (`交易`), `Ö÷½çÃæ` (`主界面`)…
+  **không tồn tại** thư mục tên Unicode chuẩn nào. `ui/ctc/*.ini` cũng vậy.
+- **⇒ Copy file/thư mục tên tiếng Trung vào client thì đặt tên mojibake**: `name.encode('gbk').decode('latin-1')`.
 - **An toàn nhất khi chưa chắc: đặt CẢ HAI tên** (mojibake + Unicode) — rẻ, không hại gì.
-  ⛔ Kết luận cũ "*engine tra tên Unicode chuẩn, tên mojibake vô ích*" là **suy đoán chưa kiểm chứng** — bỏ, đừng dùng lại.
+  ⛔ Câu cũ "*copy tên mojibake là sai chỗ, phải đặt tên Unicode*" là **suy đoán chưa kiểm chứng** — bỏ.
 - **Tên file ASCII** (`battle_select.ini`, `info_gray.spr`, `uicommon.ini`) không bị ảnh hưởng.
-- **Ca `底板` bảng nhiệm vụ:** mod phát hành `1_client/2_spr/Ui4/Ö÷½çÃæ/ÈÎÎñÖ¸ÄÏ×ÊÔ´/ÈÎÎñ×·×Ùµ×°å.spr` (mojibake) — theo quy luật trên
-  phải giữ **đúng tên mojibake** trong `spr/Ui4/Ö÷½çÃæ/ÈÎÎñÖ¸ÄÏ×ÊÔ´/`; nếu nghi ngờ thì đặt thêm bản Unicode
-  `spr/Ui4/主界面/任务指南资源/任务追踪底板.spr`. Kiểm bằng `cmp` byte với file trong mod.
-### Bẫy theme (cùng ca mod nhiệm vụ 17/09)
+
+## Bẫy thứ 2 — theme
 
 - **README ghi `/ui/` nhưng mod đóng gói cho theme `ui3`** (`1_client/1_ui/ui3/battle/battle_select.ini`).
   Client của bạn chạy theme **CTC** (`Client/config.ini: Theme=CTC`; thư mục loose là `ui/ctc`, `ui/ui_ctc_v2`, `ui/ui_vlmp`,

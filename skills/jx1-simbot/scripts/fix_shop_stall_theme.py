@@ -1,7 +1,11 @@
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-
 """Copy 4 cua so dung ban (摆摊*) + 2 cua so NPC (npc买卖界面/npc描述界面) tu theme day du
-sang theme dang chay, BANG TEN MOJIBAKE (bytes GBK -> latin1) — dung quy luat ten file cua client JX1/CTC.
+sang theme dang chay, BANG TEN MOJIBAKE
+
+⛔ KHONG sua duoc loi "click bot dung ban khong xem duoc hang": loi do o module engine
+   vdk.dll/vdk.so (xem SKILL.md muc "Shop dung ban ... module ENGINE vdk"), khong phai thieu file theme.
+   Script nay chi de bo sung cua so con thieu cho theme. (bytes GBK -> latin1) — dung quy luat ten file cua client JX1/CTC.
 
 Chay TREN WSL (host `jx1`):  ssh jx1 'python2 -' < fix_shop_stall_theme.py
 Nguon: ui/ui_ctc_v2 (co du 133 ini) | Dich: ui/ctc (theme dang chay, thieu cua so dung ban)
