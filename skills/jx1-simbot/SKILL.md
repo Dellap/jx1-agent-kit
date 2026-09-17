@@ -101,6 +101,47 @@ for f in $(cd PACK_ORIGINAL && find . -type f); do
 - **Đường bot bày bán (server)**: spawn data `stall = 1` (`plugins/pthanhthi.lua`) → `sim.entity.lua` gọi `SetNpcStall(idx,1)` + `SetBotStallTier(idx,0,1)` → mỗi 3s `SimCitizen:UpdateStallFlags` (gọi từ `plugins/pworld.lua`) gọi `SetNpcStall(finalIndex,1)`. Giá bot bán = `BOT_STALL_PRICE_MULTIPLIER` (`config.lua`, mặc định 100).
 - **Máy trạng thái giao dịch** (`sim.core.lua`): `_ts = PollTradeStay(idx)`; `_ts == 2` ⇒ `SendTradeItem` (gửi hàng cho người xem), `_ts == 1/3/4` ⇒ `TradeStayClear`. Ép `_ts = 0` = huỷ mọi giao dịch ⇒ **không bao giờ làm**.
 
+## 📦 Pack `DOBAO – Jx1 Offline – Update SIMBOT – VER 3 – MON PHAI KHONG BUON CHAN & CHATBOT` (07/08/2026)
+
+**Kiểu pack:** ALL-IN-ONE "copy-only + REBOOT" (không cần terminal). Cấu trúc: `COPY_VAO_THU_MUC_GOC_SERVER/{etc,home}` → chép vào `/`.
+Kèm 4 tài liệu: `HUONG_DAN_COPY_ONLY.txt`, `THONG_SO_SIMCITY.txt`, `ETC_DA_GOP.txt`, **`SHA256_MANIFEST.txt` (51 KB — sha256 mọi file, dùng để verify sau khi chép)**.
+Đối chiếu với server hiện tại (17/09): **343 file — 17 MỚI, 14 KHÁC, 312 giống**.
+
+**Chuỗi AUTOLOAD (ghi nhớ để chẩn đoán):**
+```
+systemd jxgame.service                     → /home/jxser/server1/jx_linux_y
+  └─ drop-in jxgame.service.d/vdk.conf     → LD_PRELOAD=/home/jxser/server1/vdk.so   (module vdk)
+ActivitySys 801 ServerStart
+  └─ script/global/nobitaxd/vdk/main.lua   → simcity/main.lua → simcity/head.lua
+       └─ mainLoop(): SimBotWhisperPoll() → SimCitizen:ATick() → SimTheoSau:ATick()   (mỗi REFRESH_RATE)
+          worldLoop(): SimCityWorld:ATick(20)                                          (mỗi 3×REFRESH_RATE)
+systemd jxs3relay.service (+ override)     → LD_PRELOAD=…/s3relay/libsimbot_whisper_spawn.so
+systemd simbot-client-bridge.service       → python3 simbot_client_bridge_server.py  (UDP 39036)
+```
+⚠️ Server bạn dùng `boot_all.sh` (WSL **không có systemd**) ⇒ mọi thứ cài bằng unit systemd **không tự chạy** — muốn dùng phải port sang script boot.
+
+**Số lượng bot/quầy của VER 3 (`THONG_SO_SIMCITY.txt` + `config.lua`) — bảng điều khiển SỐ QUẦY BÁN:**
+| Khu | Bot | Quầy (shop) |
+|---|---|---|
+| Thành thị (7) | 500 | thường **133–192**, dã tẩu **30–45** |
+| Thôn (8) | 50 | thường **29–43**, dã tẩu **22–33** |
+| Môn phái | 350 luyện công (150 solo + 200 vào 35 party) | **52** |
+| Map luyện công | 70 | — |
+Biến trong `config.lua`: `THANHTHI_STALL_NORMAL_MIN/MAX`, `THANHTHI_STALL_DATAU_MIN/MAX`, `THON_STALL_NORMAL_MIN/MAX`, `THON_STALL_DATAU_MIN/MAX`, `MONPHAI_STALL_SIZE`, `MONPHAI_TRAIN_SIZE/SOLO_SIZE/PARTY_COUNT`, `LUYENCONG_SIZE/SOLO_SIZE/PARTY_COUNT`.
+`plugins/pthanhthi.lua` đọc biến kèm fallback (`random(THANHTHI_STALL_NORMAL_MIN or 68, …MAX or 98)`) ⇒ **đổi số quầy bot chỉ cần sửa config**, không phải build lại module.
+(bản server bạn: `pthanhthi.lua` cũ hơn, hard-code `random(45,65)`/`random(20,30)`, **không** dùng biến `STALL_*`.)
+
+**Subsystem CHATBOT / WHISPER (mới hoàn toàn so với server bạn):**
+- `script/.../components/sim.whisper.spawn.lua` (54 KB, "SimBot Whisper Spawn Bridge Build 0.2", include từ `head.lua`) — API: `SimBotWhisperPoll/TakeRequest/WriteResponse/ClassifyInbox/RenderRuleReply/ApplyIntentToSession/ValidateOfferDescriptor/LoadItemOffer/AttachTradeOffer/WriteExactTradeRequest/ConsumeWorldEvents/LoadStaticCenters/LoadInboxRules`.
+- `settings/global/vdk/simcity/simbot_inbox_rules.txt` (**TCVN3**) — cột: `RuleId⇥IntentCode⇥IntentName⇥ActionCode⇥MatchMode(exact|contains|default)⇥UserInbox⇥FirstReply⇥WaitingReply⇥BusyReply`.
+- `settings/global/vdk/simcity/simbot_social_centers.txt` — cột: `Category⇥WorldId⇥Label⇥SpawnX⇥SpawnY⇥NpcCount⇥Ref1X⇥Ref1Y⇥Ref2X⇥Ref2Y⇥Source` (vd `city 1 city_1_1 1603 3216 9 …`) ⇒ **bot được spawn/mời tới chỗ người chơi đang chat**.
+- `data/simbot_{whisper_request,whisper_response,world_event,item_offers,exact_trade}.txt` — file đệm do cầu UDP ghi/đọc (trong pack = rỗng 0 B, tự sinh khi chạy).
+- Nhánh giao dịch trong `sim.core.lua` (VER 3): khi `tbNpc.whisperActionCode == "TRADE"` → `SimBotWhisperWriteExactTradeRequest(tbNpc)` (ghi `simbot_exact_trade.txt`) → `SendTradeItem(idx)`, có guard `whisperExactTradeGiven`, log `EXACT_TRADE_BLOCKED_NO_OFFER Build=0.3.9` → tức **"xin vật phẩm từ bot" = người chơi WHISPER con bot, bot trao ĐÚNG món** (khác hẳn "bày bán").
+- `libsimbot_whisper_spawn.so` (19 KB, gateway/s3relay) + `simbot_client_bridge_server.py` (UDP 39036, gói `CW1`/`CW2`) — xem mục cầu client ở trên.
+
+**Module `vdk.so` bản VER 3 = `13dd384e9bc3c1a5a7494de8095530ae`** (07/08) so với bản đang chạy `d364ec69…` (27/07) và `_goc 40420c2c…` (04/07):
+cùng 54.229 B, **`.rodata` GIỐNG HỆT, `.text` chỉ khác 4 byte** ⇒ module gần như y hệt; khác biệt VER 3 nằm ở **Lua**, không ở module.
+
 ## ⏸️ TRẠNG THÁI LỖI QUẦY BOT (17/09/2026): **ĐỂ NGÕ — CHƯA RÕ NGUYÊN NHÂN**
 
 Đã loại trừ **tất cả** các hướng sau (đừng thử lại, mất thời gian):

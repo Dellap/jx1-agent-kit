@@ -108,3 +108,8 @@ ssh jx1 'pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home
 - 📡 Dòng Do Bao còn có **cầu client→server** `simbot_client_bridge_server.py` (UDP 39036, gói `CW1`/`CW2` + item descriptor 27 trường) +
   `libsimbot_whisper_spawn.so` + `sim.whisper.spawn.lua` + `server1/data/simbot_*.txt`, cài bằng **systemd** (WSL không chạy được) — server hiện tại **không có gì**
   trong số này. Bản chất = **CHATBOT/xin vật phẩm**, KHÔNG phải đường hiển thị quầy bán.
+- 📦 **Pack `DOBAO SIMBOT VER 3` (07/08) = ALL-IN-ONE copy-only + REBOOT**: chuỗi autoload `systemd jxgame.service → LD_PRELOAD vdk.so`;
+  `ActivitySys 801 → vdk/main.lua → simcity/main.lua → head.lua`; `jxs3relay + override → libsimbot_whisper_spawn.so`; `simbot-client-bridge.service → UDP 39036`.
+  Số **quầy bán** điều khiển bằng config: `THANHTHI_STALL_NORMAL_MIN/MAX 133/192`, `THANHTHI_STALL_DATAU 30/45`, `THON_STALL_* 29/43 & 22/33`, `MONPHAI_STALL_SIZE 52`
+  (`pthanhthi.lua` đọc kèm fallback). Kèm `SHA256_MANIFEST.txt` (51 KB) để verify. Module của pack (`13dd384e…`) khác bản đang chạy **đúng 4 byte `.text`, `.rodata` y hệt**.
+  Chi tiết: `skills/jx1-simbot/SKILL.md` → mục **Pack DOBAO SIMBOT VER 3**.
