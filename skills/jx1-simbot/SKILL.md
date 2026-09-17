@@ -67,8 +67,9 @@ Bảng 4 phép thử đã làm (tất cả đều **KHÔNG sửa được lỗi*
 thiếu **cầu nối "click bot → mở giao dịch/bày hàng"**, và cầu nối đó **không nằm trong Lua** (client lẫn server Lua đều không có
 code mở cửa sổ khi click) ⇒ phải nằm trong module `vdk` (client `vdk.dll` + server `vdk.so`).
 
-**Chứng cứ mạnh nhất — chính tài liệu của mod:** `_Thông tin update 2.docx` (28/08/2026, nguồn của bản đang chạy) ghi rõ
-**"Bỏ chức năng xin vật phẩm từ Bot."** ⇒ khả năng cao tác giả **đã bỏ tính năng tương tác lấy/mua đồ từ bot** trong bản này.
+⛔ **SAI — đừng dùng lập luận này:** `_Thông tin update 2.docx` có ghi *"Bỏ chức năng xin vật phẩm từ Bot"*, nhưng
+**"xin vật phẩm từ bot" ≠ "bot bày bán/đứng bán"** (chủ server đã đính chính 17/09) — đó là 2 chức năng khác nhau, KHÔNG liên quan
+đến lỗi click bot đứng bán. Đừng lấy ghi chú đó làm bằng chứng.
 (`vdk.dll` 5.049.856 B, 21/08/2026, md5 `52ab92ef…`; `game.exe` 21/08 cùng mtime ⇒ cặp client cùng đợt update.)
 
 **Việc nên làm tiếp (không phải mò code nữa):**
