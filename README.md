@@ -9,7 +9,7 @@ Repo này là **bộ skill + dữ liệu thật** để một AI/agent (Claude C
 
 1. Đọc `START-HERE.md` (1 trang): bảng định tuyến *việc gì → đọc file nào* + checklist sửa an toàn.
 2. Tra facts (path/port/log/lệnh) ở `skills/CHEATSHEET.md` — không cần dò lại server.
-3. Mở đúng **1** skill theo bảng định tuyến, grep trong `sources/` thay vì SSH `cat` từng file.
+3. Mở đúng **1** skill theo bảng định tuyến, grep trong `skills/` thay vì SSH `cat` từng file.
 4. Sửa xong → patch lại skill tương ứng 1–3 dòng (kinh nghiệm không ghi lại là lần sau trả giá lại).
 
 Prompt gợi ý:
@@ -30,15 +30,13 @@ skills/
   jx1-simbot/                 # SimBot/SimCity: kiến trúc, engine API, settings, nhật ký bug
   vltk-skill-data-modding/    # sửa skill 3 lớp: skills.txt ↔ .lua ↔ Missile.txt (+ 3 từ điển cột)
   vltk-client-modding/        # mod UI client (.ini/.spr/pak, GBK, pak override)
-  jx1-hqvl-knowledge/         # kho tri thức cộng đồng HQVL (66 tài liệu) + index
+  jx1-hqvl-knowledge/         # tinh hoa tài liệu cộng đồng HQVL (hqvl-digest.md) + index
   runbooks/                   # runbook việc cụ thể: ui-3x6-slots.md (6 ô đồ nhanh + launcher CTC)
   */references/               # kiến thức chuyên sâu: mod-install-and-debug.md, jx1-battleselect-taskextrace.md,
                               #   tasktrace-panel-layout.md, ebookjx3-notes.md, engine-api.md, lessons.md…
   */scripts/                  # script chạy lại được: fix_shop_stall_theme.py, instrument-client-protocol.py
   windows-remote-admin/       # vào Windows/WSL2 từ xa: SSH, portproxy, wsl.exe, schtasks
 sources/
-  simbot/                     # CODE THẬT của hệ SimBot (Lua + settings) để grep offline
-  hqvl-docs-text/             # 66 tài liệu HQVL đã bóc text (grep nhanh, không cần mở HTML)
   client-sample/              # file client mẫu (orig từ ui.pak + mod 3+6 ô + config) — verify offline
 scripts/audit.sh              # quét secret/PII — chứng minh repo này đã được lọc sạch
 NOTICE.md                     # nguồn gốc & bản quyền
@@ -56,20 +54,21 @@ NOTICE.md                     # nguồn gốc & bản quyền
 ## Placeholders — điền giá trị của bạn
 
 Repo **đã bỏ hết thông tin máy/hạ tầng riêng**. Gặp các token dưới đây thì thay bằng giá trị của bạn
-(`grep -rn "<[A-Z_]*>" .` để liệt kê chỗ cần sửa):
+(`grep -rEn "<[A-Z_]+>" .` để liệt kê chỗ cần sửa) — **đừng ghi đường dẫn riêng của máy bạn
+vào tài liệu dùng chung, hãy dùng placeholder + cách tự xác định:**
 
 | Placeholder | Ý nghĩa |
 |---|---|
 | `<GAME_HOST_IP>` | IP LAN của máy chạy server (client ngoài trỏ vào đây) |
-| `<GAME_HOST2_IP>` | máy chủ JX1 thứ hai, nếu có |
+| `<GAME_HOST_IP>` | máy chủ JX1 thứ hai, nếu có |
 | `<LAN_IP>` | IP LAN bất kỳ trong ví dụ |
 | `<WIN_USER>` | user Windows dùng để SSH/WSL |
 | `<PC_NAME>` | tên máy Windows |
 | `<WSL_DISTRO>` / `<WSL_HOSTNAME>` | distro WSL2 chạy server + hostname của nó |
 | `<SMB_USER>` | user SMB để vào share client |
-| `<JX1_ROOT>` | thư mục client JX1 trên Windows (vd `D:\Game\jx1`) |
+| `<GAME_ROOT>` | thư mục client JX1 trên Windows (vd `D:\Game\jx1`) |
 | `<SERVER_NAME>` | tên server JX1 của bạn (hiện trong bảng chọn server của client) |
-| `ssh <SSH_ALIAS2>` | alias SSH tới máy server — thêm vào `~/.ssh/config` |
+| `ssh <SSH_ALIAS>` | alias SSH tới máy server — thêm vào `~/.ssh/config` |
 
 ## Ghi chú
 

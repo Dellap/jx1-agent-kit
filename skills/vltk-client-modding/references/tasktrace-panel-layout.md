@@ -68,7 +68,7 @@ Backup bản gốc: `Update\_backup_client_truoc_readme_*\ui.lua.goc_mod`.
 3. **Verify sau mỗi bước bằng md5** (in bảng ✅/❌) — đây là thứ khiến user tin. Rollback đạt = md5 client **khớp bản gốc**
    + `grep -c 'TaskTrace:OpenUI' protocol.lua` = 0.
 4. **Trả cả server** nếu đã đụng: backup ở `_backup_server_truoc_<mod>_<ts>\` trên share → đẩy vào server bằng
-   `ssh <SSH_ALIAS2> 'cat <bak>' > /tmp/x` rồi `ssh -p 2222 root@<GAME_HOST_IP> 'cat > /path'` (WSL2 không đọc /mnt/e ổn định).
+   `ssh <SSH_ALIAS> 'cat <bak>' > /tmp/x` rồi `ssh -p 2222 root@<GAME_HOST_IP> 'cat > /path'` (WSL2 không đọc /mnt/e ổn định).
    Server `<GAME_HOST_IP>` KHÔNG cần restart khi nội dung 2 bản tương đương.
 5. Rollback sạch xong mới được khẳng định "lỗi có từ trước": test tính năng khác rồi kết luận.
    Ca này: **shop xem hàng rao bán của SimBot lỗi sẵn có, không liên quan mod nhiệm vụ** (user tự xác nhận sau rollback).

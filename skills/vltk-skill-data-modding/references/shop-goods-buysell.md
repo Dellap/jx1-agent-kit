@@ -1,6 +1,6 @@
 # Shop / goods.txt / buysell.txt — chưng cất từ ShopBuilder (HQVL) + kiểm tra thật trên server (17/09/2026)
 
-Nguồn: `sources/hqvl-docs-text/jxtools__shopbuilder__README.md.txt` + `jxtools__shopbuilder.d__index.html.txt` (+ bản `.d__index`, source HTML).
+Nguồn: (nguồn gốc: nhóm HQVL) + `jxtools__shopbuilder.d__index.html.txt` (+ bản `.d__index`, source HTML).
 Tool gốc: **VNJX ShopBuilder** — https://jxoffline.github.io/jxtools/shopbuilder.d/ (NodeJS + jQuery + Bootstrap, MIT, tác giả **vinh-ttn**,
 source: `github.com/jxoffline/jxtools/tree/main/shopbuilder`). Video hướng dẫn: https://youtu.be/_QTmfC8G1So
 

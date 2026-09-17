@@ -39,7 +39,7 @@ python3 scripts/check-client-base.py <đường-dẫn-thư-mục-Client>
 
 1. **Backup** (rollback = rename ngược):
    ```bash
-   cd <JX1_ROOT>/Client
+   cd <GAME_ROOT>/Client
    cp "ui/ctc/Íæ¼ÒÐÅÏ¢Ö÷½çÃæ.ini" "ui/ctc/Íæ¼ÒÐÅÏ¢Ö÷½çÃæ.ini.bak-$(date +%Y%m%d)"
    cp "ui/ctc/¹¤¾ß¿ØÖÆÌõ.ini"     "ui/ctc/¹¤¾ß¿ØÖÆÌõ.ini.bak-$(date +%Y%m%d)"
    ```

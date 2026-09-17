@@ -133,7 +133,7 @@ Bảng đầy đủ + hàm nào bị engine bỏ qua: `references/engine-api.md`
 
 ## 📚 Tài liệu HQVL — SimCity/bot (kho cộng đồng)
 
-> **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này `sources/hqvl-docs-text/<file>` (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
+> **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này (nguồn gốc: nhóm HQVL) (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
 
 - `jx1-scripts__0001_simcity__README.md.txt` — **simcity** (vinh-ttn) — README gốc hệ simcity cộng đồng
 - `wiki-beta__jx6__share_source_jx_simcity_1.x.html.txt` — share source JX SimCity 1.x

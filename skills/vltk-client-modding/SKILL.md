@@ -26,7 +26,7 @@ Modding the JX1 (Võ Lâm Truyền Kỳ / Kiếm Thế) Windows client UI. Serve
 - **WSL2 NAT:** IP 172.26.x.x là IP ảo bên trong WSL2, đổi mỗi lần reboot, máy khác không tới được. Client chạy CÙNG máy <GAME_HOST_IP> → trỏ `127.0.0.1` (Windows localhost relay tự chuyển vào WSL2). Client máy khác → phải portproxy trên host Windows (`netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=<p> connectaddress=<wsl-ip> connectport=<p>` + firewall) rồi trỏ IP LAN host.
 - **UI folder = bộ skin HQVL kèm binary riêng:** `game.exe`, `one.dll`, `ddraw.dll`, `VLTK_ui.dll`, `HoiQuanVoLam.exe` (launcher .NET có ô ServerHost/ServerPort + server check timer), `assets/`, `spr/Ui3/`, `ui/` themes. **Copy nguyên bộ vào Client làm thay game.exe + DLL → hỏng kết nối server nhà** (bản mod này sinh ra cho server HQVL riêng). Giữ skin = dùng `HoiQuanVoLam.exe` trỏ server; chạy lại kiểu stock = phục hồi game.exe gốc (copy từ bản Client sạch) + bỏ one.dll/ddraw.dll. Chỉ skin thuần (spr/Ui3, ui/, assets, resolution.jsonc, fps_events.ini) thì vô hại. Launcher.exe 2 bản giống hệt — nó gọi game.exe cùng thư mục nên khác biệt nằm ở game.exe.
 - **WinSCP vào WSL2:** cài openssh-server trong WSL2 (`yum install -y openssh-server`; CentOS 7 EOL → sed mirrorlist→vault.centos.org trước; systemd lỗi thì chạy thẳng `/usr/sbin/sshd`; tắt firewalld). Kết nối bằng **IP WSL2 (`hostname -I`), KHÔNG dùng 127.0.0.1:22** — Windows <GAME_HOST_IP> đã có OpenSSH riêng (user <SMB_USER>) chiếm port 22 nên localhost relay không chuyển được. Cách không cần SSH: Explorer `\\\\wsl.localhost\\<distro>\\`.
-- **Server file ops = `ssh <SSH_ALIAS2>`** (alias Mac = `root@<GAME_HOST_IP>:2222`, SSH key; portproxy 2222→WSL:22 tự refresh — cơ chế auto-heal xem skill `windows-remote-admin` references/wsl2-jump-access.md). Server = `/home/jxser/server1` (`jx_linux_y` gameserver, `script/`, MySQL :3306, web python2 :80). Không cần IP WSL, không hỏi user.
+- **Server file ops = `ssh <SSH_ALIAS>`** (alias Mac = `root@<GAME_HOST_IP>:2222`, SSH key; portproxy 2222→WSL:22 tự refresh — cơ chế auto-heal xem skill `windows-remote-admin` references/wsl2-jump-access.md). Server = `/home/jxser/server1` (`jx_linux_y` gameserver, `script/`, MySQL :3306, web python2 :80). Không cần IP WSL, không hỏi user.
 - **Đè file script khi server ĐANG CHẠY:** script nạp RAM lúc start → đè file an toàn nhưng **phải restart server (jx_linux_y) mới có hiệu lực**. Backup `.bak-YYYYMMDD` trước, verify md5 sau.
 - **Diff file .lua mojibake (JX1VN = GBK lẫn, decode thuần fail mọi codec):** đừng diff thô (nhiễu encoding/CRLF → tưởng mọi dòng khác). Decode `latin-1` (1 byte = 1 ký tự, không mất dữ liệu) + strip CR + `difflib.SequenceMatcher` → thấy đúng block thêm/sửa. Hai file fail decode cùng vị trí = cùng encoding → lệch số dòng = có nội dung thêm thật.
 
@@ -206,17 +206,16 @@ Sau khi xong **gỡ log, trả về bản sạch** (giữ backup `*.bak_<ts>`).
   `ui/one` — **không có `ui/ui3`**). ⇒ đặt ini vào `ui/ctc/battle/` (theme đang chạy) và copy thêm `ui/ui3/battle/` cho đúng nguyên văn README.
   (`spr` thì ngược lại: theme spr là `Ui3`/`Ui4` chữ hoa, đúng như mod ghi.)
 
-## Quy tắc cài mod theo README (bạn chốt 17/09/2026 — bắt buộc)
+## Quy tắc cài mod theo README (bắt buộc)
 
-- **Đọc README trong thư mục mod rồi làm ĐÚNG như nó ghi: copy & ghi đè. Không tự chế cách khác, không sửa
-  nội dung file của mod.** bạn nói thẳng: *"m ko cần sửa gì cả, đọc readme … rồi làm theo cho t"* — khi đã có
-  hướng dẫn thì thực thi, đừng phân tích lại từ đầu. (Bản debug trợ lý tự gắn vào file mod → phải gỡ, trả về nguyên gốc.)
-- **Server: nhiều file trong `2_server/` chỉ là GHI CHÚ** ("Add vao script: …", 7–12 dòng), KHÔNG phải file thật —
-  đè vào là mất `protocol.lua`/`login.lua` của server. Việc đúng: đối chiếu từng mục README với file thật trên server
-  bằng `grep -n` + `md5sum` rồi **báo bạn bằng chứng** (file nào đã khớp, mục nào còn thiếu).
-- Ghi rõ cho bạn cái nào trợ lý phải lệch khỏi nguyên văn README vì máy bạn khác bối cảnh mod
-  (theme CTC vs `ui3`, tên folder spr mojibake) — không lặng lẽ làm khác.
-- Backup trước mỗi lần đè (`Update/_backup_client_truoc_<việc>_<ts>/`, `*.bak_<ts>`), verify md5 sau khi đẩy.
+- **Đọc README trong thư mục mod rồi làm ĐÚNG như nó ghi**: copy & ghi đè. Không tự chế cách khác,
+  không sửa nội dung file của mod; khi đã có hướng dẫn thì thực thi, đừng phân tích lại từ đầu.
+- Nếu trong lúc debug có gắn thêm code/log vào file của mod → **phải gỡ, trả file về nguyên gốc** khi xong.
+- **Nhiều file trong `2_server/` chỉ là GHI CHÚ** ("Add vao script: …", 7–12 dòng), KHÔNG phải file thật —
+  đè vào là mất `protocol.lua`/`login.lua` của server. Việc đúng: đối chiếu từng mục README với file thật
+  trên server bằng `grep -n` + `md5sum` rồi báo lại **bằng chứng** (file nào đã khớp, mục nào còn thiếu).
+- Chỗ nào buộc phải lệch khỏi nguyên văn README (máy khác bối cảnh) thì **nói rõ + nêu lý do**.
+
 
 ## Mod "Theo dõi nhiệm vụ" (Task Trace) — 17/09/2026
 
@@ -292,7 +291,7 @@ Log xác nhận lúc chạy được: `RX id=17 name=emSCRIPT_PROTOCOL_TASKTRACE
 
 ## 📚 Tài liệu HQVL — client (auto / RE / inject / scale / spr)
 
-> **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này `sources/hqvl-docs-text/<file>` (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
+> **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này (nguồn gốc: nhóm HQVL) (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
 
 - `wiki-beta__jxwin__[part1]_source_code_va_huong_dan_viet_auto_don_gian_cho_jx1.html.txt` — Part 1 — source code + viết auto đơn giản cho JX1
 - `wiki-beta__download__toan_tap_huong_dan_viet_autoplay_cho_vo_lam_voi_autoit.html.txt` — toàn tập viết auto-play bằng AutoIt

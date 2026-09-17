@@ -19,7 +19,7 @@ net session >nul && echo ELEVATED || echo NOT-ELEVATED
 ```
 **Elevation differs per SSH path** (verified 08/09/2026):
 - Direct Windows OpenSSH as `<SMB_USER>` (sshpass) = **ELEVATED** → netsh/schtasks/firewall all work over SSH.
-- `ssh <SSH_ALIAS2>` (root@<GAME_HOST_IP>:2222 → WSL-side sshd, runs as Windows user `<WIN_USER>`) = **NOT-ELEVATED** (medium IL; Administrators group shows "deny only"). `netsh add`, `schtasks /create /rl highest`, `attrib -r`, overwriting admin-owned files in `C:\ProgramData` — all `Access denied`.
+- `ssh <SSH_ALIAS>` (root@<GAME_HOST_IP>:2222 → WSL-side sshd, runs as Windows user `<WIN_USER>`) = **NOT-ELEVATED** (medium IL; Administrators group shows "deny only"). `netsh add`, `schtasks /create /rl highest`, `attrib -r`, overwriting admin-owned files in `C:\ProgramData` — all `Access denied`.
 
 ### Non-elevated: interactive UAC prompt (user is at the machine)
 From the WSL SSH session, fire a one-shot elevated bat through UAC — it pops on the user's screen, they click Yes:

@@ -7,11 +7,11 @@ Trang 1 chỗ để **không phải SSH dò lại**. Số liệu bám server ser
 | Thứ | Giá trị |
 |---|---|
 | Server chính | PC Windows 11 `<GAME_HOST_IP>`, game trong **WSL2 CentOS 7** (distro `<WSL_DISTRO>`, hostname `<WSL_HOSTNAME>`) |
-| SSH | `ssh <SSH_ALIAS2>` (= `root@<GAME_HOST_IP>:2222`, key; portproxy 2222→WSL:22 tự refresh) |
+| SSH | `ssh <SSH_ALIAS>` (= `root@<GAME_HOST_IP>:2222`, key; portproxy 2222→WSL:22 tự refresh) |
 | ⚠️ Sau reboot PC | chạy `C:\ProgramData\wsl-fix-game.bat` bằng quyền admin (portproxy 2222/5622/5632 + firewall) |
-| Server JX1 thứ 2 | `<GAME_HOST2_IP>` (Ubuntu 24.04, `/home/jxser/gateway+server1`, 7 systemd svc, webpanel :8080) — **khác hoàn toàn** máy chính, không dùng chung file |
+| Server JX1 thứ 2 | `<GAME_HOST_IP>` (Ubuntu 24.04, `/home/jxser/gateway+server1`, 7 systemd svc, webpanel :8080) — **khác hoàn toàn** máy chính, không dùng chung file |
 | Webpanel quản lý | python2 `server.py` trên WSL port 80 (nút Start/Stop gọi `<PORTABLE_DIR>/boot_all.sh`) |
-| Client game | `<JX1_ROOT>\Client` (trên PC) — share SMB cùng tên |
+| Client game | `<GAME_ROOT>\Client` (trên PC) — share SMB cùng tên |
 | Client patch/resolution | `resolution.ini` + `filtertext.dll` (hook), `dgVoodoo` (`ddraw.dll`) cho Win11 |
 
 ## Service & port (thứ tự start quan trọng)
@@ -73,11 +73,11 @@ for p in mysqld goddess_y bishop_y s3relay_y jx_linux_y; do pgrep -x $p >/dev/nu
 ## Lệnh hay dùng
 
 ```bash
-ssh <SSH_ALIAS2> 'pgrep -x jx_linux_y'                        # game có chạy không
-ssh <SSH_ALIAS2> 'tail -50 /home/jxser/server1/Logs/KSG_LoginOutLog_*.log'   # player vào/ra, timeout
-ssh <SSH_ALIAS2> 'grep -c "Login failed" /home/jxser/gateway/Logs/*.log'     # lỗi login
-ssh <SSH_ALIAS2> 'cd /home/jxser && tar czf /tmp/x.tgz <path>' && scp jx1:/tmp/x.tgz .   # kéo code về grep local
-ssh <SSH_ALIAS2> 'pkill -x jx_linux_y; sleep 2; bash <PORTABLE_DIR>/boot_all.sh /home/jxser'  # NẠP LẠI LUA server
+ssh <SSH_ALIAS> 'pgrep -x jx_linux_y'                        # game có chạy không
+ssh <SSH_ALIAS> 'tail -50 /home/jxser/server1/Logs/KSG_LoginOutLog_*.log'   # player vào/ra, timeout
+ssh <SSH_ALIAS> 'grep -c "Login failed" /home/jxser/gateway/Logs/*.log'     # lỗi login
+ssh <SSH_ALIAS> 'cd /home/jxser && tar czf /tmp/x.tgz <path>' && scp jx1:/tmp/x.tgz .   # kéo code về grep local
+ssh <SSH_ALIAS> 'pkill -x jx_linux_y; sleep 2; bash <PORTABLE_DIR>/boot_all.sh /home/jxser'  # NẠP LẠI LUA server
 #  ⚠️ panel_restart.sh CHỈ restart web panel :80 — không đụng service game. Lua print -> server1/Logs/KSG_ScriptOutputLog_<ngày>.txt
 ```
 

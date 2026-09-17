@@ -4,7 +4,7 @@
 
 
 > ⚠️ **Đối chiếu lại 17/09/2026 (đọc trực tiếp máy) — vài đường dẫn trong mục "File inventory" đã CŨ:**
-> - `TOOL/` (viết hoa) **không còn tồn tại**; công cụ hiện chỉ còn `<JX1_ROOT>/Tools/unpacktool/{unpack.exe, Decoder.exe, paths.txt}`.
+> - `TOOL/` (viết hoa) **không còn tồn tại**; công cụ hiện chỉ còn `<GAME_ROOT>/Tools/unpacktool/{unpack.exe, Decoder.exe, paths.txt}`.
 > - Các thư mục bóc pak (`ui1600/`, `pk_*`, `unpack_*`, `pakall`…) đã được **dồn về `<UNPACK_DIR>\`** (13 thư mục + `_README.txt`).
 > - `dllmain.cpp` **không còn trong `Client/`** (chỉ còn `dgVoodoo.conf`); đừng đi tìm theo đường dẫn cũ.
 > - `Client/ui/ctc/` thực tế có **14 file `.ini` loose** (không phải 164 — con số 164 là của bộ bóc từ pak/`ui_ctc_v2`).

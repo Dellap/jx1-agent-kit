@@ -20,7 +20,7 @@ Bản text đã bóc HTML (26 file, tên file = path gốc với `/`→`__`): **
 
 > ⚠️ **Cảnh báo dùng lại**: toàn bộ phần **cài đặt** viết cho Windows XP thời 2010 — SQL Server 2000, card mạng ảo +
 > IP `192.168.x.2`, font China PRC từ thư mục `I386`, 6 file `*.exe` chạy tay. **Không áp dụng cho server nhà**
-> (JX1 trên WSL2 CentOS7, `ssh <SSH_ALIAS2>` = root@<GAME_HOST_IP>:2222, 7 systemd service, MySQL :3306) — xem skill
+> (JX1 trên WSL2 CentOS7, `ssh <SSH_ALIAS>` = root@<GAME_HOST_IP>:2222, 7 systemd service, MySQL :3306) — xem skill
 > `vltk-server-ops`. Phần **dev dữ liệu client/server** (npcS.txt, skills.txt, missles.txt, NpcRes, SPR, GUI) thì
 > **vẫn còn giá trị tra cứu**.
 >

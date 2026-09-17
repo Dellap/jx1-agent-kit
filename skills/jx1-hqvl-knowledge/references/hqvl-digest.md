@@ -1,6 +1,6 @@
 # Chưng cất 60 tài liệu HQVL (17/09/2026)
 
-> Đọc toàn bộ `sources/hqvl-docs-text/` (67 file) + đối chiếu chỉ-đọc trên server. Mục lục/trích đoạn: `doc-index.md`.
+> Đọc toàn bộ (nguồn gốc: nhóm HQVL) (67 file) + đối chiếu chỉ-đọc trên server. Mục lục/trích đoạn: `doc-index.md`.
 > Đây là **tri thức dùng được** (không phải danh mục): bám theo nhóm chủ đề.
 
 ## Phân loại tài liệu (hữu ích cho việc sửa server/client)
@@ -75,7 +75,7 @@
 
 ## Chưng cất theo nhóm chủ đề
 
-# CHƯNG CẤT THEO NHÓM ( bằng chứng = tên file HQVL trong sources/hqvl-docs-text/; kiểm chứng chéo bằng lệnh chỉ-đọc trên `ssh <SSH_ALIAS2>`)
+# CHƯNG CẤT THEO NHÓM ( bằng chứng = tên file HQVL trong `skills/jx1-hqvl-knowledge/references/{hqvl-digest.md,doc-index.md}`; kiểm chứng chéo bằng lệnh chỉ-đọc trên `ssh <SSH_ALIAS>`)
 
 ## A. CÀI ĐẶT SERVER
 - 3 dòng bộ cài: JX6.0 8GSV (597MB, thêm Lệnh Bài Dã Tẩu, ép VK hoàng kim ở Thợ Rèn Thần Bí Lâm An khi đủ 100 mảnh, Trùng Luyện, Bầu Cua, CTC 80%) — wiki-beta__jx6__[jx60]_bo_cai_dat_8gsv_...; JX60 HKMP (clientvng + patchclient chép đè → server hkmpupdate5, fix spr thần hành phù, root/@pgaming6789) — ...jx60_-_cong_thanh_chien_den_hkmp...; JX8.1.11 (tải client VNG chỉ giữ data + music, PatchClient 8.1.11 153MB, VM VMWare WinXP+CentOS 677MB, min 8GB RAM/20GB đĩa, VC++2005 x86) — wiki-beta__jx8__[jx80]_bo_cai_dat_jxlinux_8.1.11_tu_a___z.html.txt.
@@ -136,7 +136,7 @@
 - Nếu build JXWin 64-bit: GS 1 process ~10GB cho 800 map thay 7-8 GS × 1.7GB; cần 5 thư viện 64-bit (common.lib, heaven.dll, rainbow.dll, CoreServer.dll, Engine.dll); gateway/goddess/s3relay/paysys giữ 32-bit.
 - Sự cố NPC không nói chuyện (Thẩm Câu bán ngựa): do dòng `--do return end` trong file NPC — bỏ nó hoặc thay file Â·ÈË_Éò¾Ô.lua (tên file GBK '人物_Thẩm Câu.lua').
 
-## I. ĐỐI CHIẾU VỚI SERVER THẬT (chỉ đọc, `ssh <SSH_ALIAS2>`, không sửa/restart)
+## I. ĐỐI CHIẾU VỚI SERVER THẬT (chỉ đọc, `ssh <SSH_ALIAS>`, không sửa/restart)
 - ĐÚNG như tài liệu: server1/settings/task/missions.txt, server1/settings/timertask.txt, server1/script/battles/battlehead.lua, server1/script/global/autoexec.lua, server1/settings/magicdesc.ini, gateway/s3relay/relaysetting/task/tasklist.ini.
 - SAI khác tài liệu: script/lib/comon.lua → thực tế là script/lib/common.lua; settings/Missile.txt → thực tế là settings/missles.txt (+ missletemplate.txt); 'Bảng đối chiếu trạng thái' thật là settings/状态特效图形对照表.txt (tên GBK); maplist.ini nằm ở server1/settings/maplist.ini (bài Tần Lăng ghi server1/settings/relaysetting/maplist.ini); worldset.txt nằm ở gateway/s3relay/settings/worldset.txt (bài ghi s3relay/setting).
 - Xác nhận cấu trúc skill theo phái: server1/script/skill/emei.lua, cuiyan.lua, ... đúng như từ điển lua (Server/Script/Skill/<môn phái>.lua).

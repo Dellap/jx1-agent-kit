@@ -7,7 +7,7 @@ description: Use when operating the VLTK/JX1 <SERVER_NAME> server.
 
 Server stack of the user's JX1/VLTK "<SERVER_NAME>" test server. The game runs
 inside **WSL2 (CentOS7 distro <WSL_DISTRO>, hostname <PC_NAME>-Kho)** on Windows PC
-<GAME_HOST_IP>; SSH in via `ssh <SSH_ALIAS2>` (root@<GAME_HOST_IP>:2222, key). Game data
+<GAME_HOST_IP>; SSH in via `ssh <SSH_ALIAS>` (root@<GAME_HOST_IP>:2222, key). Game data
 under `/home/jxser` (gateway/ + server1/). Webpanel (quản lý server, screenshot
 "VLTK SERVER - THỬ NGHIỆM") = python2 `server.py` on WSL :80, http://<wsl-ip>.
 
@@ -16,7 +16,7 @@ under `/home/jxser` (gateway/ + server1/). Webpanel (quản lý server, screensh
 Khi cần xác minh ghi chú/skill về server còn đúng hay đã cũ (số dòng, đường dẫn, tên hàm, giá trị config):
 đọc file đó trước. Nó có quy trình tar read-only + 2 bẫy đã trả giá: **đừng tin số dòng đếm từ mirror**
 (phải `wc -l` trên server — chệch 1 do newline cuối suýt làm báo sai một số liệu ĐÚNG), và **đừng nhồi vòng lặp
-bash có biến vào `ssh <SSH_ALIAS2> 'bash -lc "..."'`** (quote lồng nhau vỡ `unexpected EOF`). Kèm bảng mốc số liệu
+bash có biến vào `ssh <SSH_ALIAS> 'bash -lc "..."'`** (quote lồng nhau vỡ `unexpected EOF`). Kèm bảng mốc số liệu
 đã xác minh 17/09/2026 + tên hàm/settings của SimBot trong `game-development/jx1-simbot` (skill đó user-owned).
 **Mục 5 của file đó** = audit 60 tài liệu HQVL ↔ server nhà: bảng 4 tên file tài liệu HQVL ghi SAI
 (`Missile.txt`→`missles.txt`, `comon.lua`→`common.lua`, `maplist.ini`, `worldset.txt`) + header THẬT
@@ -76,7 +76,7 @@ PC reboot. Client `settings\serverlist.ini` 0_Address must point at <GAME_HOST_I
 
 ## 📚 Tài liệu HQVL — cài đặt / vận hành / script server
 
-> **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này `sources/hqvl-docs-text/<file>` (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
+> **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này (nguồn gốc: nhóm HQVL) (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
 
 - `wiki-beta__download__cac_buoc_co_ban_tao_nhiem_vu_(mission).html.txt` — tạo nhiệm vụ (mission) cơ bản
 - `wiki-beta__jx6__cac_ham_thong_dung_trong_lib_comon.lua.html.txt` — các hàm thông dụng trong lib_comon.lua

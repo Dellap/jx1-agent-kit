@@ -5,10 +5,10 @@ Mục tiêu: **rút ngắn đường mò và tiết kiệm token**. Đọc đún
 
 ## 0. Luật tiết kiệm token (bắt buộc)
 
-1. **Grep trước, đọc sau** — `search_files pattern="..." path=skills/|sources/` rồi mới `read_file`.
+1. **Grep trước, đọc sau** — `search_files pattern="..." path=skills/` rồi mới `read_file`.
    Không bao giờ `cat`/đọc cả file 10k token để tìm 1 hàm.
 2. **Đọc theo offset** — file dài (>=300 dòng) chia 2–3 lần đọc, bám theo số dòng grep trả về.
-3. **Code đã có sẵn ở `sources/`** — grep local thay vì SSH `cat` từng file (SSH chỉ để sửa/ghi).
+3. **Grep local trước khi SSH** — `search_files` trong `skills/` (bản chưng cất) thay vì `cat` từng file trên server; SSH chỉ để sửa/ghi.
 4. **Đúng 1 file skill cho 1 việc** — theo bảng định tuyến dưới đây, đừng load cả bộ.
 5. **Xong việc → cập nhật lại skill** (patch file tương ứng). Kinh nghiệm không ghi lại = lần sau trả giá lại.
 
@@ -31,7 +31,7 @@ Mục tiêu: **rút ngắn đường mò và tiết kiệm token**. Đọc đún
 ## 2. Checklist sửa bất kỳ thứ gì (đừng bỏ bước)
 
 ```
-1. Xác định file thật trên server   → grep trong sources/ hoặc ssh <SSH_ALIAS2> 'grep -rn ...'
+1. Xác định file thật trên server   → `grep -rn` trên chính máy chủ (hoặc tra `skills/`)
 2. Backup                           → cp f f.bak-$(date +%Y%m%d_%H%M%S)   (hoặc rename trên share SMB)
 3. Sửa (giữ encoding + CRLF)         → .lua/settings = iso-8859-1/TCVN3; .ini client = CRLF
 4. Verify nội dung                   → md5 / diff trước–sau, đếm {} cân bằng với Lua

@@ -7,7 +7,7 @@ sang theme dang chay, BANG TEN MOJIBAKE
    vdk.dll/vdk.so (xem SKILL.md muc "Shop dung ban ... module ENGINE vdk"), khong phai thieu file theme.
    Script nay chi de bo sung cua so con thieu cho theme. (bytes GBK -> latin1) — dung quy luat ten file cua client JX1/CTC.
 
-Chay TREN WSL (host `jx1`):  ssh <SSH_ALIAS2> 'python2 -' < fix_shop_stall_theme.py
+Chay TREN WSL (host `jx1`):  ssh <SSH_ALIAS> 'python2 -' < fix_shop_stall_theme.py
 Nguon: ui/ui_ctc_v2 (co du 133 ini) | Dich: ui/ctc (theme dang chay, thieu cua so dung ban)
 Kiem chung: ui/ctc/°ÚÌ¯ÎïÆ·.ini ton tai + spr/Ui3/°ÚÌ¯/Ì¯Ö÷Ãæ°å.spr ton tai.
 """

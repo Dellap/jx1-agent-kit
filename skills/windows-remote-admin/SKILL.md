@@ -86,7 +86,7 @@ Root-cause checklist (in order):
 Reach a WSL2 distro (game server, dev VM) from outside its NAT. Full recipe + CentOS7 specifics: `references/wsl2-jump-access.md`. Cheat sheet:
 - WSL2 IP (172.26.x) is NAT-internal + changes each WSL restart; never give it to LAN clients. Bridge = `netsh interface portproxy` on the Windows host (admin) → everyone uses the **host LAN IP**.
 - WSL distros are **per-Windows-user**: as another user `wsl -l` is empty. Find the owner: `reg query HKU\<SID>\Software\Microsoft\Windows\CurrentVersion\Lxss /s`.
-- **Elevation is PER SSH path, never assume**: `net session >nul && echo ELEVATED`. Direct Windows OpenSSH as `<SMB_USER>` was ELEVATED (netsh/schtasks/firewall worked). But `ssh <SSH_ALIAS2>` (root@<GAME_HOST_IP>:2222, WSL-side sshd) runs as Windows user <WIN_USER> at **medium IL** — `whoami /groups` shows Administrators "Group used for deny only" → netsh add, `schtasks /rl highest`, `attrib -r` all return Access denied.
+- **Elevation is PER SSH path, never assume**: `net session >nul && echo ELEVATED`. Direct Windows OpenSSH as `<SMB_USER>` was ELEVATED (netsh/schtasks/firewall worked). But `ssh <SSH_ALIAS>` (root@<GAME_HOST_IP>:2222, WSL-side sshd) runs as Windows user <WIN_USER> at **medium IL** — `whoami /groups` shows Administrators "Group used for deny only" → netsh add, `schtasks /rl highest`, `attrib -r` all return Access denied.
 - **Not-elevated + user is at the machine? Use the interactive UAC prompt** — pops on their screen, they click Yes, command runs elevated:
   ```cmd
   powershell -NoProfile -Command "Start-Process cmd -Verb RunAs -ArgumentList \"/c C:\\ProgramData\\wsl-fix-game.bat\" -Wait; Write-Output DONE"

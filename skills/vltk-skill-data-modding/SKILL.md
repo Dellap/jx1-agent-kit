@@ -6,7 +6,7 @@ description: Use when sửa skill VLTK server-side data files.
 # VLTK skill data modding (server-side)
 
 Tài liệu tham khảo chuẩn khi chỉnh skill phía server VLTK/JX1 — dùng cho
-mọi server (<SERVER_NAME> <GAME_HOST_IP> WSL, JX2 <GAME_HOST2_IP>/<GAME_HOST2_IP>, bản offline khác). 3 file
+mọi server (<SERVER_NAME> <GAME_HOST_IP> WSL, JX2 <GAME_HOST_IP>/<GAME_HOST_IP>, bản offline khác). 3 file
 reference là từ điển ĐÃ ĐỐI CHIẾU dữ liệu thật (wudang/tianren/emei.lua +
 skills.txt), có đánh dấu độ tin cậy [XÁC NHẬN]/[BỔ SUNG]/[CHƯA RÕ].
 
@@ -45,7 +45,7 @@ skills.txt), có đánh dấu độ tin cậy [XÁC NHẬN]/[BỔ SUNG]/[CHƯA R
 
 ## 📚 Tài liệu HQVL — dữ liệu & công cụ (shop/goods/buysell/pak/TCVN3/GM)
 
-> **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này `sources/hqvl-docs-text/<file>` (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
+> **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này (nguồn gốc: nhóm HQVL) (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
 
 - `jxtools__shopbuilder__README.md.txt` — **ShopBuilder** ⭐ *đã chưng cất → `references/shop-goods-buysell.md`* — tạo/sửa shop server (buysell.txt, goods.txt, item/) — JX Linux 8.0 & 6.0
 - `jxtools__onlineGMPassTool__README.md.txt` — **OnlineGMPassTool** — mã hoá/giải mã mật khẩu GM (MD5)
