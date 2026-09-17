@@ -1,0 +1,27 @@
+HQVL - ⬇JXLinux 8.0 - Dị bản bili Công thành chiến.md
+
+JXLinux 8.0 - Dị bản bili Công thành chiến
+🍀 Hội quán võ lâm, 29/07/2023
+💡 Tác giả: Thiên Lương
+✍️ Soạn giả: Huy Nguyen
+resources
+jx8
+🏠 > Kỳ trân dị bảo
+🏆 Nội dung
+Hôm nay mình xin chia se cho ae sever CTC của bili .sever này mình đã chỉnh sửa rat nhiều thứ ,va mở tất cả các tính năng ẩn trong game - Chỉnh tỉ lệ đồ xanh và đồ tím vip len x1.5 làn - Chỉnh tỉ lệ rot đồ vip trong boss. - Đang sửa phai hoa sơn nhưng chưa hoàn thiện. - Cắt hết set Hkmp và các món Hoàng Kim siêu nhân khác. Bác nào có tâm làm tiếp cho ae.chỉnh sửa chức nang admin tích hợptrong thần hành phù .chỉnh sưa event …và nhiều tính năng như nâng cấp ngựa,thay đổi thuộc tính đồ....các bạn tự tìm hiểu thêm nhé mình không có thời gian nhiều.
+Client mọi người lấy setting trong sever chép đè vào client của bản pgaming choi cũng ok.
+pass trong lệnh bài admin: 111111
+⬇️ Tài nguyên
+Mật khẩu (nếu có): https://fb.com/groups/volamquan1. Server VMWare
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGoogle drive1GBThiên Lương❓
+Liên kết phụ 1Onedrive1GBHQVL❓
+Liên kết phụ 2Google drive1GBTUI LA TUI❓
+Liên kết phụ 3HelURL1GBTUI LA TUI❓2. Client patch
+Huy Nguyen: mình đang đưa bài này vào Wiki hôi quán? bác đã úp client patch chưa?
+Thiên Lương: máy mình mới hỏng chưa up đc bác.mình lấy client bản bạch kim event 12 tháng của bác tiêu quyền rồi chép setting đè vào là ok.
+Theo dõi bài viết gốc để cập nhật tình hình.
+💬 Thảo luận
+Tham gia trao đổi thêm tại bài viết gốc https://www.facebook.com/groups/volamquan/posts/1222632985112558/© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

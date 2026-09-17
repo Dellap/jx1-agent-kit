@@ -1,0 +1,27 @@
+HQVL - 💎 Công cụ hỗ trợ toàn tập.md
+
+💎 Công cụ hỗ trợ toàn tập
+🍀 Hội quán võ lâm, 24/09/2023
+💡 Tác giả: Nhiều tác giả, được ghi nhận riêng trong từng chủ đề
+✍️ Soạn giả: Huy Nguyen, Phạm Hà
+resources
+tools
+🏠 > Kỳ trân dị bảo
+Bên dưới là tổng hợp các công cụ được chia sẻ trong Hội quán võ lâm.
+✍ Mật khẩu (nếu có): https://fb.com/groups/volamquan
+1. UI
+Công cụ xử lý hình ảnh, giao diện SPR, PNG, TGA v.v…1.1 Spr EditorSprtool eng
+Công cụ bung ảnh TGA từ các tập tin SPR. | Tên | Nội dung | Kích thước | Tác giả | [🦠](#vỉrus "Kiểm tra mã độc") | | -------- | -------- | -------- | -------- | -------- | | Liên kết gốc | [Google Drive](https://drive.google.com/file/d/1ySXa5dSmGxmUCriWS1VHBBXxIYYDPoWm/view?fbclid=IwAR167poD6vV-BpWmK0c2_1W75Cm86X4_uIddbnzM5Xciqv6p9SU3XEX0j5s) | 8MB | [Chình Chình](https://www.facebook.com/trinh.nguyen.111991/) | ❓ | | Liên kết phụ 1 | [Google Drive](https://drive.google.com/file/d/19YL1wbjyewEv-p-Op8d7SWU7QNk1FpKD/view?usp=share_link) | 8MB | [HQVL](https://fb.com/groups/volamquan) | ❓ | | Liên kết phụ 2 | | | | | 1.2 Spr Viewer
+- ⬇ Tool xem SPR - Mpc Asf
+2. PAK
+Công cụ giải nén PAK.
+Đang cập nhật
+3. Công cụ quản trị
+Công cụ thêm nhanh vật phẩm vào cửa hàng 🔗
+Quản lý tài nguyên trên máy chủ với bilweb
+4. Autoupdate
+Chia sẻ ứng dụng Autoupdate giao diện đơn giảnChia sẻ mã nguồn Autoupdate C++
+5. Phần mềm hỗ trợ
+Phần mềm giúp scale cửa sổ game võ lâm lên 1920x1080© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

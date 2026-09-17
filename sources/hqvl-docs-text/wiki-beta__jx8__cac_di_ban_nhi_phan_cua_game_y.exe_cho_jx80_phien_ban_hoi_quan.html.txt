@@ -1,0 +1,33 @@
+HQVL - ⬇ Các dị bản nhị phân của game_y.exe cho jx80 phiên bản hội quán.md
+
+Các dị bản nhị phân của game_y.exe cho jx80 phiên bản hội quán
+🍀 Hội quán võ lâm, 09/10/2023
+💡 Tác giả: Kiều Tôn Sơn, Bi Trợ lý
+✍️ Soạn giả: Huy Nguyễn
+resources
+dev
+jx80
+🏠 > Tàng thư bảo điển
+🏆 Nội dung
+Lưu ý: tên các dị bản đã được Soạn giả đặt tên lại để tiện bề trao đổi, đàm luận.1. Bản VAuto Dehook
+Theo lời tác giả Kiều Tôn Sơn, game_y.exe trong bản jx80 đã có chỉnh sửa để có thể chạy VAuto. Các auto khác nếu muốn chạy được đều phải bật VAuto trước thì mới chạy được. Mà như ae thấy, VAuto hay các auto khác dành cho bản này, nó khá là hạn chế.
+Nay share ae file client chưa bị hook VAuto, hàng này có giá trị hay không tuỳ vào năng lực của mỗi người.
+Chưa có auto nào có thể dùng được với client này, nhưng biết đâu, sẽ có rất nhiều auto sẽ dùng đc với client này. Mời ae thẩm. Vẫn phải khởi động bằng file Game.exe nha
+Client này giống với bản 6.0, tức là bản gốc từ phía KS bàn giao cho VNG, có thể dùng để tìm các giá trị và phát triển auto độc lập ko cần dựa vào VAuto2. Bản Stand-alone
+Share game mới của jx80 không hiện cửa sổ Command Prompt (màn hình đen). - Nhưng không xài được auto , chỉ cần 1 thủ thuật nhỏ với patch là xài đc auto - hiện nay đã có nhiều bạn hướng dẫn inject dll , patch auto , anh trợ lý có thể dựa theo hướng dẫn đó để phát triển auto cho client này.
+⬇️ Tài nguyên
+Mật khẩu (nếu có): https://fb.com/groups/volamquan1. VAuto Dehook
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGoogle drive1MBKiều Tôn Sơn❓
+Liên kết phụ 1Google drive1MBHQVL❓
+Liên kết phụ 2Google drive1MBTUI LA TUI❓
+Liên kết phụ 3HelURL1MBTUI LA TUI❓1. Stand-alone
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGoogle drive5.6MBBi Trợ lý❓
+Liên kết phụ 1Google drive6.9MBHQVL❓
+Liên kết phụ 2Google drive5.6MBTUI LA TUI❓
+Liên kết phụ 3HelURL5.6MBTUI LA TUI❓
+💬 Thảo luận
+Tham gia trao đổi thêm tại bài viết gốc - https://www.facebook.com/groups/volamquan/posts/1013096152732910/ - https://www.facebook.com/groups/volamquan/posts/1255270075182182© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

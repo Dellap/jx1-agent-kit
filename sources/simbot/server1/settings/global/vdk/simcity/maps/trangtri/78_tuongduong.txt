@@ -1,0 +1,72 @@
+NpcId	X	Y	Ten	Ten Hien Thi
+1169	1555	3233	Nha so 4	
+1553	1558	3228	Nha so 4	
+1553	1549	3237	Nha so 4	
+1457	1557	3241	npc nam hat boi	
+1168	1572	3213	npc nam hat boi	
+1183	1598	3236	npc nam hat boi	
+1184	1578	3249	npc nam hat boi	
+1250	1579	3218	npc nam hat boi	
+1249	1578	3219	npc nam hat boi	
+1255	1540	3253	cay xanh giua cac nha	
+1253	1539	3253	cay xanh giua cac nha	 
+1253	1541	3253	cay xanh giua cac nha	 
+1253	1540	3250	cay xanh giua cac nha	 
+1253	1540	3252	cay xanh giua cac nha	 
+1452	1591	3228	cay xanh nha so 1 trai	
+1452	1595	3222	cay xanh nha so 1 trai	
+1452	1599	3224	cay xanh nha so 1 trai	
+1452	1602	3230	cay xanh nha so 1 trai	
+1452	1591	3228	cay xanh nha so 1 trai	
+1333	1528	3221	hoa dao	
+1333	1533	3227	hoa dao	
+1333	1537	3228	hoa dao	
+1333	1541	3225	hoa dao	
+1333	1545	3220	hoa dao	
+1333	1549	3216	hoa dao	
+1333	1553	3212	hoa dao	
+1333	1555	3209	hoa dao	
+207	1593	3283	npc khac	
+256	1591	3238	npc khac	
+276	1597	3241	npc khac	
+281	1604	3237	npc khac	
+254	1592	3249	npc khac	
+289	1568	3222	npc khac	
+254	1592	3249	npc khac	
+301	1597	3251	npc khac	
+297	1594	3256	npc khac	
+304	1574	3252	npc khac	
+403	1574	3221	npc khac	
+1140	1581	3249	npc khac	
+1218	1579	3251	npc khac	
+1218	1582	3249	npc khac	
+431	1556	3210	tho	
+431	1557	3210	tho	
+431	1558	3208	tho	
+431	1557	3213	tho	
+1123	1558	3210	tho	
+1122	1559	3209	tho	
+1430	1620	3196	TUONG truoc cua quan	
+1429	1611	3185	TUONG truoc cua quan	
+1452	1614	3229	cay	
+1551	1586	3211	cay	 
+1333	1572	3191	cay	
+1333	1575	3190	cay	
+1333	1579	3187	cay	
+1532	1584	3194	cay	
+1924	1579	3235	cay	
+1501	1567	3245	den	§Ìn
+1575	1556	3231	den	
+1859	1536	3259	den	
+1879	1568	3282	den	
+2352	1585	3240	Phao hoa	
+1571	1566	3259	Mua lan	
+1556	1571	3262	Mua lan	
+1817	1614	3154	Vang	
+1813	1616	3155	Vang	
+1822	1618	3157	Vang	
+1809	1605	3170	Vang	
+1818	1619	3159	Vang	
+1819	1612	3163	Vang	
+1826	1608	3168	Vang	
+1884	1598	3188	Vang	

@@ -1,0 +1,11 @@
+.DS_Store
+*.tgz
+*.zip
+*.bak
+*.bak-*
+*:Zone.Identifier
+__pycache__/
+node_modules/
+Thumbs.db
+# danh sách từ khoá riêng (tên, máy, đơn vị, MST...) — KHÔNG commit
+scripts/.pii-local

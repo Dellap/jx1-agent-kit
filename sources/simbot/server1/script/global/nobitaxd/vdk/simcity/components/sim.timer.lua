@@ -1,0 +1,12 @@
+Include("\\script\\global\\nobitaxd\\vdk\\simcity\\head.lua")
+
+function OnDeath(nNpcIndex, attackerIndex)
+	local nListId = GetNpcParam(nNpcIndex, PARAM_LIST_ID)
+	local nType = GetNpcParam(nNpcIndex, PARAM_TYPE)
+	if nType == 1 then
+		SimCitizen:OnDeath(nListId, nNpcIndex, attackerIndex)	
+	elseif nType == 2 then
+		SimTheoSau:OnDeath(nListId, nNpcIndex, attackerIndex)	
+	end
+end
+

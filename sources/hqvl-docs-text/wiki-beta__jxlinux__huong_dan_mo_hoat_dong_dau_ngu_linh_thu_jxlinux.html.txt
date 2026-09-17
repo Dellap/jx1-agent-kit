@@ -1,0 +1,38 @@
+HQVL - 📝 Hướng dẫn mở hoạt động Đấu Ngũ Linh Thú JXLinux.md
+
+Hướng dẫn mở hoạt động Đấu Ngũ Linh Thú JXLinux
+🍀 Hội quán võ lâm, 28/09/2023
+💡 Tác giả: Phạm Hà
+✍️ Soạn giả: Phạm Hà
+guidance
+event
+🏠 > Tàng thư bảo điển | Rating: ⭐⭐⭐☆☆
+🏆 Nội dung
+Tiếp tục hướng dẫn các bạn mở hoạt động Đấu Ngũ Linh Thú JxLinux 6.0 và 8.0 .
+Bước 1 : các bạn vào WinScp mở tập tin :/home/jxser/gateway/s3relay/relaysetting/task/shengdan0811.lua
+Bạn có thể thêm 2 dấu - - để bỏ qua 3 dòng kia hoặc chỉnh lại ngày tháng hoạt động : 
+    if nDate < 090116 or nDate > 090215 then --1.1. ÔÚ¡°×£ºØÊ¥µ®¡°ÄÚ: 2008-12-05 ÖÁ2009-01-04
+        return
+    end
+ví dụ :
+    -- if nDate < 090116 or nDate > 090215 then --1.1.  ÔÚ¡°×£ºØÊ¥µ®¡°ÄÚ: 2008-12-05 ÖÁ2009-01-04
+        -- return
+    -- end
+
+Bước 2 : đến tập tin/home/jxser/gateway/s3relay/relaysetting/task/tasklist.ini
+thêm dòng 
+[Task_xx] TaskFile=shengdan0811.lua – số xx là số tasklist tiếp theo của bạn ví dụ của bạn đang là [Task_75] thì thêm dòng này là[Task_76] 
+lên đầu file tasklist.ini bạn sẽ thấy dòng [List] Count=76 thì thêm vào 1 đơn vị là Count=77
+Thế là xong các bạn khởi động lại sever và vào hoạt động , thời gian xảy ra hoạt động là 19h50 boss ra lúc 20h00 nhé .
+[Chú ý] - Các bạn có thể thêm phần thưởng rớt khi đánh boss bằng cách vào file theo đường dẫn : đây là phần thưởng mặc định khi đánh boss/home/jxser/server1/script/event/shengdan_jieri/200811/newboss/bossdeath.lua
+Các bạn cũng có thể thêm phần thưởng rớt ngẫu nhiên bằng tạo file droprate và thêm vào id npc boss .
+Video Hướng Dẫn
+⬇️ Tài nguyên
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGoogle drive5KbPhạm Hà✅
+Liên kết phụ 1Google drive5KbTUI LA TUI✅
+Liên kết phụ 2HelURL5KbTUI LA TUI✅
+💬 Thảo luận
+Tham gia trao đổi thêm tại bài viết gốc https://www.facebook.com/groups/volamquan/permalink/1250510682324788/© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

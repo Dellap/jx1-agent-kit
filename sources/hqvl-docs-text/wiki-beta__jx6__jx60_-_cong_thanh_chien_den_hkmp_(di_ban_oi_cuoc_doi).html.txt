@@ -1,0 +1,36 @@
+HQVL - ⬇ JX60 - Công Thành Chiến đến HKMP (dị bản Ôi Cuộc Đời).md
+
+JX60 - Công Thành Chiến đến HKMP (dị bản Ôi Cuộc Đời)
+🍀 Hội quán võ lâm, 16/02/2023
+💡 Tác giả: Ôi Cuộc Đời
+✍️ Soạn giả: Huy Nguyen
+resources
+jx6
+🏠 > Kỳ trân dị bảo
+🏆 Nội dung
+Chia sẻ server chỉ full đến hoàng kim môn phái như: sâm hoàng, đồng cừu và đồ tím mua năm 2020 giá 250k của pgaming. 
+Có link client vng mới nhất đã update full data tải clientvng về giải nén ra, xong giải nén patchclient copy tất cả trong patchclient vào thư mục clientvng chép đè yes to all copy and replace. Xong giải nén server hkmpupdate5 chạy server y chang 6.0 của pgaming.
+Fix hiển thị thần hành phù giải nén tập tin spr-fix-than-hanh-phu.7z bên dưới và copy thư mục này vào client.
+Tài khoản root, mật khẩu @pgaming6789
+Ip máy ảo: <LAN_IP>
+⬇️ Tài nguyên
+Mật khẩu (nếu có): https://fb.com/groups/volamquan1a. Bộ cài đặt Ôi Cuộc Đời
+TênNội dungKích thướcTác giả🦠
+ServerGoogle drive789MÔi Cuộc Đời❓
+Client patchMediafire94MBÔi Cuộc Đời❓
+Client dataGoogle drive5.4GBÔi Cuộc Đời❓
+Fix THPGoogle Drive2KBÔi Cuộc Đời❓1b. Bộ cài đặt bản sao HQVL
+TênNội dungKích thướcTác giả🦠
+ServerOnedrive789MHQVL❓
+Client patchOnedrive94MBHQVL❓
+Client dataOnedrive5.4GBHQVL❓
+Fix THPOnedrive2KBHQVL❓1c. Bộ cài đặt bản sao TuiLaTui
+TênNội dungKích thướcTác giả🦠
+ServerGoogle drive789MTUI LA TUI❓
+Client patchGoogle drive94MBTUI LA TUI❓
+Client dataGoogle drive5.4GBTUI LA TUI❓
+Fix THPGoogle drive2KBTUI LA TUI❓
+💬 Thảo luận
+Tham gia trao đổi thêm tại bài viết gốc https://www.facebook.com/groups/volamquan/posts/1141397996569391/© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

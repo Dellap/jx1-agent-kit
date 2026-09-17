@@ -1,0 +1,28 @@
+HQVL - 📝 Script Thẩm Câu bán ngựa 9x.md
+
+Script Thẩm Câu bán ngựa 9x
+🍀 Hội quán võ lâm, 17/08/2022
+💡 Tác giả: Phạm Hà, Kiệt Mát
+✍️ Soạn giả: Huy Nguyen
+guidance
+lua
+script
+dev
+🏠 > Tàng thư bảo điển
+Lời soạn giả
+Script được chia sẻ qua câu hỏi từ một thành viên trong Hội.
+🏆 Nội dung
+Kiệt Mát: Ngồi nhớ lạ kỹ niệm mua ngựa Chiếu Dạ của Thẩm Câu ở Nam Nhạc Trấn. Nhưng nhấp vào npc Thẩm Câu thì ko thấy gì, bên server cũng không thông báo lỗi gì. Đọc cái file .lua vẫn chưa thông. Nhờ nhóm trợ giúp để mua các con ngựa từ Thẩm Câu. Xin cảm ơn 😃
+P/:s --do return end => nói chuyện được với Thẩm Câu hoặc tải file Â·ÈË_Éò¾Ô_thamcau.lua đã chỉnh sửa về xoá _thamcau thành Â·ÈË_Éò¾Ô.lua rồi chép đè vào server.
+Phạm Hà: chia sẻ link tải Mediafire.
+⬇️ Tài nguyên
+Mật khẩu (nếu có): https://fb.com/groups/volamquan1. Tên tài nguyên
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGoogle drive2KBTác giả 1✅
+Liên kết phụ 1Google drive2KBHQVL✅
+Liên kết phụ 2Google drive2KBTUI LA TUI✅
+Liên kết phụ 3HelURL2KBTUI LA TUI✅
+💬 Thảo luận
+Tham gia trao đổi thêm tại bài viết gốc https://www.facebook.com/groups/volamquan/posts/1019046258804566/© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

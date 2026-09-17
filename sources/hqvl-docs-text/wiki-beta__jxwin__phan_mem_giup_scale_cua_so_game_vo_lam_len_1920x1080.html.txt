@@ -1,0 +1,25 @@
+HQVL - ⬇ Phần mềm giúp scale cửa sổ game võ lâm lên 1920x1080.md
+
+Phần mềm giúp scale cửa sổ game võ lâm lên 1920x1080
+🍀 Hội quán võ lâm, 26/10/2023
+💡 Tác giả: Nguyễn Nghĩa
+✍️ Soạn giả: Huy Nguyễn
+resources
+software
+cuasogame
+jxwin
+jx6
+jx8
+🏠 > Kỳ trân dị bảo
+🏆 Nội dung
+Chào mọi người. Nay mình muốn chia sẻ ae phần mềm giúp scale cái cửa sổ game võ lâm lên 1920x1080 mà ko phải dạng ALT ENTER.
+Lâu ngày mới quay lại chơi Võ Lâm mà toét hết cả mắt. Lên hội quán tìm được mấy cao thủ hướng dẫn chỉnh UI. Chỉnh được theo hướng dẫn mà chơi nó vẫn ko đã. Nên GG tìm cách scale cái cửa sổ lên 1920x1080. Cuối cùng mình cũng đc chơi Võ Lâm 1 cách sướng MẮT nhất trong bao năm qua. Ko còn phải nheo mắt đọc chữ nữa.
+Mình có làm cái clip demo ngắn về cách thức nó hoạt động. Phần mềm thực sự vô cùng đơn giản. Tải về bật lên và scale thôi. Mọi ng có thể HEX UI vè tỷ lệ 16:9 để khi nó scale full cái màn 1920x1080 nó sẽ rất đẹp. Ae có quay phim up ytb cũng có thể full HD đc rồi 😃
+⬇️ Tài nguyên
+Mật khẩu (nếu có): https://fb.com/groups/volamquan1. Tên tài nguyên
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGithub#MBNguyễn Nghĩa✅
+💬 Thảo luận
+Tham gia trao đổi thêm tại bài viết gốc https://www.facebook.com/groups/volamquan/posts/1264379577604565/© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

@@ -1,0 +1,44 @@
+HQVL - 📝 [Part1] Source code và hướng dẫn viết auto đơn giản cho JX1.md
+
+[Part1] Source code và hướng dẫn viết auto đơn giản cho JX1
+🍀 Hội quán võ lâm, 23/9/2023
+💡 Tác giả: Trung Duong
+✍️ Soạn giả: Huy Nguyễn
+guidance
+auto
+🏠 > Tàng thư bảo điển
+🏆 Nội dung
+Hello ae, hôm nay mình sẽ hướng dẫn viết một auto rao bán đồ đơn giản cho JX6.0. Video thích hợp cho những ae đã có chút kiến thức cơ bản về C++. Ae nào chưa có căn bản thì có thể tham khảo học C++ ở nhiều khoá free trên mạng.
+Auto sẽ gọi hàm thực thi script có sẵn trong game ở thanh chat, ví dụ như: - Chat phụ cận, thế giới, thành thị, bang hội, tổ đội,… - Phụ cận: /Chat('CH_NEARBY', 'message') - Thành thị: /Chat('CH_CITY', 'message') - Thế giới: /Chat('CH_WORLD', 'message') - Bang hội: /Chat('CH_TONG', 'message') - Lên xuống ngựa Switch([[horse]]) - Đổi PK Switch([[pk]],0),Switch([[pk]],1),Switch([[pk]],2) - Đổi đi bộ, chạy Switch([[run]]) … và nhiều script có sẵn trong game.exe
+Ở trong video có nhắc đến địa chỉ 0x140C0. Đây là địa chỉ của hàm thực thi script thanh chat trong game. Vấn đề khó nhất khi viết auto cho game là tìm ra các địa chỉ này. Ví dụ hàm di chuyển nhân vật có thể ở 0x12345, hàm bán đồ ở 0x6789… Để tìm được các địa chỉ này ae cần phải sử dụng kỹ thuật Reverse Engineering (RE).
+Trong video mình ko đề cập đến cách tìm địa chỉ hàm bởi vì có muốn chỉ cũng không biết phải chỉ sao. Đây là vấn đề mà ae phải tự luyện tập và tích luỹ kinh nghiệm cá nhân chứ ko có bài vở bài bản nào. Kiến thức căn bản thì có những hướng dẫn trên mạng như các tutorials về RE trên The Legend Of Random.
+Hy vọng bài viết sẽ tạo động lực cho ae nào muốn DEV Auto nhưng chưa biết bắt đầu từ đâu.
+Ở phần sau mình sẽ hướng dẫn cách hook và inject file vào file game, ai có file dll nào ví dụ như miniskill, anti-bla-bla thì sẽ biết cách hook nó vào file game.exe.Bài viết khác trong cùng chủ đề
+[Part1] Source code và hướng dẫn viết auto đơn giản cho JX1
+[Part2] Hướng dẫn inject file DLL vào file Game.exe sử dụng Assembly
+[Part3] Hướng dẫn inject file DLL vào file Game.exe sử dụng C#
+⬇️ Tài nguyên1. Mã nguồn
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGoogle drive82MBTrung Duong❓
+Liên kết phụ 1Github#✅
+Liên kết phụ 2Google drive82MBTUI LA TUI❓
+Liên kết phụ 3HelURL82MBTUI LA TUI❓2. Process Hacker
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGoogle drive3.4MBTrung Duong✅
+Liên kết phụ 1Google drive3.4MBHQVL✅
+Liên kết phụ 2GitHub3.4MBTrung Duong✅
+Liên kết phụ 3Google drive3.4MBTUI LA TUI❓
+Liên kết phụ 4HelURL3.4MBTUI LA TUI❓
+💬 Thảo luận
+Tham gia trao đổi thêm tại bài viết gốc https://fb.com/groups/volamquan/posts/1248148859227637/
+❓Hỏi đáp trích ngangCâu hỏi 1: Địa chỉ ô nhớ
+Văn Văn: Đề tài này hay. Mình cũng đang tìm hiểu. Tuy nhiên khó nhất ở tìm địa chỉ ô nhớ trong game. Nhờ bác hướng dẫn. Hiện tại mình đang lấy địa chỉ ô nhớ trong game từ mã nguồn của auto ky chứ chưa tự lấy đc. Mong bác hướng dẫn sử dụng cheatengine để tìm địa chỉ static. Mình mò mãi ko rs. Khi mình tìm giá trị hiện tại thì ok. Nhưng địa chỉ này ko phải static nên nó đổi lại sau mỗi lần mở game. Cần tìm địa chỉ static qua các function biến đổi để ra địa chỉ ô nhớ cấp phát
+Trung Duong: đầu tiên bạn cần phân biệt địa chỉ biến và địa chỉ hàm. Địa chỉ biến ví dụ như toạ độ nhân vật, địa chỉ nhân vật. Địa chỉ hàm ví dụ như hàm thực thi script thanh chat như ở bài post của mình.
+Địa chỉ biến thì phân ra tĩnh (static) và động (dynamic). Tìm địa chỉ static ví dụ toạ độ nhân vật thì dễ rồi, nó ko đổi, bạn scan ở cheat-engine nó là các địa chỉ màu xanh lá cây. Tìm địa chỉ dynamic phức tạp hơn vì nó sẽ thay đổi mỗi lần mở lại game. Để tìm dynamic thì bạn phải tìm các pointer offsets của các địa chỉ động này. Bạn tự google từ khoá Pointer scan for this address có rất nhiều hướng dẫn. Tốt nhất bắt đầu với mấy game nhẹ khác như bắn trứng rồi quay lại jx1. Sau khi đã thành thạo rồi thì bạn đọc dịch ngược assembly sẽ thấy cái offsets trong đó luôn, ít khi phải scan nữa.
+Địa chỉ hàm thì phải tìm bằng cách dịch ngược mã máy, phần này khó hơn nên để sau hãy tính.
+Vì jxlinux ko có mã nguồn C++ nên game.exe và các thư viện ko đổi dẫn đến các địa chỉ hàm, biến static và pointer offsets sẽ ko đổi. Việc sử dụng pattern thích hợp với jxwin hơn vì file client build ra mỗi lần mỗi khác dẫn đến các địa chỉ tìm đc cũng khác và phải scan lại từ đầu nếu ko dùng pattern.Câu hỏi 2: Scan địa chỉ tự động
+Văn Văn: lấy offset của địa chỉ hàm muốn chạy thôi, đừng lấy địa chỉ cụ thể. Mỗi lần chạy address nó đổi nhưng mà (base + offset) thì vẫn là địa chỉ cần truy cập.
+Tiến Phan: đơn giản đều tiên thì bạn phải tự tay hết mấy offset của bộ nhớ bạn cần dùng. Rồi sau này thì dùng pattern mà tự tìm nó. Chớ đâu ai mỗi phiên bản game đi cày lại mấy chục tới cả trăm cái address :)). Kiểu vầy https://github.com/HoShiMin/Sig
+🌿 Tham khảo© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

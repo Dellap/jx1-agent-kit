@@ -1,0 +1,27 @@
+HQVL - 💎 Kỳ trân dị bảo.md
+
+💎 Kỳ trân dị bảo
+🏠 Trang chủ
+Trang tổng hợp các tài nguyên được chia sẻ bởi các anh trợ lý trong Hội quán võ lâm.
+1. JXLinux 6.0
+Bộ cài đặt Nam Cung - #jx60
+Bộ cài đặt 8GSV + Hex hệ Mộc thân pháp - dị bản Thịnh Phan Văn - #jx60
+Bộ cài Công Thành Chiến - Dị bản Ôi Cuộc Đời
+2. JXLinux 8.0
+Bộ cài đặt JxLinux 8.1.11 Từ A > Z - phiên bản Hội quán võ lâm - #jx80
+Bộ cài Công thành chiến - Dị bản bili - #jx80
+3. JXWin
+Bộ cài đặt JxWin Võ Lâm Tuyệt Thế - #jxwin
+Bộ cài Tinh Vân (dị bản Trần Minh) - #jxwin
+4. Scripts và patches
+Mục này chia sẻ các scripts/patches tính năng. Ví dụ: patch NPC kéo xe; patch phái mới Vũ Hồn, Tiêu Dao; lệnh bài chuyển sinh; …
+Source code Kéo Xe NPC 1.x
+Miniskill cho jxlinux và jxwin 🔥
+Các dị bản nhị phân của game_y.exe cho jx80 phiên bản hội quán
+5. Tài nguyên
+Mục này chia sẻ liên kết tải về các tài nguyên hình ảnh png/jpg, các ảnh động spr, hoặc các tập tin PAK.
+Đang cập nhật
+6. Các công cụ hỗ trợ
+Tổng hợp toàn tập công cụ phát triển VL© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

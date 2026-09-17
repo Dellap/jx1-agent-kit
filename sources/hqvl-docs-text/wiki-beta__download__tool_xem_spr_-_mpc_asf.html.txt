@@ -1,0 +1,36 @@
+HQVL - ⬇ Tool xem SPR - Mpc Asf.md
+
+Tool xem SPR - Mpc Asf
+🍀 Hội quán võ lâm, 29/08/2022
+💡 Tác giả: James Monks, Kiều Tôn Sơn
+✍️ Soạn giả: Huy Nguyen
+resources
+spr
+tools
+🏠 > Kỳ trân dị bảo
+🏆 Nội dung1. Bản Tiếng Việt
+Việt hoá xong tool để xem SPR. Share cho mọi người sử dụng thử. Tool được build từ c++, codeblocks. Vẫn giữ nguyên UI ban đầu. 
+Pass giải nén là 1
+Nếu có báo lỗi thiếu file .dll thì các bạn tải về chép vào cùng cấp với file chạy nhé.
+Còn có lỗi nào khác thì comment ở dưới để tui biết chỉnh lại nhé.
+P/s Khi sử dụng sẽ có 1 số file .spr hoặc .mpc hoặc .asf không load được (có thể do cách convert các file dạng này quá cũ hoặc mới nên tool ko đọc đc). Các file spr mới nếu dùng tool spr eng được share thì đọc ok.2. Bản tiếng bạn
+
+Tool này là để xem, chỉnh sửa các file resource của một vài game nhà Kingsoft như là Kiếm Hiệp Kỳ Duyên, Truyền Thuyết Ánh Trăng,… các loại file mà nó xử lý là MPC, ASF, RPC, và tất nhiên là có SPR quen thuộc của chúng ta.
+Nhìn hình mình họa thì anh trợ lý cũng thấy là nó có thể xem, và đọc thông số của các file hình ảnh kể trên. Tiếc là tính năng chỉnh sửa, thêm hoặc bớt frame, điều chỉnh tốc độ đối với file SPR vẫn chỉ nằm ở dạng preview, chứ chưa sửa và lưu trực tiếp vào file SPR được. Hy vọng có tay to nào sớm phát triển thêm tính năng này cho ae dùng cho tiện, nhỉ.
+P/S: anh trợ lý nào bị lỗi thiếu DLL thì tải cái này về quăng vào nha libwinpthread-1.dll.
+⬇️ Tài nguyên1. Mã nguồn
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGithub5.34MBmapic91✅2. Bản tiếng Việt
+TênNội dungKích thướcTác giả🦠
+Liên kết gốc (1)Mediafire5.34MBJames Monks❓
+Liên kết phụ 1Google drive5.34MBTUI LA TUI❓
+Liên kết phụ 2HelURL5.34MBTUI LA TUI❓3. Bản tiếng bạn
+TênNội dungKích thướcTác giả🦠
+Liên kết gốc (sonkt8888)Google Drive5MBKiều Tôn Sơn❓
+Liên kết phụ 1Google drive5MBTUI LA TUI❓
+Liên kết phụ 2HelURL5MBTUI LA TUI❓
+💬 Thảo luận
+Tham gia trao đổi thêm tại bài viết gốc - https://www.facebook.com/groups/volamquan/posts/1033537220688803/ - https://www.facebook.com/groups/volamquan/posts/1026124291430096/
+🌿 Tham khảo© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

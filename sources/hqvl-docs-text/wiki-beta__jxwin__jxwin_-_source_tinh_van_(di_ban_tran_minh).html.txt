@@ -1,0 +1,29 @@
+HQVL - ⬇ JxWin - Source Tinh Vân (dị bản Trần Minh).md
+
+JxWin - Source Tinh Vân (dị bản Trần Minh)
+🍀 Hội quán võ lâm, 26/10/2023
+💡 Tác giả: Trần Minh
+✍️ Soạn giả: Huy Nguyen
+guidance
+resources
+jxwin
+🏠 > Kỳ trân dị bảo
+🏆 Nội dung
+*Dị bản là phiên bản được phát triển chỉnh sửa thêm nhiều tính năng từ phiên bản được chia sẻ đầu tiên.
+Up lại bộ source tình kiếm và Visual Studio 6.0 Enterprise để code của Microsoft Src này đã config all, có cả client-server full chạy và chơi được, giải nén về là chiến thôi, hình minh họa đi kèm (pass 1)
+Lưu ý : src mình đang up dở tại thời điểm post bài, nếu thấy đủ 10 part trong link là ok.
+
+⬇️ Tài nguyên
+Mật khẩu (nếu có): https://fb.com/groups/volamquan1. Mã nguồn C++
+TênNội dungKích thướcTác giả🦠
+Liên kết gốc - P1 (1)Google drive15GBTrần Minh❓
+Liên kết gốc - P2Google drive10GBTrần Minh❓
+Liên kết phụ - P1Google drive240MBTUI LA TUI❓
+Liên kết phụ - P2Google drive240MBTUI LA TUI❓2. Visual Studio 6.0 Enterprise
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGoogle drive614MBTác giả 1❓
+💬 Thảo luận
+Tham gia trao đổi thêm tại bài viết gốc https://fb.com/groups/volamquan/posts/ID-BÀI-VIẾT-TRÊN-HỘI-QUÁN/
+🌿 Tham khảo© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

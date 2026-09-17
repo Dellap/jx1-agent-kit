@@ -1,0 +1,40 @@
+HQVL - 📚 Tàng thư bảo điển.md
+
+📚 Tàng thư bảo điển
+🏠 Trang chủ
+Trang tổng hợp các bài viết được chia sẻ bởi các anh trợ lý trong Hội quán võ lâm.
+1. Tổng hợp
+Cẩm nang “Từ tân thủ đến cao thủ”
+2. Script
+Một số trick nhỏ để làm gọn lua script
+Chỉnh sửa thông số chiến trường Tống Kim
+Các bước cơ bản tạo nhiệm vụ (mission)
+Hướng dẫn mở lại hoạt động Ông Ba Mươi JxLinux
+Hướng dẫn mở hoạt động Đấu Ngũ Linh Thú JxLinux
+Hướng dẫn thêm giờ Tống Kim theo ý
+Xây dựng function phân trang hộp thoại
+Share source JX SimCity 1.0
+Hoán đổi trang bị giữ nguyên thuộc tính
+Các hàm thông dụng trong lib comon.lua
+Thêm vòng sáng danh hiệu cho NPC
+𝑳𝒆̣̂𝒏𝒉 𝒃𝒂̀𝒊 𝒍𝒂̀𝒎 𝒏𝒉𝒊𝒆̣̂𝒎 𝒗𝒖̣ 𝑯𝒐𝒂̀𝒏𝒈 𝑲𝒊𝒎
+Lợi ích khi build client/server JXWin phiên bản 64 bits
+Script Thẩm Câu bán ngựa 9x
+3. Patch
+Client patch trùng sinh 6, 7, 8 và 9
+Cách sửa server để vào Tống Kim đánh vẫn có điểm mà không cần log acc 2 bên
+4. Mã hoá và giải mã
+Hướng dẫn pack và unpack dữ liệu từ PAK
+5. UI
+Đang cập nhật
+6. Auto
+[Part1] Source code và hướng dẫn viết auto đơn giản cho JX1
+[Part2] Hướng dẫn inject file DLL vào file Game.exe sử dụng Assembly
+[Part3] Hướng dẫn inject file DLL vào file Game.exe sử dụng C#
+Toàn tập hướng dẫn viết Autoplay cho Võ lâm với AutoIt 🔥
+7. Công cụ hỗ trợ
+「Dev」Hướng dẫn cấu hình VSCode + WinSCP chỉnh sửa Lua script
+8. Quản trị máy chủ
+Vô hiệu Coredump ra files trên Cent OS JX LINUX© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

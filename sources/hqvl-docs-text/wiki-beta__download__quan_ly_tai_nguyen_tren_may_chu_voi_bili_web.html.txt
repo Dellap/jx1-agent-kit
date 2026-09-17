@@ -1,0 +1,26 @@
+HQVL - ⬇ Quản lý tài nguyên trên máy chủ với bili web.md
+
+Quản lý tài nguyên trên máy chủ với bili web
+🍀 Hội quán võ lâm, 01/09/2023
+💡 Tác giả: Kiều Thắng
+✍️ Soạn giả: Huy Nguyễn
+resources
+web
+admin
+🏠 > Kỳ trân dị bảo
+🏆 Nội dung
+Thấy ae share nhiều thứ quá mà chưa ai share web, nay share cho ae bộ web của bili, mình siêu tầm được 
+Quang Quốc: Bộ này chạy xaamp 1.7.1 or PHP 5.2, bật extension cUrl. Lưu ý: bộ web tuy nhìn ngon lành, bảo mật. Nhưng thật sự rất ngáo đá kaka, anh trợ lý chuyên PHP fix lên php 8.2, thay lib sql thành PDO thì đẹp.
+Khải Nguyễn: Bộ này dùng chạy sv kinh doanh hơi mạo hiểm.đã từng xảy ra rất nhiều vụ chiếm quyền admin từ bộ web này r.
+⬇️ Tài nguyên
+Mật khẩu (nếu có): https://fb.com/groups/volamquan1. Tên tài nguyên
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGoogle drive42MBTác giả 1☠️
+Liên kết phụ 1Google drive42MBHQVL✅
+Liên kết phụ 2Google drive42MBTUI LA TUI❓
+Liên kết phụ 3HelURL42MBTUI LA TUI❓
+Liên kết phụ 4
+💬 Thảo luận
+Tham gia trao đổi thêm tại bài viết gốc https://www.facebook.com/groups/volamquan/posts/1237452380297285/© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

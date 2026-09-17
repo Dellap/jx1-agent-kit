@@ -1,0 +1,12 @@
+VNJX OnlineGMPassTool
+
+Công cụ mã hóa và giải mã các mật khẩu của JX1
+
+Mật khẩu 
+Mã hóa ->
+
+<- Giải mã
+Mã hóa 
+MD5: 
+
+Author: vinh-ttn (source code)

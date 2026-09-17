@@ -1,0 +1,65 @@
+HQVL - 📝 Chỉnh sửa thông số chiến trường Tống Kim.md
+
+Chỉnh sửa thông số chiến trường Tống Kim
+🍀 Hội quán võ lâm, 26/09/2023
+💡 Tác giả: Hi Vọng
+✍️ Soạn giả: Huy Nguyễn
+guidance
+tongkim
+battlehead
+🏠 > Tàng thư bảo điển
+🏆 Nội dung
+Bến dưới là đường dẫn đến tập tin qui định các thông số cho chiến trường Tống Kim trong server (máy chủ CentOS).
+/home/jxser/server1/script/battles/battlehead.lua
+
+Chi tiết ý nghĩa các thông số
+FRAME2TIME = 18;      --18 tương đương 1 giây
+BAOMING_TIME = 10     --10 phút thời gian đăng ký
+FIGHTING_TIME = 60    -- Thời gian diễn ra trận đấu, mặc định là 60 phút
+ANNOUNCE_TIME = 20    -- 20 giây công bố tại chiến trận
+
+BOSS_TIME_MAIN=30    --30 phút sau khi báo danh xuất hiện nguyên soái
+VANISHGAME_TIME_MAIN=20    --20 phút cuối xuất hiện nguyên soái tiếp theo
+
+TIMER_1 = ANNOUNCE_TIME * FRAME2TIME;    --20 giây công bố tại chiến trận
+TIMER_2 = (FIGHTING_TIME + BAOMING_TIME) * 60  * FRAME2TIME;  --Thời gian chiến đấu 1H
+RUNGAME_TIME = BAOMING_TIME * 60 * FRAME2TIME / TIMER_1;    --10 phút sau khi đăng ký, tự động bước vào giai đoạn chiến đấu
+GO_TIME =  BAOMING_TIME * 60 * FRAME2TIME  / TIMER_1;       --Thời gian áp dụng là 10 phút sẽ RunMission
+
+SONGJIN_SIGNUP_FEES = 10000                 --Phí đăng ký
+
+JUNGONGPAI = 1773                   --ID item 6,1,1477
+EXPIRED_TIME = 24*60  --ËÎ½ð¾ü¹¦ÅÆ¹ýÆÚ
+JUNGONGPAI_Task_ID = 1830 -- --ËÎ½ð¾ü¹¦ÅÆÈÎÎñ±äÁ¿
+
+TIME_GAME_LIMIT = 5 * 60                    --Thời gian ở lại trong trại quá lâu, quá thời gian sẽ out ra NPC báo danh
+
+-- ...
+
+----------------Title Value-------------------------------------
+    -- Qui định điểm đạt được khi đánh bại NPC
+    -- Mỗi Rank tương ứng với Tống/Kim Binh, Tống Hiệu Uý, Phó tướng, đại tướng, ...
+    BONUS_KILLPLAYER = 75
+    BONUS_SNAPFLAG = 600
+    BONUS_KILLNPC = 1
+    BONUS_KILLRANK1 = 5
+    BONUS_KILLRANK2 = 30
+    BONUS_KILLRANK3 = 150
+    BONUS_KILLRANK4 = 250
+    BONUS_KILLRANK5 = 500
+    BONUS_KILLRANK6 = 1000
+    BONUS_KILLRANK7 = 500
+    BONUS_MAXSERIESKILL = 150
+    BONUS_GETITEM = 25
+    BONUS_1VS1 = 400
+
+⬇️ Tài nguyên1. Tống Kim một mình vẫn có điểm
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGoogle drive45KBHi Vọng✅
+Liên kết phụ 1Google drive48KBHQVL✅
+Liên kết phụ 2Google drive48KBTUI LA TUI❓
+Liên kết phụ 3HelURL48KBTUI LA TUI❓
+💬 Thảo luận
+Tham gia trao đổi thêm tại bài viết gốc https://fb.com/groups/volamquan/posts/1248791202496736/© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

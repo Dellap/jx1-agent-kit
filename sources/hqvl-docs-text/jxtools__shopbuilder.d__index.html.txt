@@ -1,0 +1,44 @@
+Hướng dẫn:
+Đây là công cụ chỉnh sửa và tạo shop bán trên server JX1 Linux 8.0 (đã test) & 6.0 (chưa test)
+Tạo 1 thư mục bất kỳ trên máy (tạm gọi là A) có chứa buysell.txt goods.txt và thư mục item (cả 3 đều tìm được trong server1/settings)
+Zip thư mục A này lại và bỏ file zip vào tool này và "Bắt đầu"
+
+Chọn file zip Bắt Đầu
+
+Vật phẩm bán (goods.txt)
+Cửa hàng (buysell.txt)
+Tất cả vật phẩm
+Hướng dẫn sử dụng
+Vật phẩm khác (magicscript.txt)
+
+Chọn cửa hàng:  Xóa
+
+Thêm vật phẩm bán (từ goods.txt) 
+Thêm cửa hàng mới  +
+Chú ý: Xóa cửa hàng sẽ thay đổi thứ tự các cửa hàng sau đó. Toàn bộ các game script dùng ID sẽ hoạt động sai.
+
+Thêm vật phẩm 
+Lọc  
+Chọn cửa hàng thêm vật phẩm: 
+Thêm tất cả vào shop đã chọn
+Chú ý: Xóa vật phẩm sẽ thay đổi thứ tự các vật phẩm sau đó. Các Cửa Hàng liên quan sẽ tự động cập nhật để giữ đúng vật phẩm.
+
+Loại 
+Lọc  
+Thêm tất cả vào vật phẩm bán
+
+DOWNLOAD MAGICSCRIPT.txt
+Lọc  + Thêm item mới
+
+Bước 1 thêm vật phẩm bán (và chỉnh giá) trong Vật phẩm bán (goods.txt)
+Bước 2 thêm hoặc tạo cửa hàng mới với vật phẩm cần bán, trong Cửa hàng (buysell.txt),
+Bước 3 download về file goods.txt và buysell.txt mới (nhớ chọn đúng version server của bạn là 6 hoặc 8) và chép đè vào 3 chổ:
+Trên server: server1/settings và gateway/s3relay/relaysetting/syncfiles/settings
+Trên game: thư mục settings
+Bước 4 Khởi động lại game và server. Dùng lệnh Sale(ID, kiểu) để mở shop với:
+ID : id của cửa hàng
+Kiểu (v6): 0:Tiền vạn, 1: phúc duyên, 2:danh vọng, 3: tích lũy TK, 4:vinh dự. Mặc định là tiền vạn.
+Kiểu (v8): 0:Tiền vạn, 1: ... (chưa rõ)
+Mọi ý kiến đóng góp sửa lỗi vui lòng pm qua FB. Những thắc mắc sử dụng khác vui lòng hỏi vào post của mình trên hội quán.
+Nên sao lưu bản gốc goods.txt và buysell.txt đề phòng trường hợp file mới bị lỗi
+v6 DOWNLOAD v8 DOWNLOAD ThoátAuthor: vinh-ttn (source code)

@@ -1,0 +1,41 @@
+HQVL - ⬇ [JX80] Bộ cài đặt JxLinux 8.1.11 Từ A _ Z.md
+
+[JX80] Bộ cài đặt JxLinux 8.1.11 Từ A > Z
+📝 Hội quán võ lâm, 24/9/2023 💡 Tác giả: Nguyen Huy
+✍️ Soạn giả: Phạm Hà
+Tags: resources
+🏠 > Kỳ trân dị bảoChào mừng các bạn đến Blog của hội quán Võ Lâm hôm nay mình xin phép được hướng dẫn các bạn cài đặt JxLinux 8.1.11 của hội quán .
+Phiên bản 8.1.11 của hội quán được biết là đến là chưa chỉnh sửa thêm bớt các tính năng mới hiện có trên mạng bây giờ , các bạn có thể thêm bớt tính năng mới nếu thích ở các bài viết sau này trên Blog hội quán , để không mất thì giờ các bạn mình xin hướng dẫn ngay đây :
+
+Bước 1 Các bạn cần tải phiên bản gốc của VNG để lấy thư mục data và music trên trang chủ https://volam.zing.vn/ cài đặt và cập nhật phiên bản mới nhất .
+
+Bước 2 Sau khi cập nhật phiên bản mới của VNG các bạn xoá tất cả chỉ để lại 2 thư mục data và music .
+
+Bước 3 Bạn cần tải PatchClient 8.1.11 và Sever máy ảo Vmware WinXP và CentOS 
+⬇️ Tài nguyên1. Tập tin máy ảo WinXP + CentOS
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGoogle drive677MBHuy Nguyen❓
+Liên kết phụ 1Mediafire677MBHuy Nguyen❓
+Liên kết phụ 2Mega677MBHuy Nguyen❓
+Liên kết phụ 3Google drive677MBTUI LA TUI❓
+Liên kết phụ 4HelURL677MBTUI LA TUI❓2. PatchClient 8.1.11
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGithub153MBHuy Nguyen❓
+Liên kết phụ 1Google drive153MBTUI LA TUI❓
+Liên kết phụ 2HelURL153MBTUI LA TUI❓3. VMWare
+TênNội dungKích thướcTác giả🦠
+Liên kết Vmware 17Google drive608MBPhạm Hà❓
+Liên kết phụ 1Google drive608MBTUI LA TUI❓
+Liên kết phụ 2HelURL608MBTUI LA TUI❓
+Pass (nếu có) : https://fb.com/groups/volamquan
+Key kích hoạt Vmware 4A4RR-813DK-M81A9-4U35H-06KND NZ4RR-FTK5H-H81C1-Q30QH-1V2LA JU090-6039P-08409-8J0QH-2YR7F 4Y09U-AJK97-089Z0-A3054-83KLA 4C21U-2KK9Q-M8130-4V2QH-CF810 MC60H-DWHD5-H80U9-6V85M-8280D
+Bước 4 : Sau khi tải hoàn tất các tệp tin các bạn làm theo hướng dẫn sau:Yêu cầu hệ thốngPhần cứng
+Tối thiểu: 8GB RAM, ổ cứng trống ít nhất 20GB. Máy có hỗ trợ ảo hoá.
+Mượt mà: 16GB RAM, ổ cứng trống ít nhất 40GB. Máy có hỗ trợ ảo hoáPhần mềm
+Windows 8, 7, Vista, XP, 2000, 9x.
+VMWare 15 trở lên.
+Microsoft Visual C++ 2005 Redistributable Package (x86).
+🍀 Nguồn
+Bài viết được ghi chép có chỉnh sửa từ chủ đề thảo luận sau https://www.facebook.com/groups/volamquan/permalink/909137433128783© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com

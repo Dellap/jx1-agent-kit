@@ -1,0 +1,2 @@
+WorldID	WorldName	PathFile
+78	T­¬ng D­¬ng	trangtri\78_tuongduong.txt

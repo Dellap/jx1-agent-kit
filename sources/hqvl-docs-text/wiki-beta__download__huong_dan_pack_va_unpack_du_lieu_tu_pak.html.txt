@@ -1,0 +1,32 @@
+HQVL - 📝 Hướng dẫn pack và unpack dữ liệu từ PAK.md
+
+Hướng dẫn pack và unpack dữ liệu từ PAK
+🍀 Hội quán võ lâm, 21/07/2022
+💡 Tác giả: Thinh Nguyen
+✍️ Soạn giả: Huy Nguyen
+guidance
+resources
+tools
+🏠 > Tàng thư bảo điển
+🏆 Nội dung
+Có anh trợ lý nào cần hướng dẫn pack và unpack không? Mình share đủ các phần mềm pack + 3 phần mềm unpack. Khuyên anh trợ lý nên down trước rồi xem video cùng làm.
+
+Bài tập áp dụng đơn giản: unpack toàn bộ 24 file của con hươu tuyết từ file pak đã tạo.
+
+Bài tập nâng cao: giải quyết vấn đề file > 800 kb 1 cách tự động? Viết batch file so sánh dung lượng và đổi tên tất cả file .out từ RPGViewer thành tên đúng từ JxUnpack.
+Video được làm như 1 hướng dẫn toàn tập về pack và unpack cho file của JX võ lâm 1. Mình so sánh cách sử dụng 3 phần mềm unpack hiện có: RPGViewer, LDunpack và JxUnpack (từ Hội quán Võ lâm Offline). 
+Tóm tắt lại, RPGViewer có thể unpack mọi thứ nhưng không có tên, và không unpack từ tên. LDunpack và JxUnpack có thể unpack từ 1 list tên nhưng JxUnpack có thể xử lí tên tiếng Hoa và cho ra file hơn 800 kb (nhưng nội dung bị NULL, cần so sánh với RPGViewer để có bản chuẩn cuối cùng).
+⬇️ Tài nguyên
+Mật khẩu (nếu có): https://fb.com/groups/volamquan1. Tên tài nguyên
+TênNội dungKích thướcTác giả🦠
+Liên kết gốcGoogle drive23MBThinh Nguyen❓
+Liên kết phụ 1Google drive52.5MBHQVL❓
+Liên kết phụ 2Google drive52.5MBTUI LA TUI❓
+Liên kết phụ 3HelURL52.5MBTUI LA TUI❓
+💬 Thảo luận
+Tham gia trao đổi thêm tại bài viết gốc https://www.facebook.com/groups/volamquan/posts/1002575173785008/
+❓Hỏi đáp trích ngangCâu hỏi 1: Độ ưu tiên tập tin trùng lắp trong PAK
+Người-hỏi: Cái tính năng tự tìm file trong package.ini rồi unpack ra file cần tìm có vấn đề như sau: Trong trường hợp có 2 file pak chứa cùng file cần unpack tên là: settings/item/horse.txt cùng nằm trong pak mới của mình: update_ngua.pak và update01.pak(vng data). Thì hình như nó sẽ lấy cái file ở file pak cuối cùng tức là update01.pak(file dung lượng ít mặc định chưa có ngựa mới).
+Thinh Nguyen: không trợ lý. Nó lấy ở file trên cùng ấy. File đầu tiên nó tìm được.© Hội quán võ lâm, 2021-2024
+Bản quyền phân phối nội dung thuộc về Hội quán võ lâm. Quyền tác giả thuộc về người đã sáng tạo nội dung được thể hiện rõ trong bài viết. 
+ Mọi hình thức sao chép phân phối lại yêu cầu giữ nguyên toàn bộ bài viết bao gồm cả tiêu đề, nội dung và hình thức. Không được phép chỉnh sửa, thay đổi các liên kết dẫn về Hội quán võ lâm, cũng như thông tin về tác giả.  Các vấn đề tác quyền liên hệ: jx1offline@gmail.com
