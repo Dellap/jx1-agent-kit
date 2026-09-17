@@ -73,3 +73,30 @@ node -e 'const vc=require("vietnamese-conversion"),fs=require("fs");
 
 - `.txt/.html` (UTF-8 chứa ký tự bảng TCVN3) → `utf8`; `.lua/.ini` client trong gói mod (byte thô, `file` báo ISO-8859) → `raw`.
 - Script Lua **server** là **GBK** → `iconv -f GBK -t UTF-8`; đừng trộn 2 bảng mã trong 1 lần chuyển.
+
+## 5. Pack SERVER third-party (Lua/binary) — SO BASELINE trước khi ghi đè (bài học 17/09/2026)
+
+Thư mục `Update/<tên pack>/` thường kèm `ORIGINAL-GỐC/` + `TEST FIX LỖI/` (hoặc chỉ `script/` + binary). **`ORIGINAL-GỐC` KHÔNG đảm bảo
+là bản server đang chạy** — tác giả mod thường đóng gói từ baseline cũ của họ.
+
+Ca thật: pack `NPC PLAYER HIỆN BANG` (baseline 04/07) ghi đè **8 file server đã ở bản mới hơn** ⇒ mất 24 dòng config riêng
+(`THANHTHI_SIZE 600→300`, `CHANCE_CHAT 200→10`, `ENABLE_BANNGUAMIXDEV`, `BOT_STALL_PRICE_MULTIPLIER`, cụm `LUYENCONG_*`/`REST_*`/`LEVEL_*`…)
++ tụt bản 7 file Lua. Phải hoàn nguyên 20/20 file.
+
+**Trình tự bắt buộc:**
+
+```bash
+# 0. backup NGUYÊN TRẠNG thư mục sẽ ghi đè (giữ cấu trúc path để revert)
+mkdir -p /home/jxser/_backup_<tênpack>_$(date +%Y%m%d_%H%M%S)
+# 1. SO md5 3 chiều TỪNG FILE (đang chạy ↔ pack ORIGINAL ↔ pack bản sửa)
+for f in $(cd PACK_ORIGINAL && find . -type f); do
+  a=$(md5sum "PACK_ORIGINAL/$f"|cut -c1-8); b=$(md5sum "/home/jxser/${f#./}"|cut -c1-8)
+  [ "$a" = "$b" ] || echo "LECH BAN: $f"; done
+```
+- **0 file lệch** ⇒ ghi đè cả pack được.
+- **Có file lệch** ⇒ **KHÔNG `cp -r` cả cây**: giữ file mới của server, chỉ merge đúng dòng/hunk mà pack cần
+  (`diff3 -m BAN_SUA ORIGINAL BAN_DANG_CHAY`), rồi restart + kiểm log lỗi Lua.
+- Binary (`vdk.so`, `game.exe`…) không merge được ⇒ so md5: nếu md5 pack = bản đang chạy thì pack đã cài sẵn, đừng đổi.
+- ⚠️ Guard/fix gọi chéo file (vd `SimCityBindNpcRef` gọi trong `sim.entity.lua`) ⇒ hoàn nguyên 1 file mà giữ các file khác
+  có thể **chặn toàn bộ tính năng** (fail-closed) → phải hoàn nguyên/merge **cả cụm**.
+- Script mẫu: `/root/apply_price_shop_pack.sh` (`check|apply|revert`) — hoàn nguyên backup + merge 1 dòng config + restart + verify service.

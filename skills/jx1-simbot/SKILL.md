@@ -33,6 +33,40 @@ Pack: `E:\Game\jx1\VoLamTruyenKy\Update\NPC PLAYER HIỆN BANG\` = **server Lua 
 - **KẾT QUẢ TEST (bạn test 17/09 ~22:00–22:20): vẫn KHÔNG hiện đồ bot bày bán** ⇒ pack sửa nhóm lỗi khác (index tái dùng / Bang / Camp), KHÔNG phải lỗi này. Đã GIỮ pack (fix thật, có backup + `revert`).
 - Test kèm (bạn tự làm, cùng âm tính): tắt hook client `EquipmentCompare=0` và `[OneDLL] Enabled=0` trong `Client\JX1Mod.ini` (ONE.DLL V6.2a có hook **CompareShop** cắm vào cửa sổ shop) → **vẫn không hiện**.
 
+## Pack `CHANGE PRICE SIMCITY SHOP - Do Bao` (17/09/2026) — CƠ CHẾ GIÁ QUẦY BOT
+
+Pack = **3 file, không README**: `vdk.so` + `script/global/nobitaxd/vdk/simcity/{config.lua, head.lua}`.
+- `vdk.so` của pack (54.229 B, 27/07, md5 `d364ec69…`) **chính là bản server đang chạy** ⇒ **module sinh quầy + đồ cho bot nằm trong `vdk.so`**.
+- `head.lua` (khớp 100% bản đang chạy):
+  ```lua
+  if SetBotStallTier and BOT_STALL_PRICE_MULTIPLIER then
+      SetBotStallTier(0, 1000 + BOT_STALL_PRICE_MULTIPLIER, 1)
+  end
+  ```
+  ⇒ **giá bot bày bán = tier `1000 + BOT_STALL_PRICE_MULTIPLIER`**; biến nằm ở `config.lua` (thang `1..100`, "1 = giá gốc").
+  ⚠️ Nếu `BOT_STALL_PRICE_MULTIPLIER` **không tồn tại** ⇒ cả lời gọi bị bỏ ⇒ **tier không được đăng ký** ⇒ quầy bot không có bảng giá/đồ.
+  (Giả thuyết đáng test cho lỗi "click bot không hiện đồ": tier sai/thiếu ⇒ module không dựng được nội dung quầy.)
+- Pack đặt `BOT_STALL_PRICE_MULTIPLIER = 15`; server đang để `100` (<SMB_USER> 08/09). **Đã đổi về `15` theo pack (17/09 22:27)** — muốn lại `100` thì sửa 1 dòng + restart.
+- `config.lua` của pack là **baseline cũ** (300 bot, chat 10, `ENABLE_BANNGUAMIXDEV=0`) ⇒ **KHÔNG ghi đè cả file**, chỉ lấy dòng giá (xem bài học dưới).
+- Ghi chú: giá hiển thị ở client còn có `BOT_STALL_PRICE_MULTIPLIER` trong `Client/script/.../simcity/config.lua` (= 100).
+
+## ⛔ BÀI HỌC QUY TRÌNH: pack third-party KHÔNG đảm bảo `ORIGINAL-GỐC` = bản đang chạy
+
+Ca thật 17/09: pack `NPC PLAYER HIỆN BANG` có `ORIGINAL-GỐC/` (baseline 04/07) nhưng server đã chạy **bản mới hơn ở 8 file**
+(`config.lua`, `sim.core.lua`, `sim.entity.lua`, `sim.fight.lua`, `sim.fun.lua`, `sim.movement.lua`, `sim.timer.lua`, `ptongkim.lua`).
+Ghi đè cả pack ⇒ **mất 24 dòng cấu hình riêng** (`THANHTHI_SIZE 600→300`, `CHANCE_CHAT 200→10`, `ENABLE_BANNGUAMIXDEV 1→0`, mất `BOT_STALL_PRICE_MULTIPLIER`,
+cả cụm `LUYENCONG_*`/`PARTY_*`/`REST_*`/`LEVEL_*`/`SKILL_*`/`GEAR_*`/`BIKIP_LV2`) + tụt bản 7 file Lua.
+Đã **hoàn nguyên 20/20 file** từ `/home/jxser/_backup_npcguard_20260917_220335` (script `/root/apply_price_shop_pack.sh revert`) và **bỏ `libs/guard.lua`**
+⇒ guard NpcId **KHÔNG còn trên server** (chỉ giữ làm kiến thức). Lưu ý: guard dựa vào `SimCityBindNpcRef` gọi trong `sim.entity.lua` —
+hoàn nguyên `sim.entity.lua` mà giữ 12 file guard khác ⇒ **mọi cờ Combat/Bang/xoá NPC bị chặn (fail-closed)** = bot thôi đánh nhau. Phải hoàn nguyên cả cụm.
+
+**Quy tắc từ nay (trước khi ghi đè pack):** so **md5 3 chiều từng file** = bản đang chạy ↔ pack `ORIGINAL-GỐC` ↔ pack bản sửa; file nào lệch ⇒ **merge đúng hunk cần**, KHÔNG `cp -r` cả cây.
+```bash
+for f in $(cd PACK_ORIGINAL && find . -type f); do
+  a=$(md5sum "PACK_ORIGINAL/$f"|cut -c1-8); b=$(md5sum "/home/jxser/${f#./}"|cut -c1-8)
+  [ "$a" = "$b" ] || echo "LECH BAN: $f"; done
+```
+
 ### Kinh nghiệm dùng lại được (chưng từ pack + điều tra 17/09)
 
 - **`NpcIndex` bị engine TÁI DÙNG** sau khi NPC chết ⇒ timer/AI chỉ giữ index sẽ tác động nhầm NPC hoặc player mới (Bang/Camp/Combat/AI sai, xoá nhầm). Mẫu fix đúng: lưu `finalIndex` + `finalNpcId = GetNpcId(idx)` lúc spawn, trước mỗi tác động kiểm lại **id còn khớp** — **fail-closed** (thiếu API/lệch id ⇒ KHÔNG tác động, `DropNpcRef`).
@@ -52,8 +86,9 @@ Pack: `E:\Game\jx1\VoLamTruyenKy\Update\NPC PLAYER HIỆN BANG\` = **server Lua 
 | 3 | Đổi `vdk.so` ↔ `vdk.so_goc` + restart | ✗ |
 | 4 | Comment khối `if _ts > 0 … _ts = 0` trong `sim.core.lua` | ✗ |
 | 5 | So Lua server ↔ 2 pack update 28/08 | trùng md5 (đã update đủ) |
-| 6 | Áp pack `NPC PLAYER HIỆN BANG` (guard NpcId + bỏ khối `_ts`) | ✗ |
+| 6 | Áp pack `NPC PLAYER HIỆN BANG` (guard NpcId + bỏ khối `_ts`) | ✗ (đã **HOÀN NGUYÊN** 17/09 22:27 — pack dựa baseline cũ, ghi đè 8 file mới hơn) |
 | 7 | Tắt hook client `EquipmentCompare=0` / `[OneDLL] Enabled=0` | ✗ |
+| 8 | Đổi giá quầy bot `BOT_STALL_PRICE_MULTIPLIER` 100 → 15 (theo pack Do Bao) + `vdk.so` của pack (đã là bản đang chạy) | **chờ chủ server test** |
 
 **Bằng chứng tách hướng (mạnh nhất, vẫn đúng):** quầy **người thật mở được**, quầy **bot không** ⇒ lỗi ở nhánh bot, không phải engine client chung.
 **Hướng còn lại chưa thử:** (a) hỏi tác giả mod (link Facebook trong `SV/_Thông tin.docx`); (b) chạy client cũ `SV/Client/game.exe` (09/06, md5 `e652eeea…`) với server hiện tại để A/B bản client; (c) chấp nhận bot đứng bán chỉ để làm cảnh.

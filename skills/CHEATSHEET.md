@@ -92,5 +92,12 @@ ssh jx1 'pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home
 
 - **Click vào bot đứng bán ⇒ không hiện đồ bày bán (không cửa sổ, không lỗi).** Quầy **người thật mở được** ⇒ lỗi ở nhánh bot.
   ĐÃ LOẠI TRỪ: thiếu cửa sổ theme `ui/ctc` (đã copy đủ 6 ini + sprite, cả tên mojibake) · bản `vdk.so` (đổi `_goc`) ·
-  khối `_ts > 0 … _ts = 0` trong `sim.core.lua` · pack `NPC PLAYER HIỆN BANG` (guard NpcId) · hook client `EquipmentCompare`/ONE.DLL.
-  Chi tiết bảng 7 phép thử + 3 hướng còn lại: `skills/jx1-simbot/SKILL.md` → mục **TRẠNG THÁI LỖI QUẦY BOT**.
+  khối `_ts > 0 … _ts = 0` trong `sim.core.lua` · pack `NPC PLAYER HIỆN BANG` (guard NpcId — **đã hoàn nguyên**, xem dưới) ·
+  hook client `EquipmentCompare`/ONE.DLL.
+  Chi tiết bảng 8 phép thử + hướng còn lại: `skills/jx1-simbot/SKILL.md` → mục **TRẠNG THÁI LỖI QUẦY BOT**.
+- **Giá quầy bot** điều khiển bằng `BOT_STALL_PRICE_MULTIPLIER` (`simcity/config.lua`, thang 1..100) → `head.lua` gọi
+  `SetBotStallTier(0, 1000 + MULT, 1)`; module sinh đồ/giá là `vdk.so`. Pack `CHANGE PRICE SIMCITY SHOP - Do Bao` = bộ 3 file
+  (`vdk.so` md5 **trùng bản đang chạy** + `head.lua` khớp + `config.lua` đặt MULT=15). Nếu biến này **thiếu** ⇒ không đăng ký tier.
+- ⛔ **Pack third-party có thể dựa trên baseline CŨ:** pack `NPC PLAYER HIỆN BANG` ghi đè 8 file server mới hơn (mất 24 dòng config riêng)
+  ⇒ phải **so md5 3 chiều TỪNG FILE** trước khi ghi đè và hoàn nguyên nếu lệch (`/root/apply_price_shop_pack.sh revert`).
+  Xem `skills/vltk-client-modding/references/mod-install-and-debug.md` §5.
