@@ -7,7 +7,7 @@ license: MIT
 metadata:
   hermes:
     tags: [game-development, jx1, vltk, hqvl, lua, reverse-engineering]
-    related_skills: [vltk-server-ops, vltk-client-modding, jx1-client-ui-modding, vltk-skill-data-modding]
+    related_skills: [vltk-server-ops, vltk-client-modding, vltk-skill-data-modding, jx1-simbot]
 ---
 
 # Kho tri thức JX1/VLTK — Hội Quán Võ Lâm (github.com/jxoffline)
@@ -105,7 +105,7 @@ Bản 8.0 mã hoá nên không áp dụng được.
 - **Autoupdate**: app C++ (set 16-bit, thêm exclusion AV, tạo shortcut) + MD5Generator; source dùng Qt 5.7.1 x86.
 - **Miniskill** (icon skill nhỏ dưới thanh máu) và **scale cửa sổ lên 1920x1080** (không dùng Alt+Enter) có bản
   share sẵn — xem `references/doc-index.md`.
-- UI/SPR client <GAME_HOST_IP> hiện tại: dùng skill `vltk-client-modding` / `jx1-client-ui-modding`.
+- UI/SPR client <GAME_HOST_IP> hiện tại: dùng skill `vltk-client-modding` (đã gộp cả `jx1-client-ui-modding` từ 17/09).
 
 ## 3. Auto & Reverse Engineering (client)
 

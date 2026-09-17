@@ -94,7 +94,7 @@ ssh jx1 'pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home
   ĐÃ LOẠI TRỪ: thiếu cửa sổ theme `ui/ctc` (đã copy đủ 6 ini + sprite, cả tên mojibake) · bản `vdk.so` (đổi `_goc`) ·
   khối `_ts > 0 … _ts = 0` trong `sim.core.lua` · pack `NPC PLAYER HIỆN BANG` (guard NpcId — **đã hoàn nguyên**, xem dưới) ·
   hook client `EquipmentCompare`/ONE.DLL.
-  Chi tiết bảng 8 phép thử + hướng còn lại: `skills/jx1-simbot/SKILL.md` → mục **TRẠNG THÁI LỖI QUẦY BOT**.
+  Chi tiết bảng 8 phép thử + hướng còn lại: `skills/jx1-simbot/references/packs-and-stall-shop.md`.
 - **Giá quầy bot** điều khiển bằng `BOT_STALL_PRICE_MULTIPLIER` (`simcity/config.lua`, thang 1..100) → `head.lua` gọi
   `SetBotStallTier(0, 1000 + MULT, 1)`; module sinh đồ/giá là `vdk.so`. Pack `CHANGE PRICE SIMCITY SHOP - Do Bao` = bộ 3 file
   (`vdk.so` md5 **trùng bản đang chạy** + `head.lua` khớp + `config.lua` đặt MULT=15). Nếu biến này **thiếu** ⇒ không đăng ký tier.
@@ -104,7 +104,7 @@ ssh jx1 'pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home
 - 🔬 **Nội dung quầy bot do `vdk.so` dựng, không có file dữ liệu:** `settings/global/vdk/simcity/` chỉ có chat/names/pets/skills/maps;
   `vdk.so` = ELF 32-bit stripped, `.text` 42.676 B, `.rodata` 3.244 B, `.bss` 9,9 MB, **không export symbol** (tự đăng ký hàm Lua qua constructor)
   ⇒ đổi giá/món phải **build lại module**; pack `CHANGE PRICE - Do Bao` = **patch 23 byte trong `.text`** (không phải đổi dữ liệu).
-  Client `vdk.dll` = **UPX-packed** ⇒ `strings` vô nghĩa. Chi tiết + lệnh so 2 bản module: `skills/jx1-simbot/SKILL.md` → mục **CƠ CHẾ "BÀY BÁN"**.
+  Client `vdk.dll` = **UPX-packed** ⇒ `strings` vô nghĩa. Chi tiết + lệnh so 2 bản module: `skills/jx1-simbot/references/packs-and-stall-shop.md`.
 - 📡 Dòng Do Bao còn có **cầu client→server** `simbot_client_bridge_server.py` (UDP 39036, gói `CW1`/`CW2` + item descriptor 27 trường) +
   `libsimbot_whisper_spawn.so` + `sim.whisper.spawn.lua` + `server1/data/simbot_*.txt`, cài bằng **systemd** (WSL không chạy được) — server hiện tại **không có gì**
   trong số này. Bản chất = **CHATBOT/xin vật phẩm**, KHÔNG phải đường hiển thị quầy bán.
@@ -112,4 +112,4 @@ ssh jx1 'pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home
   `ActivitySys 801 → vdk/main.lua → simcity/main.lua → head.lua`; `jxs3relay + override → libsimbot_whisper_spawn.so`; `simbot-client-bridge.service → UDP 39036`.
   Số **quầy bán** điều khiển bằng config: `THANHTHI_STALL_NORMAL_MIN/MAX 133/192`, `THANHTHI_STALL_DATAU 30/45`, `THON_STALL_* 29/43 & 22/33`, `MONPHAI_STALL_SIZE 52`
   (`pthanhthi.lua` đọc kèm fallback). Kèm `SHA256_MANIFEST.txt` (51 KB) để verify. Module của pack (`13dd384e…`) khác bản đang chạy **đúng 4 byte `.text`, `.rodata` y hệt**.
-  Chi tiết: `skills/jx1-simbot/SKILL.md` → mục **Pack DOBAO SIMBOT VER 3**.
+  Chi tiết: `skills/jx1-simbot/references/packs-and-stall-shop.md`.

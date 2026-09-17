@@ -33,6 +33,16 @@ cd /home/jxser/server1 && setsid env LD_PRELOAD=./vdk.so ./jx_linux_y \
 ```
 (boot_all.sh chỉ start cái đang DOWN, nên restart riêng jx_linux_y là đủ; KHÔNG đụng bishop/s3relay.)
 
+⛔ **BẪY `panel_restart.sh`**: `/opt/vltk_portable/panel_restart.sh` **CHỈ restart WEB PANEL (:80)**, KHÔNG đụng service game ⇒
+sửa Lua rồi chạy nó sẽ tưởng "đã restart" mà game vẫn chạy code cũ (đã mất thời gian 17/09). Nạp lại Lua server:
+```bash
+pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home/jxser      # idempotent, start cái thiếu
+ps -o lstart -p $(pgrep -x jx_linux_y)                                            # verify ĐÃ restart đúng giờ
+```
+- `print(...)` trong Lua server → `server1/Logs/KSG_ScriptOutputLog_<ngày>.txt` (KHÔNG phải `logs/gameserver.log`); log mtime đứng yên = chưa ghi gì.
+- Tick theo **thế giới** (`pworld.lua` OnTimer → `SimCitizen:UpdateStallFlags`) chỉ chạy khi có người chơi ⇒ muốn thấy log loại này phải **có người online**.
+- WSL **không có systemd** ⇒ mọi pack cài bằng unit/drop-in systemd (`jxgame.service.d/vdk.conf`, `simbot-client-bridge.service`…) **không tự chạy** — phải port sang `boot_all.sh`. WSL cũng **không có `python3`** (chỉ python2) ⇒ script bridge python3 phải cài thêm hoặc viết lại.
+
 - **GATE bắt buộc trước khi restart**: `ss -tn state established | grep -c ':5622'` — >0 = đang có người chơi ⇒ DỪNG, hẹn giờ vắng.
 - Sau restart verify: 5 service UP + port `5622/5001/5003/5004/5005/6666/3306` listen +
   `tail /opt/vltk_portable/logs/gameserver.log` (đang "Map was Loaded…", không lỗi).

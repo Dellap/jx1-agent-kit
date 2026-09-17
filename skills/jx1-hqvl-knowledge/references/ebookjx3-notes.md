@@ -559,7 +559,7 @@ nền là `个人状态.spr`. Dụng ý: **bài 18**, copy vào `\Ui\Ui3`. Nội
 [Exp]   10,39 156x10 ClassType=Player_Exp     [Exp_Image]  0,2 156x8 PartType=0 Image=经验.spr
 ```
 → **Bổ sung / khác biệt đáng chú ý so với bản `ui/ctc` đang dùng ở server nhà**
-(`jx1-client-ui-modding`): file này là **theme `Ui4`**, tên section giống nhưng **`Mana` cũng `PartType=0`**
+(skill `vltk-client-modding`): file này là **theme `Ui4`**, tên section giống nhưng **`Mana` cũng `PartType=0`**
 (bản CTC dùng `PartType=1` cho mana — "đầy giữ phải"); `[Main]` có `Moveable=1 Trans=1`; `[Exp]` là control
 `ClassType=Player_Exp`; `_Text` của Name/Level ghim màu `55,231,63` còn Life/Mana/Exp màu trắng.
 → Nếu định dùng: **KHÔNG copy thẳng vào client theme CTC** — phải map lại `\Spr\Ui4\…` sang `\Spr\Ui3\…` + đổi

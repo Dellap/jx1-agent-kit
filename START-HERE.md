@@ -17,14 +17,14 @@ Mục tiêu: **rút ngắn đường mò và tiết kiệm token**. Đọc đún
 | Việc cần làm | Đọc file | Ghi chú |
 |---|---|---|
 | Vận hành/khởi động/sửa lỗi server JX1 (WSL2) | `skills/vltk-server-ops/SKILL.md` | 5 service, thứ tự start, FixIp, log chẩn đoán |
-| Bot/SimCity/SimBot: dân thành thị, kéo xe, chiến loạn, TTDC, bot bán hàng | `skills/jx1-simbot/SKILL.md` + `references/engine-api.md` | `references/lessons.md` = nhật ký bug đã trả giá |
+| Bot/SimCity/SimBot: dân thành thị, kéo xe, chiến loạn, TTDC, bot bán hàng | `skills/jx1-simbot/SKILL.md` + `references/{engine-api.md, settings-format.md}` | `references/lessons.md` = nhật ký bug đã trả giá; **pack/update SimCity + lỗi quầy bot ⇒ `references/packs-and-stall-shop.md`** |
 | Sửa skill/giá trị theo cấp (Lua `.lua`, `skills.txt`, `Missile.txt`) | `skills/vltk-skill-data-modding/SKILL.md` + `references/*.md` | 3 lớp phải khớp: skills.txt ↔ .lua ↔ Missile.txt |
-| Mod UI client (.ini, .spr, pak, GBK filename) | `skills/vltk-client-modding/SKILL.md`, `skills/jx1-client-ui-modding/SKILL.md` | Engine chỉ render control đã khai báo |
+| Mod UI client (.ini, .spr, pak, GBK filename, theme, resolution, PartType) | `skills/vltk-client-modding/SKILL.md` (+ `references/*`) | Engine chỉ render control đã khai báo. Skill `jx1-client-ui-modding` đã **gộp vào đây** (17/09/2026) |
 | Cài bản JX6/JX8/JXWin, shop `goods/buysell`, mission, Tống Kim, auto/RE, inject DLL | `skills/jx1-hqvl-knowledge/SKILL.md` + `references/script-api.md` | Kho tri thức cộng đồng HQVL, index 66 tài liệu |
 | Thêm 6 ô đồ nhanh (UI 3+6 ô) / launcher CTC | `skills/runbooks/ui-3x6-slots.md` + `sources/client-sample/` | **chạy `scripts/check-client-base.py <Client>` trước** để biết có lệch hay không |
 | **Cài 1 mod client** từ `Update/<tên mod>/` (đọc README của mod rồi copy/ghi đè) + chẩn đoán "bấm không thấy gì" | `skills/vltk-client-modding/references/mod-install-and-debug.md` | Kiểm cú pháp Lua trước khi đẩy; nhiều file trong `2_server/` của mod chỉ là **ghi chú**, đè là mất file thật |
-| Bảng nhiệm vụ TaskTrace / cửa sổ `battle_select` (ca 17/09) | `skills/vltk-client-modding/references/jx1-battleselect-taskextrace.md` + `skills/jx1-client-ui-modding/references/tasktrace-panel-layout.md` | `battle_select.ini` là cửa sổ **NEO dùng chung** — KHÔNG đè ini gốc |
-| Bot **đứng bán** không mở (bug **ĐANG ĐỂ NGÕ**, chưa rõ nguyên nhân) | `skills/jx1-simbot/SKILL.md` → mục **TRẠNG THÁI LỖI QUẦY BOT** + `skills/CHEATSHEET.md` | ⛔ KHÔNG phải thiếu cửa sổ theme: đã loại trừ 7 hướng (theme/ini+sprite, `vdk.so`, khối `_ts`, pack guard NpcId, mod client ONE.DLL…). Quầy **người thật mở được**, quầy **bot không** |
+| Bảng nhiệm vụ TaskTrace / cửa sổ `battle_select` (ca 17/09) | `skills/vltk-client-modding/references/{jx1-battleselect-taskextrace.md, tasktrace-panel-layout.md}` | `battle_select.ini` là cửa sổ **NEO dùng chung** — KHÔNG đè ini gốc |
+| Bot **đứng bán** không mở (bug **ĐANG ĐỂ NGÕ**, chưa rõ nguyên nhân) | `skills/jx1-simbot/references/packs-and-stall-shop.md` + `skills/CHEATSHEET.md` | ⛔ KHÔNG phải thiếu cửa sổ theme: đã loại trừ 7 hướng (theme/ini+sprite, `vdk.so`, khối `_ts`, pack guard NpcId, mod client ONE.DLL…). Quầy **người thật mở được**, quầy **bot không** |
 | Tra cứu EbookJx 3.0 (cài server JX offline, goods/shop, spr, font TQ…) | `skills/jx1-hqvl-knowledge/references/ebookjx3-notes.md` | 682 dòng / 26 bài, có mục "tài liệu không nói rõ" |
 | Vào máy Windows `<GAME_HOST_IP>` / WSL2 từ xa (SSH, portproxy, wsl.exe) | `skills/windows-remote-admin/SKILL.md` + `references/wsl2-jump-access.md` | |
 

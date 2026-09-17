@@ -30,7 +30,6 @@ skills/
   jx1-simbot/                 # SimBot/SimCity: kiến trúc, engine API, settings, nhật ký bug
   vltk-skill-data-modding/    # sửa skill 3 lớp: skills.txt ↔ .lua ↔ Missile.txt (+ 3 từ điển cột)
   vltk-client-modding/        # mod UI client (.ini/.spr/pak, GBK, pak override)
-  jx1-client-ui-modding/      # mod UI/SPR client bản khác (mapping PartType, layout)
   jx1-hqvl-knowledge/         # kho tri thức cộng đồng HQVL (66 tài liệu) + index
   runbooks/                   # runbook việc cụ thể: ui-3x6-slots.md (6 ô đồ nhanh + launcher CTC)
   */references/               # kiến thức chuyên sâu: mod-install-and-debug.md, jx1-battleselect-taskextrace.md,
