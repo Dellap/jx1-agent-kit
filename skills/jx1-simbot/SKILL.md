@@ -21,6 +21,55 @@ metadata:
 `ten.encode('gbk').decode('latin-1')` (file ASCII như `battle_select.ini` thì không ảnh hưởng).
 ⛔ Kết luận cũ của tôi ("engine tra tên Unicode chuẩn") là **SAI** — copy tên Unicode chuẩn vào client = engine không thấy.
 
+## Update `NPC PLAYER HIỆN BANG` (17/09/2026) — ĐÃ ÁP, KHÔNG fix lỗi quầy bot
+
+Pack: `E:\Game\jx1\VoLamTruyenKy\Update\NPC PLAYER HIỆN BANG\` = **server Lua drop-in** (Lua-only, KHÔNG binary).
+- `ORIGINAL-GỐC/` = 19 file — **md5 trùng 19/19 với server đang chạy** ⇒ pack làm riêng cho đúng build này.
+- `TEST FIX LỖI/` = 19 file sửa + **file mới `libs/guard.lua`** (174 dòng, md5 `226d6b1b…`).
+- Nội dung fix: định danh NPC theo **`GetNpcId`** (không tin `NpcIndex` — index bị engine dùng lại sau khi NPC chết ⇒ timer cũ tác động nhầm NPC/player mới). Hàm chính: `SimCityBindNpcRef` (bind lúc spawn, `sim.entity.lua` dòng 80), `SimCityIsOwnedNpc` (**fail-closed**: thiếu `GetNpcId`/lệch id ⇒ 0), `SimCityIsRealPlayerNpc` (`NpcIdx2PIdx > 0` ⇒ loại), `SimCityDelOwnedNpc`, `SimCitySameNpcInstance`, `SimCityIsNaturalNpcCandidate`. Gate mới cho Combat/Bang/DuelEnd/xoá NPC.
+- `GetNpcId` + `NpcIdx2PIdx` do **`server1/jx_linux_y`** cung cấp (KHÔNG có trong `vdk.so` — tra `strings vdk.so` sẽ không thấy, đừng kết luận vội là thiếu API).
+- **Bản fix bỏ luôn khối `if _ts > 0 … _ts = 0` trong `sim.core.lua`** (khối này giết mọi giao dịch; xem phép thử #3) ⇒ tác giả mod cũng coi đó là lỗi.
+- ⚠️ Gate `UpdateStallFlags` đổi thành `SimCityIsOwnedNpc(fighter, fighter.finalIndex) == 1` trước `SetNpcStall` ⇒ nếu guard fail-closed sai thì **bot không còn được đánh dấu quầy** (triệu chứng y hệt "click không hiện gì") — cần log `owned=` để loại trừ.
+- **KẾT QUẢ TEST (bạn test 17/09 ~22:00–22:20): vẫn KHÔNG hiện đồ bot bày bán** ⇒ pack sửa nhóm lỗi khác (index tái dùng / Bang / Camp), KHÔNG phải lỗi này. Đã GIỮ pack (fix thật, có backup + `revert`).
+- Test kèm (bạn tự làm, cùng âm tính): tắt hook client `EquipmentCompare=0` và `[OneDLL] Enabled=0` trong `Client\JX1Mod.ini` (ONE.DLL V6.2a có hook **CompareShop** cắm vào cửa sổ shop) → **vẫn không hiện**.
+
+### Kinh nghiệm dùng lại được (chưng từ pack + điều tra 17/09)
+
+- **`NpcIndex` bị engine TÁI DÙNG** sau khi NPC chết ⇒ timer/AI chỉ giữ index sẽ tác động nhầm NPC hoặc player mới (Bang/Camp/Combat/AI sai, xoá nhầm). Mẫu fix đúng: lưu `finalIndex` + `finalNpcId = GetNpcId(idx)` lúc spawn, trước mỗi tác động kiểm lại **id còn khớp** — **fail-closed** (thiếu API/lệch id ⇒ KHÔNG tác động, `DropNpcRef`).
+- **Phân biệt player thật ↔ bot**: `NpcIdx2PIdx(idx) > 0` ⇒ là người chơi, không bao giờ coi là NPC bot.
+- **Vị trí API engine** (đừng tìm sai chỗ): `GetNpcId`, `NpcIdx2PIdx`, `GetNpcKind`, `GetNpcSettingIdx`, `GetNpcParam` do **`server1/jx_linux_y`** cấp; `SetNpcStall`, `SetBotStallTier`, `PollTradeStay`, `TradeStayClear`, `SendTradeItem` do **`vdk.so`** (nạp qua `LD_PRELOAD`) cấp. `strings vdk.so` không thấy `GetNpcId` là **bình thường**, không phải thiếu API.
+- **Đường bot bày bán (server)**: spawn data `stall = 1` (`plugins/pthanhthi.lua`) → `sim.entity.lua` gọi `SetNpcStall(idx,1)` + `SetBotStallTier(idx,0,1)` → mỗi 3s `SimCitizen:UpdateStallFlags` (gọi từ `plugins/pworld.lua`) gọi `SetNpcStall(finalIndex,1)`. Giá bot bán = `BOT_STALL_PRICE_MULTIPLIER` (`config.lua`, mặc định 100).
+- **Máy trạng thái giao dịch** (`sim.core.lua`): `_ts = PollTradeStay(idx)`; `_ts == 2` ⇒ `SendTradeItem` (gửi hàng cho người xem), `_ts == 1/3/4` ⇒ `TradeStayClear`. Ép `_ts = 0` = huỷ mọi giao dịch ⇒ **không bao giờ làm**.
+
+## ⏸️ TRẠNG THÁI LỖI QUẦY BOT (17/09/2026): **ĐỂ NGÕ — CHƯA RÕ NGUYÊN NHÂN**
+
+Đã loại trừ **tất cả** các hướng sau (đừng thử lại, mất thời gian):
+
+| # | Phép thử | Kết quả |
+|---|---|---|
+| 1 | Copy đủ 6 cửa sổ `摆摊*` + `npc买卖界面` + sprite vào `ui/ctc` (cả tên mojibake lẫn Unicode) | ✗ |
+| 2 | Quét `ui.pak` (266MB) xem có sẵn cửa sổ cho theme ctc | ✗ (không có, nhưng cũng không phải nguyên nhân) |
+| 3 | Đổi `vdk.so` ↔ `vdk.so_goc` + restart | ✗ |
+| 4 | Comment khối `if _ts > 0 … _ts = 0` trong `sim.core.lua` | ✗ |
+| 5 | So Lua server ↔ 2 pack update 28/08 | trùng md5 (đã update đủ) |
+| 6 | Áp pack `NPC PLAYER HIỆN BANG` (guard NpcId + bỏ khối `_ts`) | ✗ |
+| 7 | Tắt hook client `EquipmentCompare=0` / `[OneDLL] Enabled=0` | ✗ |
+
+**Bằng chứng tách hướng (mạnh nhất, vẫn đúng):** quầy **người thật mở được**, quầy **bot không** ⇒ lỗi ở nhánh bot, không phải engine client chung.
+**Hướng còn lại chưa thử:** (a) hỏi tác giả mod (link Facebook trong `SV/_Thông tin.docx`); (b) chạy client cũ `SV/Client/game.exe` (09/06, md5 `e652eeea…`) với server hiện tại để A/B bản client; (c) chấp nhận bot đứng bán chỉ để làm cảnh.
+⛔ KHÔNG kết luận bằng ghi chú docx của pack update ("Bỏ chức năng xin vật phẩm từ Bot") — user đã bác: **xin vật phẩm ≠ bày bán**.
+- Script áp: `/root/apply_npc_guard.sh check|apply|revert`; backup `/home/jxser/_backup_npcguard_20260917_220335`.
+
+**⛔ BẪY RESTART SERVER (tốn thời gian 17/09):** `/opt/vltk_portable/panel_restart.sh` **CHỈ restart WEB PANEL (:80)**, KHÔNG đụng service game.
+Muốn nạp lại script Lua server:
+```bash
+pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home/jxser   # start lại cái thiếu (idempotent)
+```
+(`boot_all.sh` chạy game server bằng `setsid env LD_PRELOAD=./vdk.so ./jx_linux_y` trong `server1/`.)
+Kiểm tra đã restart thật: `ps -o lstart -p $(pgrep -x jx_linux_y)` — phải khớp giờ vừa restart.
+Log Lua `print(...)` của server → `server1/Logs/KSG_ScriptOutputLog_<ngày>.txt` (KHÔNG phải `logs/gameserver.log`).
+`UpdateStallFlags` chỉ chạy theo tick thế giới (`pworld.lua` OnTimer) ⇒ **cần người chơi online** mới thấy log.
+
 ## Shop "đứng bán" của bot không mở ⇒ nguyên nhân ở MODULE ENGINE `vdk` (chốt 17/09/2026)
 
 Triệu chứng: click vào bot đang đứng bán ⇒ **không hiện gì** (không cửa sổ, không báo lỗi).

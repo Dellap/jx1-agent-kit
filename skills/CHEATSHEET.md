@@ -56,6 +56,8 @@ for p in mysqld goddess_y bishop_y s3relay_y jx_linux_y; do pgrep -x $p >/dev/nu
 | Sprite đứng bán | `spr/Ui3/°ÚÌ¯/` (9 file, `Ì¯Ö÷Ãæ°å.spr`=摊主面板 107KB), mua bán: `spr/Ui3/ÂòÂô/ÂòÂôÃæ°å.spr` |
 | Kéo cửa sổ | `Moveable=1` trong `[Main]` của ini |
 | Script client (loose) | `Client/script/{protocol.lua, tasktrace/, global/, item/, skill/, ui/, activitysys/}` |
+| Mod client (DLL) | `one.dll` = **ONE.DLL V6.2a R3**, cấu hình `Client/JX1Mod.ini` (`AutoUILayout`, `ThanhMauBoss/NPC`, `LienTram`, `ThongBaoPK`, `CompareShop`/`EquipmentCompare`…) — tắt cả mod: `[OneDLL] Enabled=0` |
+| API engine ở ĐÂU | `GetNpcId`, `NpcIdx2PIdx`, `GetNpcKind`, `GetNpcParam`… do **`server1/jx_linux_y`** cấp; `SetNpcStall`, `SetBotStallTier`, `PollTradeStay`, `TradeStayClear`, `SendTradeItem` do **`vdk.so`** (nạp bằng `LD_PRELOAD`) |
 
 ## Đơn vị & quy ước
 
@@ -75,6 +77,8 @@ ssh jx1 'pgrep -x jx_linux_y'                        # game có chạy không
 ssh jx1 'tail -50 /home/jxser/server1/Logs/KSG_LoginOutLog_*.log'   # player vào/ra, timeout
 ssh jx1 'grep -c "Login failed" /home/jxser/gateway/Logs/*.log'     # lỗi login
 ssh jx1 'cd /home/jxser && tar czf /tmp/x.tgz <path>' && scp jx1:/tmp/x.tgz .   # kéo code về grep local
+ssh jx1 'pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home/jxser'  # NẠP LẠI LUA server
+#  ⚠️ panel_restart.sh CHỈ restart web panel :80 — không đụng service game. Lua print -> server1/Logs/KSG_ScriptOutputLog_<ngày>.txt
 ```
 
 ## Nhớ nhanh luật FixIp
@@ -83,3 +87,10 @@ ssh jx1 'cd /home/jxser && tar czf /tmp/x.tgz <path>' && scp jx1:/tmp/x.tgz .   
 - `goddess.cfg`, `s3relay relay_config.ini`, `server1/servercf*.ini` = **`127.0.0.1`** (IP LAN không tồn tại trong WSL → bind fail → "Failed to startup HostServer" → cascade chết game).
 - `fix_config.sh` **reset IP mỗi lần boot** ⇒ muốn giữ thì phải patch cả `fix_config.sh`, không chỉ file .cfg.
 - `servercf0.ini` là bản song sinh của `servercfg.ini` — sửa cả hai.
+
+## Bug ĐANG ĐỂ NGÕ (chưa rõ nguyên nhân — đừng thử lại các hướng đã loại trừ)
+
+- **Click vào bot đứng bán ⇒ không hiện đồ bày bán (không cửa sổ, không lỗi).** Quầy **người thật mở được** ⇒ lỗi ở nhánh bot.
+  ĐÃ LOẠI TRỪ: thiếu cửa sổ theme `ui/ctc` (đã copy đủ 6 ini + sprite, cả tên mojibake) · bản `vdk.so` (đổi `_goc`) ·
+  khối `_ts > 0 … _ts = 0` trong `sim.core.lua` · pack `NPC PLAYER HIỆN BANG` (guard NpcId) · hook client `EquipmentCompare`/ONE.DLL.
+  Chi tiết bảng 7 phép thử + 3 hướng còn lại: `skills/jx1-simbot/SKILL.md` → mục **TRẠNG THÁI LỖI QUẦY BOT**.

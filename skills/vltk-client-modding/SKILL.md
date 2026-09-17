@@ -63,6 +63,9 @@ Original bar `spr/Ui3/主界面/ÉúÃüÌõ.spr` (生命条, máu, 106x11, 2004
 - `Unpack/unpack.exe` — .pak extractor (CLI: `-i file.pak -p path -a -l list.txt -o outdir`), keep pak list/hashes. **Đường dẫn thật hiện nay: `/mnt/e/Game/jx1/VoLamTruyenKy/Tools/unpacktool/unpack.exe`** (cùng thư mục có `Decoder.exe`, `paths.txt`).
 - **unpack.exe là binary WINDOWS — từ WSL KHÔNG nhận đường dẫn Linux**: `-i /mnt/e/...` hay `-o /tmp/...` fail "Cannot open file"/ghi sai chỗ. Cách chạy đúng: `cd` vào thư mục chứa pak (vd `Client/data`) rồi dùng `-i ui.pak -o ../../unpack_out` — output phải là đường dẫn tương đối Windows-visible từ CWD.
 - **Unpack 1 file cụ thể từ pak:** `unpack.exe -i ui.pak -p ui/ctc/¹¤¾ß¿ØÖÆÌõ.ini -o ../../unpack_out` (`-p` = path trong pak, dùng tên GBK mojibake đúng như `ls` in ra). Báo `Files: 3381 [OK] Extracted`.
+- **NƠI GHI OUTPUT GIẢI NÉN (bạn yêu cầu 17/09/2026):** đừng để thư mục giải nén rải rác trong `VoLamTruyenKy/`
+  (làm rối share root) — gom hết vào **1 chỗ: `E:\Game\jx1\_unpack\<tên>`**, kèm `_README.txt` nói rõ từng thư mục là gì.
+  Giải nén xong thì `mv` vào đó; `_unpack/` KHÔNG phải phần của client nên xoá được khi hết cần.
 - `SPRViewer/` — .NET SPR viewer (user runs it; may export/import PNG→SPR — confirm capabilities before assuming).
 - `ResolutionHook.0.0.2/` — window size hook (`resolution.ini` Width/Height + filtertext.dll proxy; `Log=0` to stop log spam).
 - `UI+3/` — reference mod showing the correct "add button" pattern (Button<N> decl + full section) and how 1600x900 theme swaps the `[Main]` background image.
@@ -274,7 +277,6 @@ Log xác nhận lúc chạy được: `RX id=17 name=emSCRIPT_PROTOCOL_TASKTRACE
 - Bản tham chiếu API cửa sổ này: `script/missions/battle/protocol_c.lua` (trong `slistcache.pak` — hàm `show_battle_select`,
   callback `on_select/prev_page/next_page/mouse_wheel`) và các section mà `battle_select.ini` cần:
   `[Main] [btn_close] [btn_prevpage] [btn_nextpage] [info_1..4] [scroll_bar] [scroll_bar_Btn]`.
-- ⛔ Đừng "sửa" bằng cách sắp lại bảng enum hay chế cơ chế mới — bạn đã yêu cầu làm ĐÚNG README; muốn đổi hướng thì HỎI bạn trước.
 
 ## Pitfalls
 

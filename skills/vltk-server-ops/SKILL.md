@@ -23,6 +23,26 @@ Restarting only bishop (pkill) makes jx_linux_y exit too ("connection[Bishop] lo
 `for p in mysqld goddess_y bishop_y s3relay_y jx_linux_y; do pgrep -x $p >/dev/null && echo "$p UP" || echo "$p DOWN"; done`
 scripts: /opt/vltk_portable/{boot_all.sh,stop_all.sh,fix_config.sh,apply_patch.sh} (boot_all used by webpanel).
 
+## Đổi binary engine (`vdk.so`) / restart gameserver — quy tắc an toàn (bài học 17/09/2026)
+
+Gameserver nạp `vdk.so` bằng **`LD_PRELOAD` lúc start** ⇒ đổi binary phải restart đúng cách:
+```bash
+pkill -x jx_linux_y; sleep 3
+cd /home/jxser/server1 && setsid env LD_PRELOAD=./vdk.so ./jx_linux_y \
+  >/opt/vltk_portable/logs/gameserver.log 2>&1 </dev/null &
+```
+(boot_all.sh chỉ start cái đang DOWN, nên restart riêng jx_linux_y là đủ; KHÔNG đụng bishop/s3relay.)
+
+- **GATE bắt buộc trước khi restart**: `ss -tn state established | grep -c ':5622'` — >0 = đang có người chơi ⇒ DỪNG, hẹn giờ vắng.
+- Sau restart verify: 5 service UP + port `5622/5001/5003/5004/5005/6666/3306` listen +
+  `tail /opt/vltk_portable/logs/gameserver.log` (đang "Map was Loaded…", không lỗi).
+- Backup binary trước khi đổi (`cp -p vdk.so vdk.so.bak_$(date +%Y%m%d_%H%M%S)`) + in `md5sum` trước/sau.
+- Script tham chiếu còn trên server: `/root/test_vdk_goc.sh` (`swap` | `rollback`) — đổi `vdk.so` ↔ `vdk.so_goc`, gate người chơi, backup + md5, in trạng thái 5 service.
+
+⛔ **Script tự động hoá việc mutate PHẢI validate tham số trước mọi hành động** (chỉ nhận đúng `swap`/`rollback`; tham số lạ ⇒ `exit 1`, KHÔNG làm gì).
+Đã trả giá 17/09: chạy `bash test_vdk_goc.sh --check-only` để "chỉ kiểm tra" nhưng script không chặn tham số lạ ⇒ **nó swap luôn + restart server** (may lúc đó 0 người online).
+`bash -n` chỉ kiểm cú pháp, KHÔNG bắt được lỗi này. Muốn dry-run: viết hẳn nhánh `--check`, hoặc `cat` script đọc trước khi chạy.
+
 ## LAN play from another machine (laptop)
 Client (E:\Game\jx1\VoLamTruyenKy\Client on the PC; same layout on laptop) connects
 to bishop **5622**. Because WSL2 NATs, remote clients need Windows portproxy on <GAME_HOST_IP>

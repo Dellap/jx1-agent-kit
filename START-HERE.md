@@ -24,7 +24,7 @@ Mục tiêu: **rút ngắn đường mò và tiết kiệm token**. Đọc đún
 | Thêm 6 ô đồ nhanh (UI 3+6 ô) / launcher CTC | `skills/runbooks/ui-3x6-slots.md` + `sources/client-sample/` | **chạy `scripts/check-client-base.py <Client>` trước** để biết có lệch hay không |
 | **Cài 1 mod client** từ `Update/<tên mod>/` (đọc README của mod rồi copy/ghi đè) + chẩn đoán "bấm không thấy gì" | `skills/vltk-client-modding/references/mod-install-and-debug.md` | Kiểm cú pháp Lua trước khi đẩy; nhiều file trong `2_server/` của mod chỉ là **ghi chú**, đè là mất file thật |
 | Bảng nhiệm vụ TaskTrace / cửa sổ `battle_select` (ca 17/09) | `skills/vltk-client-modding/references/jx1-battleselect-taskextrace.md` + `skills/jx1-client-ui-modding/references/tasktrace-panel-layout.md` | `battle_select.ini` là cửa sổ **NEO dùng chung** — KHÔNG đè ini gốc |
-| Bot **đứng bán** không mở / theme thiếu cửa sổ UI | `skills/jx1-simbot/SKILL.md` (mục quy luật tên file) + `skills/jx1-simbot/scripts/fix_shop_stall_theme.py` | Theme đang chạy thiếu cửa sổ `摆摊*`; tên file phải là **mojibake** |
+| Bot **đứng bán** không mở (bug **ĐANG ĐỂ NGÕ**, chưa rõ nguyên nhân) | `skills/jx1-simbot/SKILL.md` → mục **TRẠNG THÁI LỖI QUẦY BOT** + `skills/CHEATSHEET.md` | ⛔ KHÔNG phải thiếu cửa sổ theme: đã loại trừ 7 hướng (theme/ini+sprite, `vdk.so`, khối `_ts`, pack guard NpcId, mod client ONE.DLL…). Quầy **người thật mở được**, quầy **bot không** |
 | Tra cứu EbookJx 3.0 (cài server JX offline, goods/shop, spr, font TQ…) | `skills/jx1-hqvl-knowledge/references/ebookjx3-notes.md` | 682 dòng / 26 bài, có mục "tài liệu không nói rõ" |
 | Vào máy Windows `<GAME_HOST_IP>` / WSL2 từ xa (SSH, portproxy, wsl.exe) | `skills/windows-remote-admin/SKILL.md` + `references/wsl2-jump-access.md` | |
 
