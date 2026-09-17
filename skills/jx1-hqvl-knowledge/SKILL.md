@@ -107,6 +107,8 @@ Bản 8.0 mã hoá nên không áp dụng được.
   share sẵn — xem `references/doc-index.md`.
 - UI/SPR client <GAME_HOST_IP> hiện tại: dùng skill `vltk-client-modding` (đã gộp cả `jx1-client-ui-modding` từ 17/09).
 
+- `references/hqvl-digest.md` — **chưng cất 60 tài liệu HQVL** (phân loại mức hữu ích + tri thức theo nhóm: cài đặt server/tính năng/Tống Kim/mission/auto + đáp án cho các chỗ "chưa rõ" của từ điển dữ liệu)
+
 ## 3. Auto & Reverse Engineering (client)
 
 - Auto = gọi script có sẵn qua **hàm thực thi script thanh chat**. JX6: địa chỉ **0x140C0**.

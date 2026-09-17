@@ -1,5 +1,14 @@
 # Nhật ký kinh nghiệm SimBot (<GAME_HOST_IP>) — bóc từ comment có ngày trong code
 
+## ⚠️ ĐÍNH CHÍNH sau khi đối chiếu server thật (17/09/2026)
+
+- dòng 13 (mốc 2026-06-20 AGGRO): hiện `SIMBOT_AGGRO_PLAYER = 0` — **aggro toàn cục đã TẮT**; aggro người chơi giờ theo từng bot (`aggroPlayer`) + `SIMBOT_AGGRO_PLAYER_PCT = 30`, riêng bot `mode == "train"` vẫn aggro theo khoảng cách.
+- dòng 51 (§3): "diff 24 dòng" → **17 dòng** (nội dung kết luận không đổi).
+- dòng 43 (§2): `KEOXE_CHILDREN_CHECK_DIST` "gốc 8" → **hiện 15** (fallback `or 30` trong code, gốc SimCity là 8); thêm `KEOXE_FORMATION_SCALE = 2`, `JITTER = 1`.
+- dòng 47-53 (§3): trước khi sửa/so bản, **`ls components/*.bak* *.bak*`** — ngoài `.lua_goc` còn backup theo timestamp (vd `sim.core.lua.bak_20260917_215415`, `config.lua.bak_price`, `config.lua.<SMB_USER>.*`), chọn **bản mới nhất** để diff.
+- dòng 28 / 15 (§2): `CHANCE_PREFER_PLAYER` là fallback `or 25` trong `sim.movement.lua:825`.
+
+
 Đây là "kinh nghiệm" thật của người dev server, ghi lại theo ngày trong chính source. Đọc trước khi sửa
 hành vi bot — mỗi dòng là một bug đã trả giá.
 
@@ -10,7 +19,7 @@ hành vi bot — mỗi dòng là một bug đã trả giá.
 | **06-19 STALL FIX** | **TẮT stuck-respawn cho bot ngồi bán**: bot stall đứng yên 1 chỗ là đúng thiết kế; trước bị nhầm "lag/kẹt" → respawn sau vài phút → `dwID` đổi → sập + tin tức rớt (tìm theo dwID cũ không thấy). Nếu cần lại stuck-recovery thì phải **gate theo cờ stall** (chỉ áp cho bot có di chuyển). |
 | **06-20 DẠ TẦU** | Thêm stall tụ tập quanh Dạ Tầu: đặt `daTau=1` → `sim.entity` dùng `daTauNodes`. |
 | **06-20 COMBAT** | **Đuổi NPC địch gần nhất bằng `NpcRun`** → 2 bot đánh nhau di chuyển mượt như player. **KHÔNG đuổi player** (để bot đánh NHAU sôi nổi, không bù theo người chơi — player vẫn bị bám nếu tự gây chiến). |
-| **06-20 AGGRO** | `SIMBOT_AGGRO_PLAYER = 1`: bot nhắm + đánh player khác camp **dù player chưa bật chiến đấu**. |
+| **06-20 AGGRO** | `SIMBOT_AGGRO_PLAYER = 0` (17/09): bot nhắm + đánh player khác camp **dù player chưa bật chiến đấu**. |
 | **06-21 CHAT REPLY** | Bot **trả lời player nói gần**: `HasPlayerSay()` + `PollSayForBot(idx)` → category → `SIM_SAY_REPLY` (rep_chung/ok/no/chao/giaodich/boss) → random câu trong `chat.txt`. Ghi chú: tạm dùng `NpcChat` (bong bóng); muốn `CH_NEARBY` phải fix client DLL (`BotSayLocal` — để sau). |
 | **06-23 ƯU TIÊN PLAYER** | ~25% bot gần player khác camp nhắm **player trước** (`CHANCE_PREFER_PLAYER=25`), còn lại đánh NPC như cũ. Không có NPC địch → **bám theo player**. |
 | **06-24 SELF-DEFENSE** | Bị đánh (`selfDefTick` còn hiệu lực) → nhắm **BẤT KỲ player gần**, kể cả **cùng camp** (= kẻ tấn công), bỏ qua `IsAttackableCamp`. |

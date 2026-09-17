@@ -1,3 +1,20 @@
+
+
+## ⚠️ ĐÍNH CHÍNH sau khi đối chiếu server thật (17/09/2026)
+
+- dòng 19: **không có `tangmeng.lua`** (chỉ có thư mục rỗng `tangmeng/`).
+- dòng 23: `Huashan.lua` → **`huashan.lua`** (chữ h thường).
+- dòng 32-47: server **KHÔNG có** file `状态图形对照表.txt` — phần này lấy từ tài liệu cũ, cần xin lại file gốc.
+- dòng 79-82: tên thuộc tính lấy từ **engine `jx_linux_y`** hoặc từ `.lua`; `magicdesc.ini` (283 dòng) chỉ là chú thích hiển thị, **không phải** registry đầy đủ (11/25 tên chỉ có trong engine).
+- dòng 102: giá trị thật của `physicsenhance_p` = `{{{1,10},{15,100},{20,237}}}` (`emei.lua:184`).
+- dòng 104-107 + 166-177: **số của `colddamage_v` sai** — đúng là `[1]={{1,10},{20,111}}`, `[3]={{1,10},{20,111}}` (logic mô tả [1]/[3] vẫn đúng).
+- dòng 194-202: **tối đa 20 cặp** `LvlSetting` (không phải "14-18"); 462 skill dùng đủ 20, 8 skill dùng 19. Con số 10 trong tài liệu gốc = `skilltemplate.txt` của editor chỉ mở tới `LvlSetting10`.
+- dòng 227-233: `Extrac` = **bản sao y hệt `Line`** và **không nơi nào dùng** ⇒ coi như dead code, đừng dùng cho skill mới.
+- dòng 264-271: `SkillExpFunc` chia **2** (không phải 50): `SkillExp(i) = floor(Exp0 * a^(i-1) * Time * Range / 2)` — đúng trên cả 15 file `.lua`.
+- dòng 247-258: bổ sung nhánh — nếu giá trị thuộc tính là **FUNCTION** thì engine gọi thẳng `SKILLS[data][levelname](level)`, không qua `Link()`.
+- dòng 288-289 và 300-301: ví dụ `Doatmang_tamthien` / `Doatmang_3000` / `Bang_nhu110` **không còn tồn tại** trên bản này (giữ làm lịch sử).
+- dòng 203 ("giá trị trong `.lua` luôn thắng `skills.txt`"): **chưa kiểm chứng runtime** — muốn chắc phải test in-game.
+
 ==================================================================
 TỪ ĐIỂN THAM KHẢO - CẤU TRÚC FILE .lua SKILL (VLTK Offline)
 Nguồn: tài liệu "giải_thích_các_file_skill_Lua.docx" người dùng

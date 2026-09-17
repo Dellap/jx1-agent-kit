@@ -1,5 +1,14 @@
 # Settings SimBot — định dạng & cách thêm dữ liệu
 
+## ⚠️ ĐÍNH CHÍNH sau khi đối chiếu server thật (17/09/2026)
+
+- §2: **148 file nodes** (~123 preset) — không phải 77; `580/581_noname_nodes.txt` có trên đĩa nhưng **chưa khai** trong `thanhthi.txt`.
+- §7: cột `chucnang` dịch đúng là **"chủ động"** (không phải "chờ đứng"); file có **9 phái**: caibang, conlon, ngami, ngudoc, thiennhan, thienvuong, thieulam, thuyyen, vodang.
+- §4: `chat.txt` có **20 giá trị `Type`** (tài liệu mới liệt kê 8) — quan trọng nhất: **`general`** = câu bot nói lúc **rảnh** (không chiến đấu, `sim.fun.lua:26`), nhóm ngữ cảnh có `solo`/`tantinh`/`hoatdong`/`giaodich`.
+  ⚠️ **Bẫy**: `SIM_SAY_REPLY` (`sim.fun.lua:3`) chỉ map `0→rep_chung, 1→rep_ok, 2→rep_no, 3→rep_chao, 4→rep_giaodich, 5→rep_boss`, và dòng 10 dùng `SIM_SAY_REPLY[cat] or "rep_chung"` ⇒ các Type `rep_cho/rep_tuchoi/rep_camon/rep_vonhom/rep_nhomfull/rep_solo` **không có đường tới** cho tới khi mở rộng bảng này.
+- §1/§9: 3 file settings chưa có tài liệu — `attractions.txt` (điểm NPC Xa Phu/dịch chuyển), `trangtri.txt` + `trangtri/` (đồ trang trí theo map), `haudoanh.txt` (node hậu doanh theo camp).
+
+
 Gốc: `server1/settings/global/vdk/simcity/` (đọc bằng `SimCityTableFromFile(path, pattern)`; TSV, `.txt`, CRLF,
 chữ có dấu lưu kiểu **TCVN3/iso-8859-1**).
 

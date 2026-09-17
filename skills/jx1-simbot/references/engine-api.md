@@ -1,5 +1,13 @@
 # Engine API / native — SimBot (bóc từ code <GAME_HOST_IP>)
 
+## ⚠️ ĐÍNH CHÍNH sau khi đối chiếu server thật (17/09/2026)
+
+- §2: **`BT_SetData` KHÔNG tồn tại** → tên đúng là **`BT_SetData(data, value)`** (`plugins/ptongkim.lua:145,180`); đi kèm `BT_SortLadder()`, `BT_BroadSelf()` (luôn gọi sau khi ghi điểm).
+- §1: thêm số liệu — `BOT_STALL_PRICE_MULTIPLIER = 15` (thang tối đa 100) ⇒ bot bán giá ×15; bot `daTau=1` dùng tier 0, shop thường qua `head.lua`.
+- §3.1: `PARAM_TYPE = 2` khi `role == "keoxe"` (SimTheoSau); **= 1 cho mọi role khác kể cả `child`**; và **param 4 = 1** là cờ "NPC do SimCity quản lý" (`sim.entity.lua:93-100`).
+- Mọi hàm engine bot đều được guard kiểu `if SetBotPoints then …` ⇒ **engine có thể thiếu hàm**, giữ thói quen guard khi viết code mới.
+
+
 ## 1. Nhóm hàm CHỈ có cho bot (vdk.so mở rộng)
 
 | Hàm | Ý nghĩa / tham số quan sát được trong code |

@@ -11,6 +11,18 @@ inside **WSL2 (CentOS7 distro <WSL_DISTRO>, hostname <PC_NAME>-Kho)** on Windows
 under `/home/jxser` (gateway/ + server1/). Webpanel (quản lý server, screenshot
 "VLTK SERVER - THỬ NGHIỆM") = python2 `server.py` on WSL :80, http://<wsl-ip>.
 
+## 🔎 Kiểm chứng tài liệu ↔ server đang chạy → `references/verifying-against-live-server.md`
+
+Khi cần xác minh ghi chú/skill về server còn đúng hay đã cũ (số dòng, đường dẫn, tên hàm, giá trị config):
+đọc file đó trước. Nó có quy trình tar read-only + 2 bẫy đã trả giá: **đừng tin số dòng đếm từ mirror**
+(phải `wc -l` trên server — chệch 1 do newline cuối suýt làm báo sai một số liệu ĐÚNG), và **đừng nhồi vòng lặp
+bash có biến vào `ssh jx1 'bash -lc "..."'`** (quote lồng nhau vỡ `unexpected EOF`). Kèm bảng mốc số liệu
+đã xác minh 17/09/2026 + tên hàm/settings của SimBot trong `game-development/jx1-simbot` (skill đó user-owned).
+**Mục 5 của file đó** = audit 60 tài liệu HQVL ↔ server nhà: bảng 4 tên file tài liệu HQVL ghi SAI
+(`Missile.txt`→`missles.txt`, `comon.lua`→`common.lua`, `maplist.ini`, `worldset.txt`) + header THẬT
+`missles.txt` (57 cột) & `skills.txt` (114 cột, 20 cặp LvlSetting) — tra mục 5 trước khi sửa dữ liệu skill,
+vì các từ điển trong skill `vltk-skill-data-modding` (user-owned) còn ghi tên cũ.
+
 ## Service stack & ports (start order matters)
 1. mysqld → 3306
 2. goddess_y (gateway/) → 5001 (account/role DB), binds 0.0.0.0 — bishop needs it up first

@@ -1,3 +1,19 @@
+
+
+## ⚠️ ĐÍNH CHÍNH sau khi đối chiếu server thật (17/09/2026)
+
+- dòng 14-15: `Missile.txt` → **`missles.txt`**.
+- dòng 33-34: `SkillId` **nên** duy nhất, nhưng thực tế **đang có 1 trùng: SkillId 521 (2 dòng)** ⇒ phải rà khi thêm skill.
+- dòng 106-115: `SkillStyle` 0=loại bẫy · 1=chiến đấu · 2=chủ động · 3=bị động · 4=bùa chú · 5=luyện độc · 6=tăng độc (theo template); **dữ liệu thật còn dùng 13** (công kích nội công) và **14** (chú thuật) ⇒ đừng giới hạn 0-6.
+- dòng 128-130: Tam Nga Tề Tuyết (SkillId 328) `AttackRadius = **360**` (512 là `skill_attackradius` trong `emei.lua` — cột khác); dải thật **0-1000**, 757 dòng = 0, nhóm tầm xa 570/600/700/800/1000.
+- dòng 152: `CharClass` thêm **`0` = Vô hệ**.
+- dòng 153-164: `MisslesForm` — `4` = ngẫu nhiên, `5` = khu vực (nhãn cũ lệch); dữ liệu thật dùng tới **13**.
+- dòng 124-125: `LRSkill` — **`3` = không dùng được bằng cả chuột trái và phải** (template chỉ định nghĩa tới 3).
+- dòng 171-173: `ChildSkillNum` bị chia phối bởi thuộc tính **`skill_misslenum_v`** (không phải hàm `misssle_num`).
+- dòng 187-188: cột ngay sau `WaitTime` = **`IsSaveCd`**, kế là **`ClientSend`**; từ điển còn thiếu `StatePriority`, `TimePerCastOnHorse`, `TargetOther`, `TargetNoNpc`, `IsExpSkill`…
+- dòng 220-224 + 330-331: ví dụ combo SkillId **1963-1966, 572/573 không tồn tại** trên bản này; combo thật: **328 (Tam Nga Tề Tuyết) → 142 (Thâu Thiên Hoán Nhật)**.
+- dòng 332-334: lỗi `addskilldamage0` **không còn** trong dữ liệu (giữ làm ví dụ lịch sử cơ chế trả rỗng của `GetSkillLevelData`).
+
 ==================================================================
 TỪ ĐIỂN THAM KHẢO - CÁC CỘT TRONG FILE skills.txt (VLTK Offline)
 Nguồn: tài liệu "Giải_thích_các_cột_trong_skill_txt.docx" người

@@ -1,3 +1,18 @@
+
+
+## ⚠️ ĐÍNH CHÍNH sau khi đối chiếu server thật (17/09/2026)
+
+- **Tên file thật = `settings/missles.txt`** (không phải `Missile.txt`); kèm `settings/missletemplate.txt` mô tả cột/enum. Bỏ câu "chưa có file dữ liệu thực tế".
+- dòng 29: `2` = **bay ngẫu nhiên** (không phải "tùy ý").
+- dòng 34-35: `7` = **parabol**; còn `8` = hồi toàn/xoay về (chưa thấy dùng) ⇒ cột `FollowKind` là `{0..8}`, không phải `{0..7}`.
+- dòng 40: ⚠️ **ngược nghĩa** — `0` = **KHÔNG bám theo** (438/441 dòng là 0), `1` = bám theo NPC.
+- dòng 43: `2` = **bám theo đạn** (chỉ 1 skill dùng; hành vi chưa kiểm runtime).
+- dòng 132-137: ⚠️ **lệch 1 cột từ Y trở đi** — thực tế `Y = MissRate` (cột tài liệu cũ bỏ sót, toàn bộ 441 dòng = 0), `Z/AA/AB = Param1/Param2/Param3`. **Luôn đọc theo header thật, đừng copy số cột tài liệu.**
+- dòng 139-144: `MultiShow` = **cột AC** (không phải AB).
+- dòng 146-149: sau AC còn `AnimFile1-4` + `AnimFileInfo1-4` + `SndFile1-4` (+ bộ `B1-B4`) và `RedLum/GreenLum/BlueLum/LightRadius`.
+- dòng 75-86: tên hàm thật = **`missle_lifetime_v`**, **`missle_speed_v`**, `skill_misslenum_v` (không phải `misssle_*`).
+- dòng 93-94 (`Zacc`) và 108-109 (`ResponseSkill`): vẫn **chưa kiểm được** (template không khai báo / 100% dòng = 0).
+
 ==================================================================
 TỪ ĐIỂN THAM KHẢO - CÁC CỘT TRONG FILE Missile.txt (VLTK Offline)
 Nguồn: tài liệu "Missiletemplate.docx" người dùng cung cấp.
