@@ -47,7 +47,8 @@ Mục tiêu: **rút ngắn đường mò và tiết kiệm token**. Đọc đún
 - ❌ Không sửa `skills.txt` mà không đối chiếu `.lua` + `Missile.txt` (thuộc tính rỗng âm thầm).
 - ❌ Không dùng file đã patch/hex của người lạ (rủi ro mã độc) — tự patch.
 - ❌ Không hardcode IP LAN vào file daemon WSL nội bộ (chỉ `bishop.cfg` được dùng IP LAN).
-- ❌ Không commit secret vào repo này (chạy `scripts/audit.sh` trước khi push).
+- ❌ Không dán thông tin riêng (IP nội bộ, tên máy, mật khẩu, tên người) vào tài liệu khi chia sẻ cho người khác
+  — repo này đã được lọc bằng `scripts/audit.sh`, phần bạn tự thêm cũng phải sạch.
 - ❌ Không đặt **tên Unicode** cho file/thư mục tiếng Trung khi copy vào client: mọi tên trong client là **mojibake**
   (bytes GBK đọc như Latin-1) — đặt sai tên là engine không tìm thấy (xem `vltk-client-modding`).
 - ❌ Không dùng `pcall` trong script client (engine Lua đời cũ, `pcall` làm script dừng giữa chừng); kéo cửa sổ = `Moveable=1`;
