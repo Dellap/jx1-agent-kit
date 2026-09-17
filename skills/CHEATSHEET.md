@@ -94,7 +94,8 @@ ssh jx1 'pkill -x jx_linux_y; sleep 2; bash /opt/vltk_portable/boot_all.sh /home
   ĐÃ LOẠI TRỪ: thiếu cửa sổ theme `ui/ctc` (đã copy đủ 6 ini + sprite, cả tên mojibake) · bản `vdk.so` (đổi `_goc`) ·
   khối `_ts > 0 … _ts = 0` trong `sim.core.lua` · pack `NPC PLAYER HIỆN BANG` (guard NpcId — **đã hoàn nguyên**, xem dưới) ·
   hook client `EquipmentCompare`/ONE.DLL.
-  Chi tiết bảng 8 phép thử + hướng còn lại: `skills/jx1-simbot/references/packs-and-stall-shop.md`.
+  **Phép thử #9 (đo thật 17/09):** cắm log `PollTradeStay` trong `SimCore:OnTimer` (`sim.core.lua`), chủ server online bấm bot nhiều lần ⇒ **0 dòng** ⇒ cú bấm không tạo trạng thái trade-stay ⇒ lỗi ở **cặp module `vdk.so`↔`vdk.dll`**, sửa Lua server là vô ích.
+  Chi tiết bảng 9 phép thử + hướng còn lại: `skills/jx1-simbot/references/packs-and-stall-shop.md` → mục **TRẠNG THÁI LỖI QUẦY BOT**.
 - **Giá quầy bot** điều khiển bằng `BOT_STALL_PRICE_MULTIPLIER` (`simcity/config.lua`, thang 1..100) → `head.lua` gọi
   `SetBotStallTier(0, 1000 + MULT, 1)`; module sinh đồ/giá là `vdk.so`. Pack `CHANGE PRICE SIMCITY SHOP - Do Bao` = bộ 3 file
   (`vdk.so` md5 **trùng bản đang chạy** + `head.lua` khớp + `config.lua` đặt MULT=15). Nếu biến này **thiếu** ⇒ không đăng ký tier.

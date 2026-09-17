@@ -136,7 +136,20 @@ cùng 54.229 B, **`.rodata` GIỐNG HỆT, `.text` chỉ khác 4 byte** ⇒ modu
 | 5 | So Lua server ↔ 2 pack update 28/08 | trùng md5 (đã update đủ) |
 | 6 | Áp pack `NPC PLAYER HIỆN BANG` (guard NpcId + bỏ khối `_ts`) | ✗ (đã **HOÀN NGUYÊN** 17/09 22:27 — pack dựa baseline cũ, ghi đè 8 file mới hơn) |
 | 7 | Tắt hook client `EquipmentCompare=0` / `[OneDLL] Enabled=0` | ✗ |
-| 8 | Đổi giá quầy bot `BOT_STALL_PRICE_MULTIPLIER` 100 → 15 (theo pack Do Bao) + `vdk.so` của pack (đã là bản đang chạy) | **chờ chủ server test** |
+| 8 | Đổi giá quầy bot `BOT_STALL_PRICE_MULTIPLIER` 100 → 15 (theo pack Do Bao) + `vdk.so` của pack (đã là bản đang chạy) | ✗ (không hiện đồ) |
+| 9 | **Cắm log `PollTradeStay` trong `SimCore:OnTimer`** (`sim.core.lua`, in khi `_ts ~= 0`) → chủ server đăng nhập, bấm vào bot đứng bán nhiều lần | **0 dòng log** ⇒ cú bấm **không** tạo trạng thái trade-stay cho bot |
+
+### ✅ Kết luận từ phép thử #9 (17/09/2026, đo thật)
+
+Log đặt tại đúng dòng `local _ts = … PollTradeStay(tbNpc.finalIndex) … 0` trong `SimCore:OnTimer` (hàm tick mỗi bot).
+Chủ server online + bấm bot nhiều lần ⇒ **không lần nào `_ts` khác 0**. Vì `OnTimer` chạy cho mọi bot mỗi tick, nếu cú bấm có tới được nhánh quầy thì `_ts` **phải** khác 0 ⇒
+
+1. Hoặc **client không gửi** yêu cầu mở quầy cho NPC-bot, hoặc
+2. **engine không gắn cú bấm với bot đó** (không coi NPC là quầy) — cả hai đều nằm ở **cặp module `vdk.so` (server) ↔ `vdk.dll` (client)**, KHÔNG nằm ở Lua simbot.
+
+⇒ Mọi thay đổi trong `simcity/**` (Lua) **không thể** sửa lỗi này. Đường còn lại duy nhất: tác giả mod / cặp module khác.
+**Phép thử còn giữ được để phân biệt (a) và (b):** cần **2 tài khoản online** — A cắm quầy người thật, B bấm vào quầy đó, cùng lúc cắm log `PollTradeStay` (nếu quầy người thật cũng ra `_ts = 0` thì `PollTradeStay` là **sai chỗ đo**, phải tìm API khác).
+**Bài học quy trình:** log chèn vào file Lua server phải là **cú pháp Lua 4** — dùng `mod(a,b)`, KHÔNG dùng `%`; luôn `luajit -bl <file> /dev/null` trước khi restart (17/09 đã tự bắn vào chân: `%` ⇒ `sim_citizen.lua` không nạp ⇒ `SimCitizen = nil` ⇒ mất sạch bot).
 
 **Bằng chứng tách hướng (mạnh nhất, vẫn đúng):** quầy **người thật mở được**, quầy **bot không** ⇒ lỗi ở nhánh bot, không phải engine client chung.
 **Hướng còn lại chưa thử:** (a) hỏi tác giả mod (link Facebook trong `SV/_Thông tin.docx`); (b) chạy client cũ `SV/Client/game.exe` (09/06, md5 `e652eeea…`) với server hiện tại để A/B bản client; (c) chấp nhận bot đứng bán chỉ để làm cảnh.
