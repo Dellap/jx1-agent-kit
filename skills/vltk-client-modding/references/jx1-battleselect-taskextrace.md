@@ -67,11 +67,17 @@ Muốn panel hiện ở chỗ khác thì **merge**, đừng đè.
 - Client: `Client/config.ini` `Theme=CTC`; `resolution.ini` `Width=1600 Height=900`; màn bạn 1920x1080
   (chưa chốt toạ độ theo 1920). Tool unpack: `Tools/unpacktool/unpack.exe -i <pak> -p <path> -o <dir tương đối>`.
 - Spr hợp lệ phải **single frame** (field 8–11 = 0): 底板 180x220 ✓, info_gray 160x71 ✓, info 218x71 ✓.
-- Bản ini cuối đang chạy: mod layout + `[btnShop]` giữ nguyên abs (1000,332), `Main` ở **(1350,150)**,
-  md5 `7d00fae1db11585ce4340c9404fe2a57`. Backup: `Update\_backup_client_truoc_tasktrace_20260917_1800\
-  battle_select.ini.tu_pak` (ini gốc client) và `…\_backup_client_truoc_readme_20260917_1841\`.
-- **Còn mở**: (a) bạn muốn vị trí panel theo ý riêng (chưa chốt); (b) Pet/Kỹ Năng Sống trùng tên section
-  `btn_prevpage/btn_nextpage` với 2 nút của mod ⇒ không cùng tồn tại; (c) shop SimBot cần bạn test lại.
+- Bản ĐANG CHẠY (verify lại 17/09/2026 tối, đọc trực tiếp client): `battle_select.ini` md5 **`60b64d14ce51c24aca4ef0db6d6beb2d`**,
+  `Main` ở **(1350,150)**, `Width/Height=180x220`, `Moveable=1`, `Image=\spr\Ui4\主界面\任务指南资源\任务追踪底板.spr`;
+  `script/protocol.lua` md5 **`c6f4b2628a58b1730311c03dad072b82`**, `script/tasktrace/ui.lua` md5 **`bf3e3cd59aa732bfa4fedf664b519bc1`**
+  (`config.ini: Theme=CTC`, `resolution.ini: 1600x900`). ⚠️ md5 cũ `7d00fae1…` trong bản ghi trước là **bản đã bị thay** —
+  đối chiếu lại trước khi tin bất kỳ số md5 nào trong tài liệu này.
+  Backup để rollback: `Update\_backup_client_truoc_tasktrace_20260917_1800\battle_select.ini.tu_pak` (ini gốc client),
+  `…\_backup_client_truoc_readme_20260917_1841\`, và bản chạy tốt `Update\_SAVE_tasktrace_working_20260917_1930\` (+`restore_working.sh`).
+- **Đã chốt**: vị trí panel = `Main` (1350,150) (giữ nguyên từ 17/09).
+- **Còn mở**: Pet/Kỹ Năng Sống trùng tên section `btn_prevpage/btn_nextpage` với 2 nút của mod ⇒ không cùng tồn tại.
+- ✅ **"Shop SimBot không hiện đồ" KHÔNG liên quan mod này** (đã trả giá kiểm tra: rollback mod vẫn lỗi) — lỗi nằm ở cặp module
+  `vdk.so`/`vdk.dll`, trạng thái **để ngõ**: xem `jx1-simbot/references/packs-and-stall-shop.md` (đọc trước khi thử lại).
 
 ## Script kèm (chạy lại được)
 

@@ -1,6 +1,13 @@
 # JX1 UI engine notes — session detail (Aug 2026)
 
-## File inventory (verified on <GAME_HOST_IP>, share root `VoLamTruyenKy`)
+> ⚠️ **Đối chiếu lại 17/09/2026 (đọc trực tiếp máy) — vài đường dẫn trong mục "File inventory" đã CŨ:**
+> - `TOOL/` (viết hoa) **không còn tồn tại**; công cụ hiện chỉ còn `<JX1_ROOT>/Tools/unpacktool/{unpack.exe, Decoder.exe, paths.txt}`.
+> - Các thư mục bóc pak (`ui1600/`, `pk_*`, `unpack_*`, `pakall`…) đã được **dồn về `E:\Game\jx1\_unpack\`** (13 thư mục + `_README.txt`).
+> - `dllmain.cpp` **không còn trong `Client/`** (chỉ còn `dgVoodoo.conf`); đừng đi tìm theo đường dẫn cũ.
+> - `Client/ui/ctc/` thực tế có **14 file `.ini` loose** (không phải 164 — con số 164 là của bộ bóc từ pak/`ui_ctc_v2`).
+> - `resolution.ini Width=1600 Height=900`, `config.ini Theme=CTC` — **vẫn đúng** (verify 17/09).
+
+## File inventory (verified on <GAME_HOST_IP>, share root `VoLamTruyenKy`, tháng 8/2026)
 
 - `CLIENT/` = game dir: `game.exe`, `engine.dll`, `filtertext*.dll` (resolution hook), `dgVoodoo.conf` + `ddraw.dll`/`D3DImm.dll` (DirectDraw wrapper), `resolution.ini` (`[Resolution] Width=1600 Height=900 Log=0 PatchGameInit=1`), `config.ini` (`[Client] FullScreen=0 Theme=CTC`), `package.ini` (pak load order, `0=ui.pak`), `dllmain.cpp` (hook source, 3053 lines — reads `[Events]`/`[Smooth]` from fps_events.ini, GDI blit path).
 - `CLIENT/ui/ctc/` = 164 .ini files, theme folder for `Theme=CTC`. Key: `顶部控制条.ini` (top bar: `[Life]`/`[Mana]`/`[Stamina]`/`[Exp]`/`[Level]`/`[WorldSort]`), `玩家头像.ini`, `公共.ini` (cursor list), `防沉迷进度条.ini` (vertical strip at right, PartType=3 vertical fill), `progressbar.ini`.
