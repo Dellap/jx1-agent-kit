@@ -1,5 +1,8 @@
 # Mod "Theo dõi nhiệm vụ" (TaskTrace) trên client CTC — ca 17/09/2026 (đầy đủ)
 
+> ⚠️ Mọi đường dẫn tuyệt đối trong file này là **ví dụ của một máy cụ thể** (`<GAME_ROOT>`, `<WORK_DIR>`, `<DRIVE>:` …). Máy khác hãy tự xác định *game root* = thư mục cha của `Client/`.
+
+
 Ghi lại nguyên văn ca khó nhất: mod Task Trace không hiện suốt buổi vì **3 nguyên nhân xếp chồng**,
 tất cả đều do thao tác mod, không phải mod hỏng.
 

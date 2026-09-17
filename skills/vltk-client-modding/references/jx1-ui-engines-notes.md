@@ -1,8 +1,11 @@
 # JX1 UI engine notes — session detail (Aug 2026)
 
+> ⚠️ Mọi đường dẫn tuyệt đối trong file này là **ví dụ của một máy cụ thể** (`<GAME_ROOT>`, `<WORK_DIR>`, `<DRIVE>:` …). Máy khác hãy tự xác định *game root* = thư mục cha của `Client/`.
+
+
 > ⚠️ **Đối chiếu lại 17/09/2026 (đọc trực tiếp máy) — vài đường dẫn trong mục "File inventory" đã CŨ:**
 > - `TOOL/` (viết hoa) **không còn tồn tại**; công cụ hiện chỉ còn `<JX1_ROOT>/Tools/unpacktool/{unpack.exe, Decoder.exe, paths.txt}`.
-> - Các thư mục bóc pak (`ui1600/`, `pk_*`, `unpack_*`, `pakall`…) đã được **dồn về `E:\Game\jx1\_unpack\`** (13 thư mục + `_README.txt`).
+> - Các thư mục bóc pak (`ui1600/`, `pk_*`, `unpack_*`, `pakall`…) đã được **dồn về `<UNPACK_DIR>\`** (13 thư mục + `_README.txt`).
 > - `dllmain.cpp` **không còn trong `Client/`** (chỉ còn `dgVoodoo.conf`); đừng đi tìm theo đường dẫn cũ.
 > - `Client/ui/ctc/` thực tế có **14 file `.ini` loose** (không phải 164 — con số 164 là của bộ bóc từ pak/`ui_ctc_v2`).
 > - `resolution.ini Width=1600 Height=900`, `config.ini Theme=CTC` — **vẫn đúng** (verify 17/09).

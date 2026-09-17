@@ -1,6 +1,9 @@
 # Bảng nhiệm vụ (Task Trace) trong cửa sổ `battle_select` — layout chuẩn + quy trình lưu/rollback
 
-Chốt 17/09/2026. Client: `E:\Game\jx1\VoLamTruyenKy\Client` (theme **CTC**, chạy 1600x900 theo `Client/resolution.ini`).
+> ⚠️ Mọi đường dẫn tuyệt đối trong file này là **ví dụ của một máy cụ thể** (`<GAME_ROOT>`, `<WORK_DIR>`, `<DRIVE>:` …). Máy khác hãy tự xác định *game root* = thư mục cha của `Client/`.
+
+
+Chốt 17/09/2026. Client: `<GAME_ROOT>\Client` (theme **CTC**, chạy 1600x900 theo `Client/resolution.ini`).
 
 ## 1. Cửa sổ `battle_select` — control nào engine VẼ ĐƯỢC
 

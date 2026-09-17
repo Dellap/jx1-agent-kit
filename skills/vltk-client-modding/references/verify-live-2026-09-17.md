@@ -1,9 +1,12 @@
 # Kiểm chứng chỉ-đọc (17/09/2026) — số/đường dẫn THẬT, và các câu trong SKILL.md đã LỖI THỜI
 
+> ⚠️ Mọi đường dẫn tuyệt đối trong file này là **ví dụ của một máy cụ thể** (`<GAME_ROOT>`, `<WORK_DIR>`, `<DRIVE>:` …). Máy khác hãy tự xác định *game root* = thư mục cha của `Client/`.
+
+
 Rà soát chỉ-đọc (nc / `ssh jx1` / ls / grep / md5 / od — không sửa gì) nhằm chốt lại số liệu sau khi
 SKILL.md gộp từ skill cũ `jx1-client-ui-modding`. **Ô nào đánh ⛔ là câu trong SKILL.md đang SAI/đã cũ — sửa khi có dịp.**
 
-## Layout share THẬT (`/mnt/e/Game/jx1/VoLamTruyenKy/`)
+## Layout share THẬT (`$GAME_ROOT/`)
 
 ```
 Client/    Server/(chỉ jxser.tgz)    UI/    Tools/(chỉ unpacktool)    Update/    + vài .rar/.zip
@@ -11,12 +14,12 @@ Client/    Server/(chỉ jxser.tgz)    UI/    Tools/(chỉ unpacktool)    Update
 
 - ⛔ Không tồn tại `TOOL/`, `CLIENT/`, `SERVER/` như block "Client layout" ở PHẦN GỘP ghi. Không có `ui1600`.
 - ⛔ **`SPRViewer/`, `ResolutionHook.0.0.2/`, `UI+3/`, `TOOL/ui1600/` KHÔNG tồn tại** (find tới maxdepth 6 trên
-  `/mnt/e/Game/jx1`). Mục "Tools on server (TOOL/)" trong SKILL.md mô tả đồ đã bị xoá.
+  `$WORK_DIR`). Mục "Tools on server (TOOL/)" trong SKILL.md mô tả đồ đã bị xoá.
   Resolution hook hiện là **file trong Client/**: `filtertext.dll` + `filtertext_orig.dll` + `resolution.jsonc` + `resolution.ini`.
 - Tool dùng được: `Tools/unpacktool/{unpack.exe, Decoder.exe, paths.txt}` ✅ (khớp dòng "đường dẫn thật hiện nay" của SKILL.md).
 - `UI/` = bộ skin HQVL: `game.exe, one.dll, ddraw.dll, D3DImm.dll, VLTK_ui.dll, HoiQuanVoLam.exe, HoiQuanVoLam.ini,
   assets/, spr/, ui/, dgVoodoo.conf, resolution.jsonc, fps_events.ini, vdk.dll, filtertext*.dll` ✅ (khớp mô tả cũ).
-- Nơi gom giải nén `E:\Game\jx1\_unpack\` ✅ tồn tại.
+- Nơi gom giải nén `<UNPACK_DIR>\` ✅ tồn tại.
 
 ## Số đã verify ✅
 
@@ -66,7 +69,7 @@ bản mod vào `ui/ctc/battle/` (và `ui/ui3/battle/`). Luật đúng cần phá
 ## Kiểm tra lại khi cần (lệnh chỉ-đọc, an toàn)
 
 ```bash
-ssh jx1 'ls /mnt/e/Game/jx1/VoLamTruyenKy/Client/ui/'                  # theme list
+ssh jx1 'ls $GAME_ROOT/Client/ui/'                  # theme list
 ssh jx1 'md5sum /mnt/e/.../Client/ui/ctc/battle/battle_select.ini'     # md5 bản đang chạy
 ssh jx1 'od -A d -t x1 -N 16 <file>.spr'                               # header sprite (xxd KHÔNG có trên CentOS 7)
 ssh jx1 'grep -a -A24 KE_SCRIPT_PROTOCOL /home/jxser/server1/script/protocol.lua'
