@@ -75,7 +75,7 @@ Original bar `spr/Ui3/主界面/ÉúÃüÌõ.spr` (生命条, máu, 106x11, 2004
 - `Unpack/unpack.exe` — .pak extractor (CLI: `-i file.pak -p path -a -l list.txt -o outdir`), keep pak list/hashes. **Đường dẫn thật hiện nay: `$GAME_ROOT/Tools/unpacktool/unpack.exe`** (cùng thư mục có `Decoder.exe`, `paths.txt`).
 - **unpack.exe là binary WINDOWS — từ WSL KHÔNG nhận đường dẫn Linux**: `-i /mnt/e/...` hay `-o /tmp/...` fail "Cannot open file"/ghi sai chỗ. Cách chạy đúng: `cd` vào thư mục chứa pak (vd `Client/data`) rồi dùng `-i ui.pak -o ../../unpack_out` — output phải là đường dẫn tương đối Windows-visible từ CWD.
 - **Unpack 1 file cụ thể từ pak:** `unpack.exe -i ui.pak -p ui/ctc/¹¤¾ß¿ØÖÆÌõ.ini -o ../../unpack_out` (`-p` = path trong pak, dùng tên GBK mojibake đúng như `ls` in ra). Báo `Files: 3381 [OK] Extracted`.
-- **NƠI GHI OUTPUT GIẢI NÉN (bạn yêu cầu 17/09/2026):** đừng để thư mục giải nén rải rác trong `VoLamTruyenKy/`
+- **NƠI GHI OUTPUT GIẢI NÉN:** đừng để thư mục giải nén rải rác trong thư mục game
   (làm rối share root) — gom hết vào **1 chỗ: `<UNPACK_DIR>\<tên>`**, kèm `_README.txt` nói rõ từng thư mục là gì.
   Giải nén xong thì `mv` vào đó; `_unpack/` KHÔNG phải phần của client nên xoá được khi hết cần.
 - `SPRViewer/` — .NET SPR viewer (user runs it; may export/import PNG→SPR — confirm capabilities before assuming).
@@ -128,7 +128,7 @@ JX1 đánh số protocol **theo VỊ TRÍ trong bảng `KE_SCRIPT_PROTOCOL`** (`
 - ⛔ **ĐỪNG so số protocol với `script_protocol/protocol_def_gs.lua`** — đó là **bảng handler (Def)**,
   không phải bảng số. Bản liệt kê bên trong nó (11–12 mục) KHÔNG phải enum.
   (17/09 trợ lý so nhầm sang file này, tưởng server `TASKTRACE=#12` vs client `#17` → sắp lại bảng enum của
-  client → server gửi 17, client hiểu thành `KICHCLIENT` → mod chết thêm 3 lần test của bạn.)
+  client → server gửi 17, client hiểu thành `KICHCLIENT` → mod chết thêm 3 lần test.)
 - Kiểm đúng: `grep -A24 KE_SCRIPT_PROTOCOL /home/jxser/server1/script/protocol.lua` rồi so với
   `Client/script/protocol.lua` — hai danh sách phải **giống y từng dòng**.
 - **Việc thật cần làm với mod mới = thêm 1 dòng `Def` (`Nội dung` trong `references/mod-install-and-debug.md`),
@@ -147,7 +147,7 @@ Dùng `scripts/instrument-client-protocol.py <protocol.lua vào> <ra>` để t�
    (đây là bằng chứng quyết định: thấy được server thật sự gửi số nào, client hiểu thành tên gì)
 3. quanh lời gọi handler → `CALL <file> <fun>` … `CALL-DONE <fun>` (code gọi handler giữ **NGUYÊN XI**, chỉ kẹp 2 dòng log)
 
-⛔ **TUYỆT ĐỐI KHÔNG bọc `pcall` trong script client để debug** (bài học 17/09/2026, tốn 3 lần test của bạn):
+⛔ **TUYỆT ĐỐI KHÔNG bọc `pcall` trong script client để debug** (bài học 17/09/2026 — tốn 3 lần test mới phát hiện):
 engine script là **Lua đời cũ, KHÔNG phải Lua 5.1** (`getn`/`tinsert`/`format` global, `for key,v in tbl do`),
 nghi **không có `pcall`**. Bọc `pcall(...)` ⇒ script **dừng NGAY tại dòng đó, im lặng tuyệt đối** (không log, không popup)
 → log cụt đúng sau dòng liền trước ⇒ dễ kết luận sai là "hàm engine bị crash". Muốn biết dialect thì **log `tostring(pcall)`**
@@ -252,7 +252,7 @@ và trong `Task_MainDialog` của `seasonnpc.lua`.
 1. Client **thiếu file mod** (script tasktrace + 2 spr + Def protocol) → cài đủ.
 2. Trợ lý tự chèn 1 dòng `Def` **sai vị trí** (ngoài bảng) → protocol.lua lỗi cú pháp → cả hệ protocol client chết.
 3. Trợ lý bọc **`pcall`** trong script client (engine Lua đời cũ **không có pcall**) → script dừng im lặng đúng dòng đó
-   ⇒ 3 lần test của bạn đều thất bại vì **chính bản debug của trợ lý**, không phải mod.
+   ⇒ 3 lần test đều thất bại vì **chính bản debug thêm vào**, không phải mod.
    → Bỏ hết `pcall`, chỉ chèn `__LOG` (log thuần) là bảng hiện ngay.
 Log xác nhận lúc chạy được: `RX id=17 name=emSCRIPT_PROTOCOL_TASKTRACE hasHandler=1` +
 `CALL … tasktrace\ui.lua TaskTrace:OpenUI` + `CALL-DONE`.
@@ -432,7 +432,7 @@ zz zz zz zz        field 8-11 (uint32 LE): 0 = SINGLE FRAME (an toàn), nonzero 
 
 - **Field 8-11 = 0 → 1 frame duy nhất → load được.** Nonzero = sprite sheet → engine đúp hình ngang; zero hóa sheet → crash game.
 - Thanh máu/mana mặc định: `spr/Ui3/主界面/生命条.spr` (HP, 106x11, GBK `ÉúÃüÌõ.spr`) và `内力条.spr` (MP, `ÄÚÁ¦Ìõ.spr`). Sprite tròn có sẵn: `spr/Ui3/minimap/frame_all.spr` (176x147), `spr/Ui3/self_info/frame_sel_avata.spr`.
-- ✅ **8/2026: user đã có tool convert riêng — orb.spr/orb_mana.spr 128x128 (14255B, single frame) do user tự convert thay vào thanh máu/mana CHẠY ĐƯỢC.** Vậy sprite hợp lệ KHÔNG nhất thiết phải lấy từ game — miễn đúng header + single frame. Pitfall "tool ngoài crash" hôm 5/8 là do tool đó xuất header/encoding khác, không phải mọi tool đều hỏng.
+- ✅ **8/2026: con dấu thật — orb.spr/orb_mana.spr 128x128 (14255B, single frame) tự convert rồi thay vào thanh máu/mana CHẠY ĐƯỢC.** Vậy sprite hợp lệ KHÔNG nhất thiết phải lấy từ game — miễn đúng header + single frame. Pitfall "tool ngoài crash" hôm 5/8 là do tool đó xuất header/encoding khác, không phải mọi tool đều hỏng.
 - Thay sprite: backup trước (`rename 生命条.spr 生命条.spr.bak`), `put` file mới cùng tên, giữ `.bak` để rollback.
 
 ## ⚠️ PITFALL — GBK filename + CRLF

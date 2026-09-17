@@ -153,7 +153,7 @@ Chủ server online + bấm bot nhiều lần ⇒ **không lần nào `_ts` khá
 
 **Bằng chứng tách hướng (mạnh nhất, vẫn đúng):** quầy **người thật mở được**, quầy **bot không** ⇒ lỗi ở nhánh bot, không phải engine client chung.
 **Hướng còn lại chưa thử:** (a) hỏi tác giả mod (link Facebook trong `SV/_Thông tin.docx`); (b) chạy client cũ `SV/Client/game.exe` (09/06, md5 `e652eeea…`) với server hiện tại để A/B bản client; (c) chấp nhận bot đứng bán chỉ để làm cảnh.
-⛔ KHÔNG kết luận bằng ghi chú docx của pack update ("Bỏ chức năng xin vật phẩm từ Bot") — user đã bác: **xin vật phẩm ≠ bày bán**.
+⛔ KHÔNG kết luận bằng ghi chú docx của pack update ("Bỏ chức năng xin vật phẩm từ Bot") — **xin vật phẩm ≠ bày bán** (hai chức năng khác nhau).
 - Script áp: `/root/apply_npc_guard.sh check|apply|revert`; backup `/home/jxser/_backup_npcguard_20260917_220335`.
 
 **⛔ BẪY RESTART SERVER (tốn thời gian 17/09):** `<PORTABLE_DIR>/panel_restart.sh` **CHỈ restart WEB PANEL (:80)**, KHÔNG đụng service game.

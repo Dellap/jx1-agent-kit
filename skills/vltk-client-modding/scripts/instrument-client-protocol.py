@@ -18,7 +18,7 @@ Log ghi ra Client\\logs\\protocol_log.txt (append):
         -> handler chạy tới đâu. Cụt ở CALL = chết BÊN TRONG handler (hàm engine / ui.lua mod).
            Có CALL-DONE = mod chạy trọn vẹn -> không hiện UI là vấn đề HIỂN THỊ của engine.
 
-⛔ KHÔNG dùng `pcall` trong script client (bài học 17/09/2026 — tốn 3 lần test của bạn):
+⛔ KHÔNG dùng `pcall` trong script client (bài học 17/09/2026 — tốn 3 lần test):
 engine script là Lua đời cũ (`getn`/`tinsert`/`format` global, `for key,v in tbl do`), KHÔNG phải Lua 5.1,
 nghi KHÔNG có `pcall`. Bọc pcall -> script dừng IM LẶNG ngay tại dòng đó (không log, không popup) -> log cụt
 đúng sau dòng liền trước -> rất dễ kết luận sai là "hàm engine crash". Vì vậy script này chỉ LOG, giữ nguyên
