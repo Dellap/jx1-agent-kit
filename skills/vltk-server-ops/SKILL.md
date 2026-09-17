@@ -62,6 +62,35 @@ deletes+re-adds portproxy + firewall for 2222, 5622, 5632. Run as admin after ev
 PC reboot. Client `settings\serverlist.ini` 0_Address must point at <GAME_HOST_IP>
 (laptop) / 127.0.0.1 (same-machine); port comes from config.ini GameServPort=5622.
 
+## 📚 Tài liệu HQVL — cài đặt / vận hành / script server
+
+> **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này `sources/hqvl-docs-text/<file>` (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
+
+- `wiki-beta__download__cac_buoc_co_ban_tao_nhiem_vu_(mission).html.txt` — tạo nhiệm vụ (mission) cơ bản
+- `wiki-beta__jx6__cac_ham_thong_dung_trong_lib_comon.lua.html.txt` — các hàm thông dụng trong lib_comon.lua
+- `wiki-beta__jx6__xay_dung_function_phan_trang_hop_thoai.html.txt` — hàm phân trang hộp thoại (dialog)
+- `wiki-beta__download__mot_so_trick_nho_de_lam_gon_lua_script_4.x.html.txt` — trick làm gọn Lua 4.x (engine đời cũ)
+- `wiki-beta__jx6__them_vong_sang_danh_hieu_cho_npc.html.txt` — thêm vòng sáng/danh hiệu cho NPC
+- `wiki-beta__download__chinh_sua_thong_so_chien_truong_tong_kim.html.txt` — chỉnh thông số chiến trường Tống Kim
+- `wiki-beta__jx6__cach_sua_server_de_vao_tong_kim_danh_van_co_diem_ma_khong_can_log_acc_2_ben.html.txt` — sửa server vào Tống Kim không cần log 2 bên
+- `wiki-beta__jx6__huong_dan_them_gio_tong_kim_theo_y.html.txt` — thêm giờ Tống Kim theo ý
+- `wiki-beta__jx6__jx60_-_cong_thanh_chien_den_hkmp_(di_ban_oi_cuoc_doi).html.txt` — công thành chiến → HKMP
+- `wiki-beta__jxlinux__jxlinux_8.0_-_di_ban_bili_cong_thanh_chien.html.txt` — JXLinux 8.0 — dĩ bàn bili công thành chiến
+- `wiki-beta__jx6__lenh_bai_lam_nhiem_vu_hoang_kim.html.txt` — lệnh bài làm nhiệm vụ Hoàng Kim
+- `wiki-beta__jxlinux__huong_dan_mo_hoat_dong_dau_ngu_linh_thu_jxlinux.html.txt` — mở lại hoạt động Đậu Ngư Linh Thú
+- `wiki-beta__jxlinux__huong_dan_mo_lai_hoat_dong_ong_ba_muoi_phien_ban_6.0_8.0_hoi_quan.html.txt` — mở lại hoạt động Ông Bà Mười (6.0/8.0)
+- `wiki-beta__download__script_tham_cau_ban_ngua_9x.html.txt` — script tham câu + bán ngựa 9x
+- `wiki-beta__ky_tran_di_bao.html.txt` — Kỳ Trân Dị Bảo
+- `wiki-beta__tang_thu_bao_dien.html.txt` — Tăng Thu Bảo Điện
+- `wiki-beta__download__vo_lam_cac.html.txt` — Võ Lâm Các
+- `jx1-scripts__0002_tần-lăng-bí-bảo__README.md.txt` — Tần Lăng Bí Bảo (script sự kiện, xem cả bản `.backup` trong index)
+- `wiki-beta__jx6__[jx60]_bo_cai_dat_8gsv_+_hex_he_moc_than_phap_-_di_ban_thinh_phan_van.html.txt` — bộ cài 8GSV + hex hệ mộc/thần pháp
+- `wiki-beta__jx6__[jx60]_bo_cai_dat_nam_cung.html.txt` — bộ cài Nam Cung
+- `wiki-beta__jx8__[jx80]_bo_cai_dat_jxlinux_8.1.11_tu_a___z.html.txt` — bộ cài JXLinux 8.1.11 từ A→Z
+- `wiki-beta__jx8__cac_di_ban_nhi_phan_cua_game_y.exe_cho_jx80_phien_ban_hoi_quan.html.txt` — các dĩ bàn nhị phân game_y.exe cho JX80
+- `wiki-beta__jx6__vo_hieu_coredump_ra_files_tren_cent_os_jx_linux.html.txt` — vô hiệu core dump trên CentOS JX Linux
+- `wiki-beta__jxlinux__miniskill_cho_jxlinux_va_jxwin.html.txt` — miniskill cho JXLinux & JXWin
+
 ## FixIp — the classic "laptop can't enter game" trap
 Each of bishop.cfg / goddess.cfg / s3relay relay_config.ini / servercf*.ini has a
 [FixIp] InternetIp/IntranetIp. **Semantics differ per file:**

@@ -131,6 +131,14 @@ Bảng đầy đủ + hàm nào bị engine bỏ qua: `references/engine-api.md`
 - Debug: `OutputMsg` (hiện luôn), `SimThatThanh.DEBUG_LOG = 1` (bật log file), các lệnh GM kiểm tra:
   `/Lua SimTDC_InspectBots()`, `...InspectBots(926)`, `Status`, `FixAll`.
 
+## 📚 Tài liệu HQVL — SimCity/bot (kho cộng đồng)
+
+> **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này `sources/hqvl-docs-text/<file>` (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
+
+- `jx1-scripts__0001_simcity__README.md.txt` — **simcity** (vinh-ttn) — README gốc hệ simcity cộng đồng
+- `wiki-beta__jx6__share_source_jx_simcity_1.x.html.txt` — share source JX SimCity 1.x
+- `wiki-beta__jx6__lua_script_-_keo_xe_npc_1.x.html.txt` — Lua script kéo xe NPC 1.x
+
 ## Tham chiếu
 
 - `references/packs-and-stall-shop.md` — **đọc trước khi thử lại bất kỳ hướng nào cho lỗi "quầy bot không hiện đồ"**: 3 pack đã áp/khảo sát, cơ chế giá quầy bot, ruột module `vdk.so`, bảng 8 phép thử đã loại trừ, trạng thái lỗi để ngõ

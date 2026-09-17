@@ -43,6 +43,18 @@ skills.txt), có đánh dấu độ tin cậy [XÁC NHẬN]/[BỔ SUNG]/[CHƯA R
 4. Giá trị bất thường so với quy luật chung (vd skill_cost_v giảm theo cấp)
 5. Copy skill mẫu quên bật lại thuộc tính đang comment
 
+## 📚 Tài liệu HQVL — dữ liệu & công cụ (shop/goods/buysell/pak/TCVN3/GM)
+
+> **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này `sources/hqvl-docs-text/<file>` (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
+
+- `jxtools__shopbuilder__README.md.txt` — **ShopBuilder** — tạo/sửa shop server (buysell.txt, goods.txt, item/) — JX Linux 8.0 & 6.0
+- `jxtools__onlineGMPassTool__README.md.txt` — **OnlineGMPassTool** — mã hoá/giải mã mật khẩu GM (MD5)
+- `jxtools__onlineTCVN3Converter__README.md.txt` — **OnlineTCVN3Converter** — chuyển UTF-8 ↔ TCVN3
+- `wiki-beta__cong_cu_ho_tro_toan_tap.html.txt` — công cụ hỗ trợ toàn tập
+- `wiki-beta__download__cong_cu_them_nhanh_vat_pham_vao_cua_hang.html.txt` — thêm nhanh vật phẩm vào cửa hàng
+- `wiki-beta__download__hoan_doi_trang_bi_giu_nguyen_thuoc_tinh.html.txt` — hoán đổi trang bị giữ nguyên thuộc tính
+- `wiki-beta__download__huong_dan_pack_va_unpack_du_lieu_tu_pak.html.txt` — pack/unpack dữ liệu từ .pak
+
 ## Tham chiếu chi tiết
 - references/lua-dictionary.md — cấu trúc & thuộc tính file .lua + hàm nội suy
 - references/skillstxt-dictionary.md — giải nghĩa từng cột skills.txt

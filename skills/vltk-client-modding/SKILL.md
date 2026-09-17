@@ -278,6 +278,24 @@ Log xác nhận lúc chạy được: `RX id=17 name=emSCRIPT_PROTOCOL_TASKTRACE
   callback `on_select/prev_page/next_page/mouse_wheel`) và các section mà `battle_select.ini` cần:
   `[Main] [btn_close] [btn_prevpage] [btn_nextpage] [info_1..4] [scroll_bar] [scroll_bar_Btn]`.
 
+## 📚 Tài liệu HQVL — client (auto / RE / inject / scale / spr)
+
+> **Tài liệu HQVL liên quan** (60 tài liệu cộng đồng đã bóc text). Bản đầy đủ: repo này `sources/hqvl-docs-text/<file>` (trên máy: `~/jx1-knowledge/text/`). Mục lục + trích đoạn: skill `jx1-hqvl-knowledge/references/doc-index.md`.
+
+- `wiki-beta__jxwin__[part1]_source_code_va_huong_dan_viet_auto_don_gian_cho_jx1.html.txt` — Part 1 — source code + viết auto đơn giản cho JX1
+- `wiki-beta__download__toan_tap_huong_dan_viet_autoplay_cho_vo_lam_voi_autoit.html.txt` — toàn tập viết auto-play bằng AutoIt
+- `tutorials__[AutoJx Part1]AutoRaoBanDoJx6__README.MD.txt` — AutoJx Part1 — auto rao bán đồ JX6
+- `wiki-beta__jx6__[part2]_huong_dan_inject_file_dll_vao_file_game.exe_su_dung_assembly.html.txt` — inject DLL vào game.exe (Assembly)
+- `wiki-beta__jx8__[part3]_huong_dan_inject_file_dll_vao_file_game.exe_su_dung_c#.html.txt` — inject DLL vào game.exe (C#)
+- `wiki-beta__jxwin__loi_ich_khi_build_client_server_jxwin_phien_ban_64_bits.html.txt` — lợi ích build client/server JXWin 64-bit
+- `wiki-beta__jxwin__phan_mem_giup_scale_cua_so_game_vo_lam_len_1920x1080.html.txt` — scale cửa sổ game lên 1920x1080
+- `wiki-beta__download__tool_xem_spr_-_mpc_asf.html.txt` — tool xem .spr (MPC/ASF) — kiểm tra sprite trước khi chèn
+- `wiki-beta__download__chia_se_ma_nguon_autoupdate_c++.html.txt` — mã nguồn autoupdate (C++)
+- `wiki-beta__download__ung_dung_autoupdate_giao_dien_don_gian.html.txt` — ứng dụng autoupdate giao diện đơn giản
+- `wiki-beta__download__quan_ly_tai_nguyen_tren_may_chu_voi_bili_web.html.txt` — quản lý tài nguyên trên máy chủ với Bili web
+- `wiki-beta__jx6__client_patch_trung_sinh_6,_7,_8_va_9.html.txt` — client patch Trùng Sinh 6–9
+- `wiki-beta__jxwin__jxwin_-_source_tinh_van_(di_ban_tran_minh).html.txt` — JXWin — source Tinh Vân
+
 ## Pitfalls
 
 - **Chèn entry vào bảng `Def` của `script/protocol.lua`: PHẢI nằm TRONG bảng**, tức là trước dòng `}` đóng bảng
