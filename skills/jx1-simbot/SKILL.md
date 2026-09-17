@@ -52,7 +52,34 @@ KHÔNG phải thiếu file theme.** ⛔ Giả thuyết cũ của trợ lý ("the
 - Script test để lại: `/root/test_vdk_goc.sh` (`swap` | `rollback`, tự chặn khi có người online, tự backup + verify md5).
   ⚠️ Bài học: script CHỈ nhận đúng tham số — chạy với tham số lạ từng làm nó tự `swap` (đã thêm chốt chặn).
 
-**⇒ Còn lại nghi vấn ở phía CLIENT (cặp binary client) — bước kế tiếp:**
+## 🎯 NGHI PHẠM SỐ 1 (tìm ra 17/09 tối, CHƯA test): khối `_ts > 0` trong `sim.core.lua` tự huỷ mọi tương tác với bot
+
+Trong **file đang chạy** `server1/script/global/nobitaxd/vdk/simcity/components/sim.core.lua` (16/08/2026, md5 `4f08c10e0a0f736b515303c49cdd61ec`)
+có một khối **KHÔNG có trong bản gốc** `sim.core.lua_goc` (04/07/2026, md5 khác) — chèn ngay sau dòng `PollTradeStay`:
+
+```lua
+local _ts = (PollTradeStay and ...) and PollTradeStay(tbNpc.finalIndex) or 0
+if _ts > 0 then                      -- <<< khối thêm vào (dòng 862-876)
+    if TradeStayClear then TradeStayClear(tbNpc.finalIndex) end
+    tbNpc.tradeStayDeadline = nil ... tbNpc.tradeItemAt = nil
+    _ts = 0                          -- <<< ÉP VỀ 0: huỷ tương tác ngay lập tức
+end
+if _ts == 2 then ... (nhánh gửi hàng SendTradeItem)
+```
+
+⇒ Mỗi khi engine báo "đang có người giao dịch/bày hàng với bot" (`PollTradeStay > 0`), code **xoá trạng thái + ép `_ts = 0`**
+⇒ nhánh `_ts == 2` (gửi hàng cho người chơi) **không bao giờ chạy** ⇒ **bấm vào bot đứng bán không hiện gì**.
+
+**Khớp 100% với thực nghiệm:** quầy **người chơi thật mở được**, quầy **bot thì không** (17/09) — lỗi nằm ở nhánh bot,
+không phải engine client (`vdk.dll`) và không phải bản `vdk.so`.
+
+**Vì sao khối đó được thêm:** chắc để chữa "bot kẹt đứng bán" (state 1/2 treo). Nhưng code GỐC **đã có timeout** rồi
+(`tradeStayDeadline` 38s, `tradeStayBye` 10s, `tradePostUntil` 27s ở các nhánh `_ts==1/2/3`) ⇒ khối này là **thừa và phá tính năng**.
+
+**Cách test (script đã để sẵn trên server, chưa chạy):** `/root/fix_bot_stall_test.sh apply` (backup + comment khối 862-876 + restart `jx_linux_y`)
+→ vào game bấm bot; `revert` để trả lại. Sau khi xác nhận, nên viết lại khối đó **chỉ clear khi bot cần rời chỗ** (thay vì cắt mọi giao dịch).
+
+**⇒ Nếu test này vẫn không được, còn lại nghi vấn phía CLIENT:**
 1. `game.exe` có 2 bản khác md5: `SV/Client/game.exe` **09/06/2026** (`e652eeea…`) vs bản đang chạy **21/08/2026** (`d48a6d19…`).
    Cả 2 bản đều có chuỗi `摆摊`/`摆摊物品`/`买卖` + `OpenShop`/`Stall` (đếm bằng nhau) ⇒ khác biệt không nằm ở tên cửa sổ.
    Test rẻ: backup `Client/game.exe` → chép bản 09/06 vào → tắt/mở client → click bot (1 file, đảo ngược được).
