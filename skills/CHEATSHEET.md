@@ -101,7 +101,7 @@ ssh <SSH_ALIAS2> 'pkill -x jx_linux_y; sleep 2; bash <PORTABLE_DIR>/boot_all.sh 
   (`vdk.so` md5 **trùng bản đang chạy** + `head.lua` khớp + `config.lua` đặt MULT=15). Nếu biến này **thiếu** ⇒ không đăng ký tier.
 - ⛔ **Pack third-party có thể dựa trên baseline CŨ:** pack `NPC PLAYER HIỆN BANG` ghi đè 8 file server mới hơn (mất 24 dòng config riêng)
   ⇒ phải **so md5 3 chiều TỪNG FILE** trước khi ghi đè và hoàn nguyên nếu lệch (`/root/apply_price_shop_pack.sh revert`).
-  Xem `skills/<SSH_ALIAS>-client-modding/references/mod-install-and-debug.md` §5.
+  Xem `skills/vltk-client-modding/references/mod-install-and-debug.md` §5.
 - 🔬 **Nội dung quầy bot do `vdk.so` dựng, không có file dữ liệu:** `settings/global/vdk/simcity/` chỉ có chat/names/pets/skills/maps;
   `vdk.so` = ELF 32-bit stripped, `.text` 42.676 B, `.rodata` 3.244 B, `.bss` 9,9 MB, **không export symbol** (tự đăng ký hàm Lua qua constructor)
   ⇒ đổi giá/món phải **build lại module**; pack `CHANGE PRICE - Do Bao` = **patch 23 byte trong `.text`** (không phải đổi dữ liệu).

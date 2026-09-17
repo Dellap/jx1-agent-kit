@@ -46,7 +46,7 @@ Backup bản gốc: `Update\_backup_client_truoc_readme_*\ui.lua.goc_mod`.
 ## 3. Cái KHÔNG thể (đừng thử lại — đã trả giá)
 
 - Chèn `pcall` vào bất kỳ script client nào → engine Lua đời cũ không có `pcall`, script **chết im lặng** ngay dòng đó
-  (xem `<SSH_ALIAS>-client-modding`). Đây chính là thứ làm mod "không hiện" suốt 17/09 dù protocol đã tới đúng chỗ.
+  (xem `vltk-client-modding`). Đây chính là thứ làm mod "không hiện" suốt 17/09 dù protocol đã tới đúng chỗ.
 - Đặt tiêu đề vào `btn_close` rồi mong "bấm không mất bảng": engine đóng cửa sổ là hành vi cứng.
 - Thêm section/control mới vào ini (kể cả có ảnh + Label) → engine bỏ qua.
 - Chỉ đưa **1** ô info vào khung ⇒ user chỉ thấy 1 dòng chữ ("không hiện hết UI"). Muốn "đầy đủ" phải có mặt đủ

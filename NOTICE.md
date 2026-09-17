@@ -15,7 +15,7 @@ và vận hành server private chạy offline. Không bán, không kèm binary, 
 
 ## 2. Ghi chép của chủ server
 
-- `skills/<SSH_ALIAS>-*`, `skills/jx1-simbot`, `skills/CHEATSHEET.md`, `START-HERE.md`, `sources/simbot/`:
+- `skills/vltk-*`, `skills/jx1-simbot`, `skills/CHEATSHEET.md`, `START-HERE.md`, `sources/simbot/`:
   ghi chép và mã Lua thuộc **server server JX1** (tự host, chơi offline). Phần script SimCity/SimBot do
   dev của server phát triển/nhận chuyển giao, có ghi mốc kinh nghiệm trong comment.
 - Nội dung khác trong `sources/` (settings, bảng dữ liệu) là dữ liệu cấu hình của server.

@@ -6,8 +6,8 @@ author: Hermes Agent (bóc tách từ server <SERVER_NAME> <GAME_HOST_IP>)
 license: MIT
 metadata:
   hermes:
-    tags: [game-development, jx1, <SSH_ALIAS>, simbot, simcity, bot-ai]
-    related_skills: [<SSH_ALIAS>-server-ops, jx1-hqvl-knowledge, <SSH_ALIAS>-skill-data-modding]
+    tags: [game-development, jx1, vltk, simbot, simcity, bot-ai]
+    related_skills: [vltk-server-ops, jx1-hqvl-knowledge, vltk-skill-data-modding]
 ---
 
 # SimBot / SimCity — hệ thống NPC mô phỏng của JX1 (<GAME_HOST_IP>)
@@ -17,7 +17,7 @@ metadata:
 
 Toàn bộ lịch sử 3 pack (NPC PLAYER HIỆN BANG · CHANGE PRICE SIMCITY SHOP · DOBAO SIMBOT VER 3), cơ chế giá quầy bot, ruột module `vdk.so`, bảng 8 phép thử đã loại trừ và trạng thái lỗi **để ngõ** đã tách ra file tham chiếu — đọc file đó TRƯỚC khi thử lại bất cứ hướng nào.
 
-## ⚠️ QUY LUẬT TÊN FILE CỦA CLIENT JX1 (CTC) — TÊN = MOJIBAKE _(bản canonical: skill `<SSH_ALIAS>-client-modding`; đây là bản nhắc lại cho simbot)_
+## ⚠️ QUY LUẬT TÊN FILE CỦA CLIENT JX1 (CTC) — TÊN = MOJIBAKE _(bản canonical: skill `vltk-client-modding`; đây là bản nhắc lại cho simbot)_
 
 **Đã kiểm chứng 17/09/2026 trên client bạn:** mọi file/thư mục loose của client (kể cả file do client phát hành) đều có tên ở
 **dạng mojibake**: bytes GBK bị hiểu thành Latin-1. Ví dụ sprite dir thật trên đĩa là `°ÚÌ¯` (không phải `摆摊`), `ÂòÂô` (không phải `买卖`),
@@ -31,7 +31,7 @@ Toàn bộ lịch sử 3 pack (NPC PLAYER HIỆN BANG · CHANGE PRICE SIMCITY SH
 - bạn nhắc "simbot", "SimCity", "bot dân thành thị", "kéo xe", "chiến loạn", "Thất Thành Đại Chiến",
   bot bán hàng (stall), bot Tống Kim, vật nuôi/tiểu thiếp.
 - Cần sửa/thêm hành vi bot, thêm bản đồ cho bot đi lại, chỉnh giá bot bán, hoặc debug bot đứng im / không đánh.
-- Không dùng cho vận hành server thường ngày (→ `<SSH_ALIAS>-server-ops`) hay mod skill (→ `<SSH_ALIAS>-skill-data-modding`).
+- Không dùng cho vận hành server thường ngày (→ `vltk-server-ops`) hay mod skill (→ `vltk-skill-data-modding`).
 
 **Nguồn:** mirror local `~/jx1-knowledge/simbot/` (tar từ server: `/tmp/simbot.tgz`), gồm
 `server1/script/global/nobitaxd/vdk/simcity/**` (42 file Lua, 592K), `server1/settings/global/vdk/simcity/**`

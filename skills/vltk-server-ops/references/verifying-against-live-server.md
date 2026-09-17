@@ -91,7 +91,7 @@ Lần kiểm này 5/9 đường dẫn đúng, 4 sai:
 `script/global/autoexec.lua`, `settings/magicdesc.ini`, `s3relay/relaysetting/task/tasklist.ini`,
 `script/skill/<phái>.lua`.
 
-Header THẬT (giải các ô "chưa rõ" của từ điển trong skill `<SSH_ALIAS>-skill-data-modding` — skill đó user-owned,
+Header THẬT (giải các ô "chưa rõ" của từ điển trong skill `vltk-skill-data-modding` — skill đó user-owned,
 không patch được; ghi tạm ở đây):
 
 - `settings/missles.txt`: **57 cột**, TAB. Thứ tự: MissleId, MissleName, MoveKind, FollowKind, ColFollowTarget,

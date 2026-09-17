@@ -1,5 +1,5 @@
 ---
-name: <SSH_ALIAS>-skill-data-modding
+name: vltk-skill-data-modding
 description: Use when sửa skill VLTK server-side data files.
 ---
 
@@ -67,4 +67,4 @@ skills.txt), có đánh dấu độ tin cậy [XÁC NHẬN]/[BỔ SUNG]/[CHƯA R
 2. Đối chiếu 3 lớp: skills.txt (LvlSetting/LvlData) ↔ .lua (thuộc tính) ↔
    Missile.txt (đạn) — sửa thiếu 1 lớp = skill hỏng/chết âm thầm.
 3. Kiểm tra cân bằng `{}` + grep tên thuộc tính khớp cả 2 file.
-4. Restart đúng quy trình (xem <SSH_ALIAS>-server-ops) rồi test trong game.
+4. Restart đúng quy trình (xem vltk-server-ops) rồi test trong game.

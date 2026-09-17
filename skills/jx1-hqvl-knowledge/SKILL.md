@@ -6,8 +6,8 @@ author: Hermes Agent (mirror từ github.com/jxoffline / Hội Quán Võ Lâm)
 license: MIT
 metadata:
   hermes:
-    tags: [game-development, jx1, <SSH_ALIAS>, hqvl, lua, reverse-engineering]
-    related_skills: [<SSH_ALIAS>-server-ops, <SSH_ALIAS>-client-modding, <SSH_ALIAS>-skill-data-modding, jx1-simbot]
+    tags: [game-development, jx1, vltk, hqvl, lua, reverse-engineering]
+    related_skills: [vltk-server-ops, vltk-client-modding, vltk-skill-data-modding, jx1-simbot]
 ---
 
 # 
@@ -31,7 +31,7 @@ metadata:
 - Cần tra kỹ thuật JX1/VLTK ngoài phạm vi server nhà: cài bản 6.0/8.0/JXWin, script sự kiện, mission,
   shop (`goods/buysell`), Tống Kim, auto/RE, inject DLL, build JXWin 64-bit, tool pack/unpack, SPR, autoupdate.
 - bạn nhắc link `github.com/jxoffline` / "Hội quán võ lâm" / HQVL / jxtools / wiki-beta.
-- Không dùng cho vận hành server <SERVER_NAME> đang chạy → skill `<SSH_ALIAS>-server-ops` / `<SSH_ALIAS>-client-modding`.
+- Không dùng cho vận hành server <SERVER_NAME> đang chạy → skill `vltk-server-ops` / `vltk-client-modding`.
 
 Cộng đồng **HQVL** (fb.com/groups/volamquan, discord.gg/gBrZsTwauH, jx1offline@gmail.com).
 `github.com/jxoffline` là **user account** (không phải org → `/orgs/` API trả 404, dùng `/users/`).
@@ -119,7 +119,7 @@ Bản 8.0 mã hoá nên không áp dụng được.
 - **Autoupdate**: app C++ (set 16-bit, thêm exclusion AV, tạo shortcut) + MD5Generator; source dùng Qt 5.7.1 x86.
 - **Miniskill** (icon skill nhỏ dưới thanh máu) và **scale cửa sổ lên 1920x1080** (không dùng Alt+Enter) có bản
   share sẵn — xem `references/doc-index.md`.
-- UI/SPR client <GAME_HOST_IP> hiện tại: dùng skill `<SSH_ALIAS>-client-modding` (đã gộp cả `jx1-client-ui-modding` từ 17/09).
+- UI/SPR client <GAME_HOST_IP> hiện tại: dùng skill `vltk-client-modding` (đã gộp cả `jx1-client-ui-modding` từ 17/09).
 
 - `references/hqvl-digest.md` — **chưng cất 60 tài liệu HQVL** (phân loại mức hữu ích + tri thức theo nhóm: cài đặt server/tính năng/Tống Kim/mission/auto + đáp án cho các chỗ "chưa rõ" của từ điển dữ liệu)
 
@@ -160,6 +160,6 @@ Bản 8.0 mã hoá nên không áp dụng được.
 - Script nạp RAM lúc start → đè file phải **restart server** mới có hiệu lực; backup trước, verify md5 sau.
 - **Không dùng file đã hex/patch của người khác** (rủi ro mã độc) — tự patch theo hex/IDA.
 - Sự kiện: quên tăng `[List] Count` trong `tasklist.ini` = task không chạy; sai ngày ở `head.lua` = vào không thấy gì.
-- Lua: đếm `{`/`}` cân bằng; tên thuộc tính phải khớp 3 lớp (chi tiết skill `<SSH_ALIAS>-skill-data-modding`).
+- Lua: đếm `{`/`}` cân bằng; tên thuộc tính phải khớp 3 lớp (chi tiết skill `vltk-skill-data-modding`).
 - Tài liệu HQVL chỉ để **nghiên cứu/phi thương mại** (DISCLAIMER của họ nói rõ); nhiều link Google Drive/Facebook
   trong bài có thể đã chết.

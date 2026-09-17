@@ -1,5 +1,5 @@
 ---
-name: <SSH_ALIAS>-server-ops
+name: vltk-server-ops
 description: Use when operating the VLTK/JX1 <SERVER_NAME> server.
 ---
 
@@ -21,7 +21,7 @@ bash có biến vào `ssh <SSH_ALIAS2> 'bash -lc "..."'`** (quote lồng nhau v�
 **Mục 5 của file đó** = audit 60 tài liệu HQVL ↔ server nhà: bảng 4 tên file tài liệu HQVL ghi SAI
 (`Missile.txt`→`missles.txt`, `comon.lua`→`common.lua`, `maplist.ini`, `worldset.txt`) + header THẬT
 `missles.txt` (57 cột) & `skills.txt` (114 cột, 20 cặp LvlSetting) — tra mục 5 trước khi sửa dữ liệu skill,
-vì các từ điển trong skill `<SSH_ALIAS>-skill-data-modding` (user-owned) còn ghi tên cũ.
+vì các từ điển trong skill `vltk-skill-data-modding` (user-owned) còn ghi tên cũ.
 
 ## Service stack & ports (start order matters)
 1. mysqld → 3306

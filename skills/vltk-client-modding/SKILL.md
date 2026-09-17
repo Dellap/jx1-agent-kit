@@ -11,7 +11,7 @@
 7. **Tên tiếng Trung:** trên đĩa/trong ini ở mức **byte GBK** (tài liệu hiển thị dạng mojibake đúng như `ls` in ra: `Ö÷½çÃæ`); Unicode trong ngoặc chỉ để chú thích.
 8. **`battle_select.ini`:** danh sách control engine VẼ ĐƯỢC gồm cả **`btnShop`** (bản ghi cũ thiếu) — xem mục `## Mod "Theo dõi nhiệm vụ"`.
 ---
-name: <SSH_ALIAS>-client-modding
+name: vltk-client-modding
 description: Use when modding VLTK/JX1 game client UI (.ini, .spr, pak).
 ---
 
@@ -410,7 +410,7 @@ Engine **chỉ render các control nó đã biết**: section khai trong `Button
 
 **Cách đúng để thêm/đổi visual:** chỉ sửa section ĐÃ tồn tại (đổi `Left/Top/Width/Height/Image`) HOẶC thay file .spr bằng file khác cùng tên.
 
-**⚠️ ĐANG TEST (8/2026) — thêm control MỚI qua `Button<N>`:** skill `<SSH_ALIAS>-client-modding` rule #2 khẳng định "sections declared in [Main] via Button0..N WITH full button pattern DO render" (lấy từ reference mod UI+3) — mâu thuẫn với kinh nghiệm "Button6=BgLife không render" ở trên. Thí nghiệm đang chạy: thêm **2 orb góc dưới màn hình** (orb đỏ máu trái, orb xanh mana phải) bằng:
+**⚠️ ĐANG TEST (8/2026) — thêm control MỚI qua `Button<N>`:** skill `vltk-client-modding` rule #2 khẳng định "sections declared in [Main] via Button0..N WITH full button pattern DO render" (lấy từ reference mod UI+3) — mâu thuẫn với kinh nghiệm "Button6=BgLife không render" ở trên. Thí nghiệm đang chạy: thêm **2 orb góc dưới màn hình** (orb đỏ máu trái, orb xanh mana phải) bằng:
 - `Button6=OrbLife` + `Button7=OrbMana` trong `[Main]`
 - Section `[OrbLife]` đầy đủ: `Left/Top/Width/Height=128/128/Part=1/ClassType=Player_Life` + sub `[OrbLife_Image]` (`Image=\Spr\Ui3\主界面\orb_mau.spr`, `PartType=2`)
 - Sprite mới copy vào `spr/Ui3/主界面/` với **tên ASCII** (`orb_mau.spr`, `orb_xanh.spr`) — né GBK hoàn toàn
