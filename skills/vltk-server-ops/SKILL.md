@@ -95,7 +95,7 @@ PC reboot. Client `settings\serverlist.ini` 0_Address must point at <GAME_HOST_I
 - `wiki-beta__ky_tran_di_bao.html.txt` — Kỳ Trân Dị Bảo
 - `wiki-beta__tang_thu_bao_dien.html.txt` — Tăng Thu Bảo Điện
 - `wiki-beta__download__vo_lam_cac.html.txt` — Võ Lâm Các
-- `jx1-scripts__0002_tần-lăng-bí-bảo__README.md.txt` — Tần Lăng Bí Bảo (script sự kiện, xem cả bản `.backup` trong index)
+- Tần Lăng Bí Bảo (script sự kiện) — bài gốc của nhóm HQVL, xem `jx1-hqvl-knowledge/references/doc-index.md`
 - `wiki-beta__jx6__[jx60]_bo_cai_dat_8gsv_+_hex_he_moc_than_phap_-_di_ban_thinh_phan_van.html.txt` — bộ cài 8GSV + hex hệ mộc/thần pháp
 - `wiki-beta__jx6__[jx60]_bo_cai_dat_nam_cung.html.txt` — bộ cài Nam Cung
 - `wiki-beta__jx8__[jx80]_bo_cai_dat_jxlinux_8.1.11_tu_a___z.html.txt` — bộ cài JXLinux 8.1.11 từ A→Z

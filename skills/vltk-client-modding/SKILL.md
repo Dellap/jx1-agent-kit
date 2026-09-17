@@ -89,7 +89,7 @@ Original bar `spr/Ui3/主界面/ÉúÃüÌõ.spr` (生命条, máu, 106x11, 2004
 - **Entry 玩家信息主界面.ini (màn hình chính):** `Main` → `Left center, Top bottom` (PlayerBar bám đáy giữa) + children `DateTime` left/top. File này chứa các `[Item_0]..[Item_8]` = ô đồ nhanh (36x36, Top~550, Left tăng dần) — **bản gốc trong pak để Item_3..8 dạng COMMENT (tắt), mod "UI 3+6 ô" chỉ bật chúng** (uncomment + chỉnh Left/Top + kèm sprite `spr/Ui3/thanhhienthi/thanh.spr` cho InputBack).
 - **Mod skin có nhiều biến thể tọa độ** (vd folder "UI 3 + 6 Ô CTC (1024x768) (800x600)": `Ui/ctc` = 800x600, `Ui/ctc1024` + `Ui/Ui3` = 1024x768 giống hệt nhau): client base 800x600 → **CHỈ dùng bản 800x600**, bản 1024 sẽ lệch. Verify bằng diff với file gốc unpack từ pak (mod 800x600 chỉ khác vài Left + bật Item_3-8).
 
-### UI 3+6 ô đồ nhanh + launcher CTC (số đã bóc thật — chi tiết `references/ui-3x6-slots.md`)
+### UI 3+6 ô đồ nhanh + launcher CTC (số đã bóc thật — chi tiết `skills/runbooks/ui-3x6-slots.md`)
 
 Mod "UI 3 + 6 Ô CTC (1024x768) (800x600)" bật thêm 6 ô `[Item_3]..[Item_8]` (36x36) trên màn hình chính, dời
 nền ô nhập chat và chỉnh nhẹ 10 nút toolbar. Số chuẩn cho client nền 800x600 (`Width/Height=36`, bước 40px):
